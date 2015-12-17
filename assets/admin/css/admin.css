@@ -1,0 +1,176 @@
+/*--------------------------------------------------------------
+# Helper class
+--------------------------------------------------------------*/
+.wp-core-ui .button.loungeact-btn-danger {
+  color: #ffffff;
+  background-color: #dd3d36;
+  -webkit-box-shadow: inset 0 1px 0 #dd3d36, 0 1px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 0 #dd3d36, 0 1px 0 rgba(0, 0, 0, 0.08); }
+  .wp-core-ui .button.loungeact-btn-danger:hover {
+    background-color: #ac2126; }
+
+.loungeact-cf-image-preview img {
+  max-width: 150px;
+  max-height: 150px; }
+
+@media screen and (max-width: 782px) {
+  .wp-core-ui .button.loungeact-btn-danger,
+  .wp-core-ui .button.loungeact-btn-default {
+    font-size: 16px; } }
+/*--------------------------------------------------------------
+# Custom
+--------------------------------------------------------------*/
+.loungeact-action-move, .loungeact-action-delete {
+  position: relative;
+  color: #ffffff;
+  background-color: #464b50; }
+
+.loungeact-action-move {
+  float: left;
+  padding: 10px 18px; }
+
+.loungeact-action-move:hover {
+  cursor: move; }
+
+.loungeact-action-delete {
+  float: right;
+  padding: 9px 15px;
+  background-color: #dd3d36; }
+
+.loungeact-action-delete:hover {
+  cursor: pointer; }
+
+.loungeact-accordion {
+  margin-bottom: 1em; }
+  .loungeact-accordion .loungeact-accordion-close,
+  .loungeact-accordion .loungeact-accordion-open {
+    position: relative;
+    float: right;
+    text-decoration: none;
+    color: #a0a5aa; }
+    .loungeact-accordion .loungeact-accordion-close:after,
+    .loungeact-accordion .loungeact-accordion-open:after {
+      right: 0;
+      top: -2px;
+      content: '\f140';
+      border: none;
+      background: none;
+      font: normal 20px/1 'dashicons';
+      speak: none;
+      display: block;
+      padding: 0;
+      text-indent: 0;
+      text-align: center;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-decoration: none !important; }
+    .loungeact-accordion .loungeact-accordion-close:hover, .loungeact-accordion .loungeact-accordion-close:active,
+    .loungeact-accordion .loungeact-accordion-open:hover,
+    .loungeact-accordion .loungeact-accordion-open:active {
+      cursor: pointer;
+      color: #777; }
+  .loungeact-accordion .loungeact-accordion-open:after {
+    content: '\f142'; }
+  .loungeact-accordion > h4 {
+    padding: 1em;
+    border: 1px solid #e5e5e5;
+    background-color: #fafafa;
+    margin-bottom: 0;
+    overflow: hidden; }
+    .loungeact-accordion > h4:focus {
+      outline: none; }
+  .loungeact-accordion > .lougeact-accordion-content {
+    padding: 1em 0.5em; }
+    .loungeact-accordion > .lougeact-accordion-content h4 {
+      padding: 0.5em; }
+  .loungeact-accordion > .lougeact-accordion-content {
+    padding: 1em;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5; }
+    .loungeact-accordion > .lougeact-accordion-content p:first-child {
+      margin-top: 0;
+      padding-top: 1em; }
+
+/*--------------------------------------------------------------
+# Nav
+--------------------------------------------------------------*/
+.loungeact-cf-container {
+  margin-bottom: 1em; }
+
+.loungeact-menu-options .loungeact-cf-option-button a {
+  width: 32%;
+  margin-right: 2%;
+  float: left;
+  text-align: center; }
+  .loungeact-menu-options .loungeact-cf-option-button a:last-child {
+    margin-right: 0; }
+.loungeact-menu-options input.loungeact-cf-options-val,
+.loungeact-menu-options select.loungeact-cf-options-val,
+.loungeact-menu-options textarea.loungeact-cf-options-val {
+  width: 75%; }
+.loungeact-menu-options textarea.loungeact-cf-options-val {
+  vertical-align: middle; }
+.loungeact-menu-options .loungeact-cf-add-font-icon-container .select2-container {
+  vertical-align: top; }
+.loungeact-menu-options .loungeact-cf-icon-select2 {
+  width: 200px !important; }
+
+@media screen and (max-width: 782px) {
+  .loungeact-menu-options .loungeact-cf-option-button a {
+    white-space: normal; } }
+/*--------------------------------------------------------------
+# Slider
+--------------------------------------------------------------*/
+#loungeact-edit-slides-wrapper li {
+  background-color: #ffffff; }
+  #loungeact-edit-slides-wrapper li.loungeact-slide-sortable-placeholder {
+    background-color: #ffcc00;
+    border: 2px dashed #999999;
+    height: 38px; }
+  #loungeact-edit-slides-wrapper li > .loungeact-accordion {
+    position: relative;
+    margin-bottom: 0; }
+    #loungeact-edit-slides-wrapper li > .loungeact-accordion > h4 {
+      padding: 8px 7px 8px 50px;
+      margin: 0; }
+    #loungeact-edit-slides-wrapper li > .loungeact-accordion .loungeact-action-move {
+      position: absolute;
+      top: 0;
+      left: 0; }
+    #loungeact-edit-slides-wrapper li > .loungeact-accordion .loungeact-slide-thumbnail {
+      text-align: center; }
+      #loungeact-edit-slides-wrapper li > .loungeact-accordion .loungeact-slide-thumbnail a {
+        margin-bottom: 10px; }
+
+.loungeact-edit-slide-delete {
+  color: #dd3d36; }
+
+@media screen and (min-width: 783px) {
+  #loungeact-edit-slides-wrapper .loungeact-slide-thumbnail {
+    float: left;
+    width: 30%;
+    margin-right: 1%; }
+    #loungeact-edit-slides-wrapper .loungeact-slide-thumbnail a {
+      margin-top: 35px; }
+  #loungeact-edit-slides-wrapper .loungeact-slide-meta {
+    float: right;
+    width: 69%; } }
+/*--------------------------------------------------------------
+# Select2
+--------------------------------------------------------------*/
+.select2-container {
+  z-index: 999999; }
+
+@media screen and (max-width: 782px) {
+  .loungeact-cf-field-custom .select2-container .select2-selection--single {
+    height: 36px; }
+
+  .loungeact-cf-field-custom .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 36px; }
+
+  .loungeact-cf-field-custom .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 36px; } }
+
+/*# sourceMappingURL=admin.css.map */
