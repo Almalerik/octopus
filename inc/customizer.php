@@ -23,9 +23,9 @@ function octopus_customize_register($wp_customize) {
 			'title' => esc_html__ ( 'Layout', 'octopus' ),
 			'priority' => 10 
 	) );
-	// container_class
+	// Container_class
 	$wp_customize->add_setting ( 'container_class', array (
-			'default' => octopus_get_options () ['container_class'],
+			'default' => octopus_get_option ('container_class'),
 			'transport' => 'postMessage',
 			'sanitize_callback' => 'octopus_sanitize_layout' 
 	) );
@@ -40,9 +40,9 @@ function octopus_customize_register($wp_customize) {
 			),
 			'priority' => 10 
 	) );
-	// fixed container max width
+	// Fixed container max width
 	$wp_customize->add_setting ( 'container_max_width', array (
-			'default' => octopus_get_options () ['container_max_width'],
+			'default' => octopus_get_option ('container_max_width'),
 			'transport' => 'postMessage',
 			'sanitize_callback' => 'octopus_sanitize_int',
 			'sanitize_js_callback' => 'octopus_sanitize_int' 
@@ -56,6 +56,17 @@ function octopus_customize_register($wp_customize) {
 			'priority' => 20,
 			'active_callback' => 'is_container_fixed_callback' 
 	) );
+	// Page layout
+	$wp_customize->add_setting ( 'page_layout', array (
+			'default' => octopus_get_option ( 'page_layout' ),
+			'type' => 'option' 
+	) );
+	$wp_customize->add_control ( new Layout_Picker_Custom_Control ( $wp_customize, 'octopus_page_layout', array (
+			'label' => esc_html__ ( 'Page layout', 'loungeact' ),
+			'section' => 'octopus_layout',
+			'settings' => 'page_layout',
+			'priority' => 30 
+	) ) );
 }
 add_action ( 'customize_register', 'octopus_customize_register' );
 
@@ -117,3 +128,5 @@ function is_container_fixed_callback($control) {
 	}
 	return false;
 }
+
+require_once 'wordpress-theme-customizer-custom-controls/layout/layout-picker-custom-control.php';

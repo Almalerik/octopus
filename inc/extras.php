@@ -38,7 +38,8 @@ function octopus_get_option_defaults() {
 	$defaults = array (
 			'logo' => '',
 			'container_class' => 'container-fluid',
-			'container_max_width' => '1000' 
+			'container_max_width' => '1000',
+			'page_layout' => 'full' 
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }
@@ -54,10 +55,26 @@ function octopus_get_options() {
 
 /**
  * Get theme options value using Theme Modification API
- * 
+ *
  * @param stringt $key        	
  * @return string
  */
 function octopus_get_option($key) {
-	return get_theme_mod ($key) ? get_theme_mod ($key) : octopus_get_option_defaults ()[$key] ;
+	return get_theme_mod ( $key ) ? get_theme_mod ( $key ) : octopus_get_option_defaults () [$key];
+}
+
+/**
+ * Return Bootstrap class to apply to the sidebar column; empty if layout is full
+ *
+ * @param string $sidebar        	
+ * @return string Empty if no sidebar else bootstrap class
+ */
+function octopus_get_aside_sidebar($sidebar) {
+	if (octopus_get_option ( 'page_layout' ) == 'full') {
+		return '';
+	}
+
+	if (octopus_get_option ( 'page_layout' ) == $sidebar || octopus_get_option ( 'page_layout' ) == 'all') {
+		return 'col-md-3';
+	}
 }
