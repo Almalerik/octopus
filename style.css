@@ -403,11 +403,11 @@ textarea {
 ## Links
 --------------------------------------------------------------*/
 a {
-  color: royalblue; }
+  color: #4169e1; }
   a:visited {
-    color: purple; }
+    color: #800080; }
   a:hover, a:focus, a:active {
-    color: midnightblue; }
+    color: #191970; }
   a:focus {
     outline: thin dotted; }
   a:hover, a:active {
@@ -570,6 +570,135 @@ a {
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Header
+--------------------------------------------------------------*/
+/*
+.loungeact-fullscreen-banner .lougeact-header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.loungeact-header-inside-banner .lougeact-header {
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.lougeact-scrolling .lougeact-header .navbar-default {
+    -webkit-transition: background-color 500ms linear;
+    -moz-transition: background-color 500ms linear;
+    -o-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
+}
+
+.lougeact-header {
+	z-index: 9999;
+
+	.site-logo {
+		max-height: 100px;
+	}
+	
+	.site-title {
+		font-size: $font__site-title-size;
+		margin: 0;
+		font-weight: bold;
+		line-height: 1.1;
+		
+		a {
+			color: $color__site-title;
+		}
+	}
+	
+	.site-description {
+		display: block;
+		font-size: 50%;
+		font-weight: 400;
+		line-height: 1;
+		color: $color__site-description;
+	}
+	
+	.navbar-default {
+		border-radius: 0;
+		border: 0;
+		z-index: 1000;
+		margin-bottom: 0;
+		background-color: $color__header-background;
+	    width: 100%;
+	}
+	
+	.navbar-header {
+		width: 100%;
+		display: table;
+		
+		.brand-container {
+			display: table-cell;
+			vertical-align: middle;
+		}
+		
+		.navbar-brand-logo, 
+		.navbar-brand-name
+			{
+			display: inline-block;
+			vertical-align: middle;
+		}
+		
+		.navbar-brand-name {
+			padding: 0px 10px;
+		}
+	}
+}
+
+
+@media ( max-width : 767px) {
+	.lougeact-header { 
+		.navbar-header {
+			display: block;
+			.brand-container {
+				display: block;
+			}
+		}
+		
+		.navbar-left .navbar-toggle {
+			float: left;
+		}
+	}
+
+}
+
+@media (min-width: 768px) {
+	.navbar-collapse.collapse {
+	    display: table-cell !important;
+	}
+	
+	.loungeact-navbar-mobile,
+	.loungeact-navbar-mobile.collapse,
+	.loungeact-navbar-mobile.collapse.in {
+		display: none;
+	}
+}
+
+
+@media screen and (min-width: 782px) {
+	.admin-bar .loungeact-header-sticked {
+	    top: 32px !important;
+	}
+}
+@media screen and (min-width: 601px) and (max-width: 781px){
+	.admin-bar .loungeact-header-sticked {
+	    top: 46px !important;
+	}
+}
+*/
+.site-header .site-branding {
+  float: left; }
+  .site-header .site-branding .site-logo-wrapper,
+  .site-header .site-branding .site-title-wrapper {
+    display: inline-block;
+    vertical-align: middle; }
+
 /*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/

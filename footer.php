@@ -10,13 +10,6 @@
  */
 
 ?>
-
-		<?php if ( octopus_get_aside_sidebar('right')): ?>
-		<div class="octopus-sidebar-right <?php echo octopus_get_aside_sidebar('right');?>">
-			<?php dynamic_sidebar ( 'sidebar-right' );?>
-		</div>
-		<?php endif; ?>
-
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">

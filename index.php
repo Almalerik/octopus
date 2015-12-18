@@ -14,7 +14,13 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+	<?php if ( octopus_get_aside_sidebar('left-sidebar')): ?>
+	<div id="octopus-sidebar-left" class="<?php echo octopus_get_aside_sidebar('left-sidebar');?>">
+		<?php dynamic_sidebar ( 'left-sidebar' );?>
+	</div><!-- #main -->
+	<?php endif; ?>
+
+	<div id="primary" class="content-area <?php echo octopus_get_primary_column_class();?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php
@@ -51,6 +57,12 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
+
+	<?php if ( octopus_get_aside_sidebar('right-sidebar')): ?>
+	<div id="octopus-sidebar-right" class="<?php echo octopus_get_aside_sidebar('right-sidebar');?>">
+		<?php dynamic_sidebar ( 'right-sidebar' );?>
+	</div>
+	<?php endif; ?>
+	
 <?php
-get_sidebar();
 get_footer();

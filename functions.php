@@ -101,8 +101,8 @@ add_action ( 'after_setup_theme', 'octopus_content_width', 0 );
  */
 function octopus_widgets_init() {
 	register_sidebar ( array (
-			'name' => esc_html__ ( 'Sidebar left', 'octopus' ),
-			'id' => 'sidebar-left',
+			'name' => esc_html__ ( 'Left sidebar', 'octopus' ),
+			'id' => 'left-sidebar',
 			'description' => '',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
@@ -110,8 +110,8 @@ function octopus_widgets_init() {
 			'after_title' => '</h2>'
 	) );
 	register_sidebar ( array (
-			'name' => esc_html__ ( 'Sidebar right', 'octopus' ),
-			'id' => 'sidebar-right',
+			'name' => esc_html__ ( 'Right sidebar', 'octopus' ),
+			'id' => 'right-sidebar',
 			'description' => '',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 			'after_widget' => '</aside>',
