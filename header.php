@@ -51,7 +51,7 @@
 		<div class="sidebar-full col-md-12 text-center">Qui una sidebar???</div>
 		
 		<?php if ( octopus_get_aside_sidebar('left')): ?>
-			<div class="octopus-sidebar-left <?php echo octopus_get_aside_sidebar('left');?>">
-				dynamic_sidebar ( 'sidebar-left' );
-			</div>
+		<div class="octopus-sidebar-left <?php echo octopus_get_aside_sidebar('left');?>">
+			<?php dynamic_sidebar ( 'sidebar-left' );?>
+		</div>
 		<?php endif; ?>

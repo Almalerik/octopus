@@ -39,7 +39,8 @@ function octopus_get_option_defaults() {
 			'logo' => '',
 			'container_class' => 'container-fluid',
 			'container_max_width' => '1000',
-			'page_layout' => 'full' 
+			'page_layout' => 'full',
+			'gridsystem_class' => 'col-md-',
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }
@@ -70,11 +71,12 @@ function octopus_get_option($key) {
  * @return string Empty if no sidebar else bootstrap class
  */
 function octopus_get_aside_sidebar($sidebar) {
+
 	if (octopus_get_option ( 'page_layout' ) == 'full') {
 		return '';
 	}
 
 	if (octopus_get_option ( 'page_layout' ) == $sidebar || octopus_get_option ( 'page_layout' ) == 'all') {
-		return 'col-md-3';
+		return octopus_get_option ( 'gridsystem_class' ) . '3';
 	}
 }
