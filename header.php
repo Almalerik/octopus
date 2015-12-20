@@ -45,10 +45,24 @@
 			</div>
 		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'octopus' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
-		</nav><!-- #site-navigation -->
+		<nav id="site-navigation" class="navbar navbar-default navbar-static-top" role="navigation">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="screen-reader-text"><?php esc_html_e( 'Primary Menu', 'octopus' ); ?></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<div id="navbar" class="navbar-collapse collapse" role="navigation" aria-label="<?php esc_html_e( 'Primary Menu', 'octopus' );?>">
+			<?php wp_nav_menu( array( 
+					'theme_location' => 'primary', 
+					'menu_id' => 'primary-menu',
+					'container' => false,
+					'items_wrap' => '<ul id="%1$s" class="%2$s nav navbar-nav" role="menubar">%3$s</ul>',
+					'walker' => new LoungeAct_Walker()
+			) );?>
+			</nav><!-- #site-navigation -->
+		</div>
+		<div class="clearfix"></div>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content row">

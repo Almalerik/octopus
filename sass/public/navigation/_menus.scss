@@ -1,20 +1,77 @@
+/* Bootstrap override */
+.navbar-default {
+	background-color: $color_nav-background;
+	border-top: 1px solid $color_nav-border;
+	border-bottom: 1px solid $color_nav-border;
+	line-height: 0;
+}
+
+.menu-item-has-children:hover > .sub-menu{
+	display:block;
+}
+
+.sub-menu .sub-menu {
+	left: 50%;
+	top: 50%;
+}
+
+.sub-menu.open-left {
+	right: 50%;
+	left: inherit;
+	
+	& .sub-menu  {
+		right: 50%;
+		left: inherit;
+	}
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	background-color: #f5f5f5;
+}
+
+#navbar {
+    text-align: center;
+    
+    #primary-menu {
+		display: inline-block;
+		float: none;
+    }
+    
+    .dropdown-menu {
+    	padding: 0;
+    	
+    	> li > a {
+    		padding: 10px 20px;
+    	}
+    	
+   	}
+
+}
+
+/*
 .main-navigation {
+	/*
 	clear: both;
 	display: block;
 	float: left;
 	width: 100%;
-
+	*/
+	/*
 	ul {
+		/*
 		display: none;
 		list-style: none;
 		margin: 0;
 		padding-left: 0;
-
+		*/
+		/*
 		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			/*box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);*/
+			/*
+			border: 1px solid $color_nav-sub-border;
+			border-top: 0;
 			float: left;
 			position: absolute;
-			top: 1.5em;
 			left: -999em;
 			z-index: 99999;
 
@@ -69,6 +126,8 @@
 }
 
 /* Small menu. */
+
+/*
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
@@ -103,3 +162,4 @@
 		width: 50%;
 	}
 }
+*/

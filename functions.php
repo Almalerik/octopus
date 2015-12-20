@@ -165,6 +165,9 @@ if (! function_exists ( 'octopus_public_scripts' )) {
 		), '3.3.5', true );
 		
 		wp_enqueue_style ( 'octopus-style', get_stylesheet_uri () );
+		wp_enqueue_script ( 'octopus-script', get_template_directory_uri () . '/assets/public/js/public.js', array (
+				'jquery'
+		), '1.0.0', true );
 		
 		wp_enqueue_script ( 'octopus-navigation', get_template_directory_uri () . '/js/navigation.js', array (), '20120206', true );
 		
@@ -225,3 +228,9 @@ require get_template_directory () . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory () . '/inc/jetpack.php';
+
+/**
+ * Load Custom Nav
+ */
+// TODO: MEGAMENU and submenu
+require get_template_directory () . '/inc/nav/nav.php';

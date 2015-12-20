@@ -18,8 +18,30 @@ jQuery.noConflict()(function($) {
 
     $(document).ready(function() {
     	
+    	//Check if a submenu go outside container
+    	   jQuery(".sub-menu > li").on('mouseenter mouseleave', function (e) {
+    	        if (jQuery('ul', this).length) {
+    	            var elm = jQuery('ul:first', this);
+    	            var off = elm.offset();
+    	            var l = off.left;
+    	            var w = elm.width();
+    	            var docH = jQuery(window).height();
+    	            var docW = jQuery(window).width();
+
+    	            var isEntirelyVisible = (l + w <= docW);
+
+    	            if (!isEntirelyVisible) {
+    	            	elm.addClass('open-left');
+    	            } else {
+    	            	elm.removeClass('open-left');
+    	            }
+    	        }
+    	    });
+    
+    });
     	
     	//This is necessary if user refresh page when not top
+    	   /*
     	if ($('#page').hasClass('loungeact-header-fixed-top')){
     	if ($(window).scrollTop() >= 50) {
     		$(".lougeact-wrapper").addClass("lougeact-scrolling");
@@ -45,6 +67,7 @@ jQuery.noConflict()(function($) {
 	*/
 	
 	//Sticky Header
+    	   /*
 	$('.navbar-sticky-top').stick_in_parent({'sticky_class' : 'loungeact-header-sticked', 'parent': $('body')});
 	
 	$('.loungeact-fullscreen-banner .loungeact-banner').loungeact_fullscreen_banner();
@@ -78,6 +101,7 @@ jQuery.noConflict()(function($) {
 	}*/
 
 	// Slide menu
+    	   /*
 	$(".navbar-toggle").each(function() {
 	    if ($(this).attr('data-toggle')) {
 		var datatoggle = $(this).attr('data-toggle');
