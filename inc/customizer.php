@@ -239,7 +239,43 @@ function octopus_customize_register($wp_customize) {
 						'octopus-logo-left' => esc_html__ ( 'Left logo', 'octopus' ),
 						'octopus-logo-right' => esc_html__ ( 'Right logo', 'octopus' ),
 				),
-				'priority' => 30
+				'priority' => 10
+		) );
+		$wp_customize->add_section ( 'octopus_header_colors', array (
+				'title' => esc_html__ ( 'Colors', 'octopus' ),
+				'panel' => 'octopus_header',
+				'priority' => 20
+		) );
+		// Header background color
+		$wp_customize->add_setting ( 'header_bg_color', array (
+				'default' => octopus_get_option ( 'header_bg_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_header_bg_color', array (
+				'label' => esc_html__ ( 'Background color', 'octopus' ),
+				'section' => 'octopus_header_colors',
+				'settings' => 'header_bg_color',
+				'priority' => 10
+		) ) );
+		// Header background color opacity
+		$wp_customize->add_setting ( 'header_bg_color_opacity', array (
+				'default' => octopus_get_option ( 'header_bg_color_opacity' ),
+				'sanitize_callback' => 'octopus_sanitize_opacity',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( 'octopus_header_bg_color_opacity', array (
+				'label' => esc_html__ ( 'Background opacity', 'octopus' ),
+				'description' => esc_html__ ( 'Opacity in all page and post and during scroll if header fixed top.', 'octopus' ),
+				'section' => 'octopus_header_colors',
+				'settings' => 'header_bg_color_opacity',
+				'type' => 'range',
+				'priority' => 20,
+				'input_attrs' => array (
+						'min' => 0,
+						'max' => 1,
+						'step' => 0.1
+				)
 		) );
 	}
 }
@@ -388,4 +424,14 @@ function octopus_right_sidebar_grid_size_active_callback($control) {
 		return true;
 	}
 	return false;
+}
+
+/**
+ * Sanitize callback for css opacity value
+ *
+ * @param string $value
+ * @return string
+ */
+function octopus_sanitize_opacity($value) {
+	return floatval ( $value );
 }

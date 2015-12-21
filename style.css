@@ -436,21 +436,16 @@ a {
   border: 0;
   margin-bottom: 0; }
 
-.octopus-logo-center .navbar-header {
-  float: none; }
-
-#site-navigation {
-  text-align: center; }
-  #site-navigation .navbar-nav {
-    float: none;
-    display: inline-block; }
-    #site-navigation .navbar-nav > li > a:hover,
-    #site-navigation .navbar-nav > li > a:focus {
-      background-color: #f5f5f5; }
-    #site-navigation .navbar-nav .dropdown-menu {
-      padding: 0; }
-      #site-navigation .navbar-nav .dropdown-menu > li > a {
-        padding: 10px 20px; }
+#site-navigation .navbar-nav {
+  float: none;
+  display: inline-block; }
+  #site-navigation .navbar-nav > li > a:hover,
+  #site-navigation .navbar-nav > li > a:focus {
+    background-color: #f5f5f5; }
+  #site-navigation .navbar-nav .dropdown-menu {
+    padding: 0; }
+    #site-navigation .navbar-nav .dropdown-menu > li > a {
+      padding: 10px 20px; }
 
 .navbar-collapse {
   clear: both; }
@@ -500,7 +495,8 @@ a {
     display: block; } }
 @media (max-width: 767px) {
   #site-navigation .navbar-collapse {
-    text-align: left; }
+    text-align: left;
+    background-color: #ffffff; }
     #site-navigation .navbar-collapse .navbar-nav {
       display: block; } }
 /*
@@ -713,9 +709,33 @@ a {
 ## Header
 --------------------------------------------------------------*/
 .site-header {
-  width: 100%;
+  margin: 0 -15px;
   border-bottom: 1px solid #e7e7e7; }
 
+.octopus-logo-center .navbar-header,
+.octopus-logo-center .navbar-collapse {
+  float: none;
+  text-align: center; }
+
+.octopus-logo-left .site-logo-wrapper,
+.octopus-logo-left .site-title-wrapper {
+  display: inline-block;
+  vertical-align: middle; }
+
+@media (min-width: 768px) {
+  .octopus-logo-left #site-navigation {
+    display: table;
+    width: 100%; }
+    .octopus-logo-left #site-navigation .navbar-header {
+      display: table-cell;
+      vertical-align: middle; }
+    .octopus-logo-left #site-navigation .navbar-collapse {
+      display: table-cell !important;
+      vertical-align: bottom;
+      text-align: right; } }
+@media (max-width: 767px) {
+  .octopus-logo-left .site-branding {
+    float: left; } }
 /*
 .site-header {
 	width: 100%;

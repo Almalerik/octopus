@@ -1,6 +1,51 @@
 .site-header {
-	width: 100%;
+	margin: 0 -15px;
 	border-bottom: 1px solid $color_nav-border;
+}
+
+.octopus-logo-center .navbar-header,
+.octopus-logo-center .navbar-collapse {
+	float: none;
+	text-align: center;
+}
+
+.octopus-logo-left {
+	.site-logo-wrapper,
+	.site-title-wrapper {
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+@media (min-width: 768px) {
+
+	.octopus-logo-left {
+		#site-navigation {
+			display: table;
+			width: 100%;
+			
+			.navbar-header {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.navbar-collapse {
+				display: table-cell !important;
+				vertical-align: bottom;
+				text-align: right;
+			}
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	
+	.octopus-logo-left {
+		.site-branding {
+				float: left;
+			}
+	}
+	
 }
 
 /*

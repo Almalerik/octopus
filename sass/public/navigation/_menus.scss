@@ -6,12 +6,8 @@
 	margin-bottom: 0;
 }
 
-.octopus-logo-center .navbar-header {
-	float: none;
-}
-
 #site-navigation {
-	text-align: center;
+	
 	
 	.navbar-nav {
 	    float: none;
@@ -119,6 +115,7 @@
 @media (max-width: 767px) {
 	#site-navigation .navbar-collapse {
 	   text-align: left;
+	   background-color: #ffffff;
 	   
 	  .navbar-nav {
 	  	display: block;
