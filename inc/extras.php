@@ -50,6 +50,8 @@ function octopus_get_option_defaults() {
 			'color_link' => '#4169e1',
 			'color_link_visited' => '#800080',
 			'color_link_hover' => '#191970',
+			
+			'header_layout' => 'octopus-logo-center',
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }

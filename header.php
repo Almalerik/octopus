@@ -24,7 +24,7 @@
 <div id="page" class="site <?php echo octopus_get_option('container_class');?>">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'octopus' ); ?></a>
 
-	<header id="masthead" class="site-header" role="banner">
+	<header id="masthead" class="site-header <?php echo octopus_get_option('header_layout');?>" role="banner">
 		<div class="site-branding">
 			<div class="site-logo-wrapper">
 				<a href="<?php echo esc_url( home_url( '/' ) );?>" rel="home">
@@ -60,8 +60,7 @@
 					'items_wrap' => '<ul id="%1$s" class="%2$s nav navbar-nav" role="menubar">%3$s</ul>',
 					'walker' => new LoungeAct_Walker()
 			) );?>
-			</nav><!-- #site-navigation -->
-		</div>
+		</nav><!-- #site-navigation -->
 		<div class="clearfix"></div>
 	</header><!-- #masthead -->
 

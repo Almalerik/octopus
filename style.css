@@ -453,15 +453,10 @@ a {
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
   background-color: #f5f5f5; }
 
-#navbar {
-  text-align: center; }
-  #navbar #primary-menu {
-    display: inline-block;
-    float: none; }
-  #navbar .dropdown-menu {
-    padding: 0; }
-    #navbar .dropdown-menu > li > a {
-      padding: 10px 20px; }
+#navbar .dropdown-menu {
+  padding: 0; }
+  #navbar .dropdown-menu > li > a {
+    padding: 10px 20px; }
 
 /*
 .main-navigation {
@@ -672,17 +667,41 @@ ul {
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
-.site-header .site-branding {
-  text-align: center;
-  /*
-  	float: left;
-  	
-  	.site-logo-wrapper,
-  	.site-title-wrapper {
-  		display: inline-block;
-  		vertical-align: middle;
-  	}
-  */ }
+.site-header {
+  width: 100%;
+  text-align: center; }
+  .site-header .site-branding {
+    text-align: center;
+    display: inline-block;
+    /*
+    	float: left;
+    	
+    	.site-logo-wrapper,
+    	.site-title-wrapper {
+    		display: inline-block;
+    		vertical-align: middle;
+    	}
+    */ }
+
+.octopus-logo-center #navbar {
+  text-align: center; }
+  .octopus-logo-center #navbar #primary-menu {
+    display: inline-block;
+    float: none; }
+
+.octopus-logo-left {
+  display: flex; }
+  .octopus-logo-left #navbar {
+    text-align: center; }
+    .octopus-logo-left #navbar #primary-menu {
+      display: inline-block;
+      float: none; }
+  .octopus-logo-left .site-branding .site-logo-wrapper,
+  .octopus-logo-left .site-branding .site-title-wrapper {
+    display: inline-block;
+    vertical-align: middle; }
+  .octopus-logo-left .site-branding .site-title-wrapper {
+    text-align: left; }
 
 /* Bootstrap override */
 /*

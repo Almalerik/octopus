@@ -2,21 +2,31 @@ jQuery.noConflict()(function($) {
     "use strict";
 
     $.fn.extend({
-	loungeact_fullscreen_banner : function() {
-		var windowHeight = $(window).height();
-		if ($("#wpadminbar").length > 0) {
-			windowHeight = windowHeight - jQuery("#wpadminbar").outerHeight();
+		fix_long_menu : function(headerLayout) {
+			var mastheadWidth = $('#masthead').outerWidth();
+			var sitebrandingWidth = $('.site-logo-wrapper').outerWidth() + $('.site-title-wrapper').outerWidth();
+			var menuWidth = 0;
+			jQuery('#primary-menu > li').each( function(){
+				menuWidth += $(this).outerWidth();
+			});
+			if (mastheadWidth < (sitebrandingWidth + menuWidth)) {
+				console.log('no');
+				$('#masthead').removeClass('octopus-logo-left').addClass('octopus-logo-center');
+			} else {
+				console.log('ok');
+				$('#masthead').attr('class', headerLayout);
+			}
 		}
-	    $(this).css('height', windowHeight);
-	    /*
-	    if ($('.lougeact-header').length > 0){
-	    	$(this).css('top', -$('.lougeact-header').outerHeight());
-	    }*/
-	    	
-	}
     });
 
     $(document).ready(function() {
+    	
+    	//Fix primary long menu
+    	var headerLayout = $('#masthead').attr('class');
+    	$('#masthead').fix_long_menu(headerLayout);
+	    $(window).resize(function() {
+	    	$('#masthead').fix_long_menu(headerLayout);
+		});
     	
     	//Check if a submenu go outside container
     	   jQuery(".sub-menu > li").on('mouseenter mouseleave', function (e) {

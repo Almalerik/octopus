@@ -21,13 +21,13 @@ function octopus_customize_register($wp_customize) {
 	 * ============== SITE IDENTITY ==============
 	 */
 	$wp_customize->add_setting ( 'logo', array (
-			'default' => octopus_get_option ( "logo" ),
+			'default' => octopus_get_option ( "logo" ) 
 	) );
 	$wp_customize->add_control ( new WP_Customize_Image_Control ( $wp_customize, 'logo', array (
 			'label' => esc_html__ ( 'Logo', 'octopus' ),
 			'section' => 'title_tagline',
 			'settings' => 'logo',
-			'priority' => 1
+			'priority' => 1 
 	) ) );
 	
 	/*
@@ -212,6 +212,35 @@ function octopus_customize_register($wp_customize) {
 				'settings' => 'color_link_hover',
 				'priority' => 30 
 		) ) );
+		
+		/*
+		 * ============== HEADER ==============
+		 */
+		$wp_customize->add_panel ( 'octopus_header', array (
+				'title' => esc_html__ ( 'Header', 'octopus' ),
+				'priority' => 20 
+		) );
+		$wp_customize->add_section ( 'octopus_header_layout', array (
+				'title' => esc_html__ ( 'Layout', 'octopus' ),
+				'panel' => 'octopus_header',
+				'priority' => 10 
+		) );
+		// Header layout
+		$wp_customize->add_setting ( 'header_layout', array (
+				'default' => octopus_get_option ( 'header_layout' ) 
+		) );
+		$wp_customize->add_control ( 'octopus_header_layout', array (
+				'label' => esc_html__ ( 'Layout', 'octopus' ),
+				'section' => 'octopus_header_layout',
+				'settings' => 'header_layout',
+				'type' => 'select',
+				'choices' =>  array (
+						'octopus-logo-center' => esc_html__ ( 'Centered logo', 'octopus' ),
+						'octopus-logo-left' => esc_html__ ( 'Left logo', 'octopus' ),
+						'octopus-logo-right' => esc_html__ ( 'Right logo', 'octopus' ),
+				),
+				'priority' => 30
+		) );
 	}
 }
 add_action ( 'customize_register', 'octopus_customize_register' );

@@ -1,7 +1,10 @@
 .site-header {
+	width: 100%;
+	text-align: center;
 	
 	.site-branding {
 		text-align: center;
+		display: inline-block;
 	/*
 		float: left;
 		
@@ -12,6 +15,50 @@
 		}
 	*/
 	}
+}
+
+.octopus-logo-center {
+	
+	#navbar {
+    text-align: center;
+    
+    	#primary-menu {
+			display: inline-block;
+			float: none;
+    	}
+	}
+}
+
+.octopus-logo-left {
+	display: flex;
+	
+	#navbar {
+    	text-align: center;
+    
+    	#primary-menu {
+			display: inline-block;
+			float: none;
+    	}
+	}
+	
+	.site-branding {
+		
+		
+		.site-logo-wrapper,
+		.site-title-wrapper {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		
+		.site-title-wrapper {
+			text-align: left;
+		}
+	}
+	
+	.navbar {
+		
+	}
+	
 }
 
 /* Bootstrap override */
