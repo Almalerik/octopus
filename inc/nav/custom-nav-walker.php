@@ -6,7 +6,7 @@
  * @since       1.0
  * @return      void
  */
-class LoungeAct_Walker extends Walker_Nav_Menu {
+class Octopus_Walker extends Walker_Nav_Menu {
 	
 	/**
 	 * Starts the list before the elements are added.
@@ -26,7 +26,26 @@ class LoungeAct_Walker extends Walker_Nav_Menu {
 		$indent = str_repeat ( "\t", $depth );
 		$output .= "\n$indent<ul class=\"sub-menu dropdown-menu\">\n";
 	}
-	function start_el(&$output, $item, $depth = 0, $args = Array (), $id = 0) {
+	
+	/**
+	 * Start the element output.
+	 *
+	 * @see Walker::start_el()
+	 *
+	 * @since 3.0.0
+	 *       
+	 * @param string $output
+	 *        	Passed by reference. Used to append additional content.
+	 * @param object $item
+	 *        	Menu item data object.
+	 * @param int $depth
+	 *        	Depth of menu item. Used for padding.
+	 * @param array $args
+	 *        	An array of arguments. @see wp_nav_menu()
+	 * @param int $id
+	 *        	Current item ID.
+	 */
+	public function start_el(&$output, $item, $depth = 0, $args = Array (), $id = 0) {
 		$indent = ($depth) ? str_repeat ( "\t", $depth ) : '';
 		
 		/**
@@ -106,12 +125,12 @@ class LoungeAct_Walker extends Walker_Nav_Menu {
 			if (! empty ( $item->attr_title ))
 				$item_output .= '<span class="glyphicon ' . esc_attr ( $item->attr_title ) . '"></span>&nbsp;';
 			
-			if (! empty ( $item->loungeact_custom_html )) {
-				$item_output .= '<span class="nav-custom-html">' . $item->loungeact_custom_html . '</span>';
-			} elseif (! empty ( $item->loungeact_icon )) {
-				$item_output .= '<span class="nav-icon ' . $item->loungeact_icon . '"></span>';
-			} elseif (! empty ( $item->loungeact_image )) {
-				$item_output .= ' <img class="nav-image" src="' . esc_attr($item->loungeact_image) . '" />';
+			if (! empty ( $item->octopus_custom_html )) {
+				$item_output .= '<span class="nav-custom-html">' . $item->octopus_custom_html . '</span>';
+			} elseif (! empty ( $item->octopus_icon )) {
+				$item_output .= '<span class="nav-icon ' . $item->octopus_icon . '"></span>';
+			} elseif (! empty ( $item->octopus_image )) {
+				$item_output .= ' <img class="nav-image" src="' . esc_attr ( $item->octopus_image ) . '" />';
 			}
 			
 			$item_output .= $args->link_before . apply_filters ( 'the_title', $item->title, $item->ID ) . $args->link_after;
@@ -158,5 +177,43 @@ class LoungeAct_Walker extends Walker_Nav_Menu {
 			$args [0]->has_children = ! empty ( $children_elements [$element->$id_field] );
 		
 		parent::display_element ( $element, $children_elements, $max_depth, $depth, $args, $output );
+	}
+	
+	/**
+	 * Menu Fallback
+	 * =============
+	 * If this function is assigned to the wp_nav_menu's fallback_cb variable
+	 * and a manu has not been assigned to the theme location in the WordPress
+	 * menu manager the function with display nothing to a non-logged in user,
+	 * and will add a link to the WordPress menu manager if logged in as an admin.
+	 *
+	 * @param array $args
+	 *        	passed from the wp_nav_menu function.
+	 *        	
+	 */
+	public static function fallback($args) {
+		if (current_user_can ( 'manage_options' )) {
+			extract ( $args );
+			$fb_output = null;
+			if ($container) {
+				$fb_output = '<' . $container;
+				if ($container_id)
+					$fb_output .= ' id="' . $container_id . '"';
+				if ($container_class)
+					$fb_output .= ' class="' . $container_class . '"';
+				$fb_output .= '>';
+			}
+			$fb_output .= '<ul';
+			if ($menu_id)
+				$fb_output .= ' id="' . $menu_id . '"';
+			if ($menu_class)
+				$fb_output .= ' class="' . $menu_class . '"';
+			$fb_output .= '>';
+			$fb_output .= '<li><a href="' . admin_url ( 'nav-menus.php' ) . '">Add a menu</a></li>';
+			$fb_output .= '</ul>';
+			if ($container)
+				$fb_output .= '</' . $container . '>';
+			echo $fb_output;
+		}
 	}
 }

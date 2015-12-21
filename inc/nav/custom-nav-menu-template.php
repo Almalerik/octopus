@@ -13,7 +13,7 @@
 			<select class="loungeact-cf-icon-select2 loungeact-cf-options-val regular-text" id="edit-menu-item-loungeact-icon-<?php echo $item_id; ?>"
 				name="menu-item-loungeact-icon[<?php echo $item_id; ?>]">
 				<option value=""><?php esc_html_e( 'None' ); ?></option>
-				<?php foreach (get_loungeact_fontawesome_list() as $label => $css_class): ?>
+				<?php foreach (get_octopus_fontawesome_list() as $label => $css_class): ?>
 				<option value="<?php echo esc_attr( $css_class );?>" <?php echo $css_class == $item->loungeact_icon ? 'selected' : ''; ?>><?php echo esc_html( $label );?></option>
 				<?php endforeach;?>
 			</select>

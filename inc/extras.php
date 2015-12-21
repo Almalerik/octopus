@@ -161,3 +161,22 @@ function octopus_get_logo() {
 		}
 	}
 }
+
+// FontAwesome List
+if (! function_exists ( 'get_octopus_fontawesome_list' )) :
+function get_octopus_fontawesome_list() {
+	// check for file in active theme
+	$fa = locate_template ( array (
+			'/inc/fontawesome-icons.php',
+			'/fontawesome-icons.php'
+	) );
+
+	// if none found use the default file
+	if ($fa == '')
+		$fa = '/inc/fontawesome-icons.php';
+
+		include ($fa);
+
+		return $fa_icon;
+}
+endif;
