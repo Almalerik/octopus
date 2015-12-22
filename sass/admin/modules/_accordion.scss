@@ -1,0 +1,88 @@
+.octopus-accordion {
+	margin-bottom: 1em;
+	position: relative;
+	
+	> h4 {
+		position: relative;
+		padding: 1em 2em;
+		border: 1px solid #e5e5e5;
+		background-color: #fafafa;
+		margin-bottom: 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		
+		&:focus {
+			outline: none;
+		}
+		
+		.octopus-action-move {
+			padding: 1em 20px;
+			color: $color__custom-action;
+			background-color: $background-color__custom-action;
+			margin-left: -2em;
+			margin-top: -1em;
+			font-size: 1em;
+			
+		    &:hover {
+		    	cursor: move;
+		    }
+		}
+		
+		.octopus-accordion-title {
+			margin-left: 1em;
+		}
+	}
+	
+	.octopus-accordion-close,
+	.octopus-accordion-open{
+	    position: absolute;
+	    right: 0.5em;
+		text-decoration: none;
+		color: #a0a5aa;
+		&:after {
+			right: 0;
+			top: -2px;
+			content: '\f140';
+			border: none;
+			background: none;
+			font-family: 'dashicons';
+			font-size: 1.4em;
+			speak: none;
+			display: block;
+			padding: 0;
+			text-indent: 0;
+			text-align: center;
+			position: relative;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			text-decoration: none !important;
+		}
+		&:hover,
+		&:active {
+			cursor: pointer;
+			color: #777;
+		}
+	}
+	
+	.octopus-accordion-open:after {
+		content: '\f142';
+	} 
+	
+	& > .octopus-accordion-content {
+		padding: 1em 0.5em;
+		border-left: 1px solid #e5e5e5;
+		border-bottom: 1px solid #e5e5e5;
+		border-right: 1px solid #e5e5e5;
+		
+		p:first-child {
+			margin-top: 0;
+			padding-top: 1em;
+		}
+		
+		& h4 {
+			padding: 1em;
+		}
+	}
+
+}

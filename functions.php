@@ -200,6 +200,20 @@ if (! function_exists ( 'octopus_admin_scripts' )) {
 				'jquery'
 		), true );
 		
+		// Wp Media
+		wp_enqueue_media ();
+		
+		// Wp jQuery UI
+		wp_enqueue_script ( 'jquery-ui-core' );
+		wp_enqueue_script ( 'jquery-ui-accordion' );
+		
+		wp_register_style ( 'octopus-admin-style', get_template_directory_uri () . '/assets/admin/css/admin.css' );
+		wp_enqueue_style ( 'octopus-admin-style' );
+		wp_enqueue_script ( 'octopus-admin-script', get_template_directory_uri () . '/assets/admin/js/admin.js', array (
+				'jquery',
+				'octopus-select2-script'
+		) );
+		
 	}
 }
 add_action ( 'admin_enqueue_scripts', 'octopus_admin_scripts' );
@@ -234,3 +248,8 @@ require get_template_directory () . '/inc/jetpack.php';
  */
 // TODO: MEGAMENU and submenu
 require get_template_directory () . '/inc/nav/nav.php';
+
+/**
+ * Load Slider
+ */
+require get_template_directory () . '/inc/post/slider.php';
