@@ -34,6 +34,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Clearings
 # Widgets
 # Content
+	## Header
+		### Banner
     ## Posts and pages
 	## Asides
 	## Comments
@@ -41,6 +43,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Media
 	## Captions
 	## Galleries
+# Slider
 --------------------------------------------------------------*/
 .octopus-flex {
   display: -webkit-box;
@@ -294,7 +297,10 @@ big {
 --------------------------------------------------------------*/
 html {
   box-sizing: border-box;
-  font-size: 15px; }
+  font-size: 15px;
+  height: 100%;
+  width: 100%;
+  min-height: 100%; }
 
 *,
 *:before,
@@ -304,7 +310,10 @@ html {
 
 body {
   background: #fff;
-  /* Fallback for when there is no custom background color defined. */ }
+  /* Fallback for when there is no custom background color defined. */
+  height: 100%;
+  width: 100%;
+  min-height: 100%; }
 
 blockquote, q {
   quotes: "" ""; }
@@ -710,7 +719,7 @@ a {
 --------------------------------------------------------------*/
 .site-header {
   margin: 0 -15px;
-  border-bottom: 1px solid #e7e7e7; }
+  /* border-bottom: 1px solid $color_nav-border; */ }
 
 .octopus-logo-center .navbar-header,
 .octopus-logo-center .navbar-collapse {
@@ -722,6 +731,12 @@ a {
   display: inline-block;
   vertical-align: middle; }
 
+.octopus-header-inside-banner .navbar,
+.octopus-fullscreen-banner .navbar {
+  position: absolute;
+  z-index: 10;
+  width: 100%; }
+
 @media (min-width: 768px) {
   .octopus-logo-left #site-navigation {
     display: table;
@@ -732,10 +747,31 @@ a {
     .octopus-logo-left #site-navigation .navbar-collapse {
       display: table-cell !important;
       vertical-align: bottom;
-      text-align: right; } }
+      text-align: right; }
+
+  .octopus-logo-left.octopus-fix-long-menu #site-navigation {
+    display: block; }
+    .octopus-logo-left.octopus-fix-long-menu #site-navigation .navbar-header {
+      display: block;
+      float: none; }
+    .octopus-logo-left.octopus-fix-long-menu #site-navigation .site-branding {
+      text-align: center; }
+    .octopus-logo-left.octopus-fix-long-menu #site-navigation .navbar-collapse {
+      text-align: center;
+      display: block !important;
+      float: none; } }
 @media (max-width: 767px) {
   .octopus-logo-left .site-branding {
     float: left; } }
+/*--------------------------------------------------------------
+### Banner
+--------------------------------------------------------------*/
+.octopus-header-banner {
+  height: 400px; }
+
+.octopus-fullscreen-banner .octopus-header-banner {
+  height: 100%; }
+
 /*
 .site-header {
 	width: 100%;
@@ -1053,5 +1089,27 @@ object {
 
 .gallery-caption {
   display: block; }
+
+/*--------------------------------------------------------------
+# Slider
+--------------------------------------------------------------*/
+.swiper-container {
+  height: 100%; }
+  .swiper-container .swiper-slide {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -webkit-background-size: cover; }
+  .swiper-container .swiper-slide-caption-table {
+    display: table;
+    width: 100%;
+    height: 100%; }
+  .swiper-container .swiper-slide-caption-table-cell {
+    display: table-cell;
+    vertical-align: middle; }
 
 /*# sourceMappingURL=style.css.map */

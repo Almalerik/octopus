@@ -6,7 +6,7 @@
 
 add_action ( 'init', 'octopus_slider_post_type' );
 function octopus_slider_post_type() {
-	register_post_type ( 'octopus_slide', array (
+	register_post_type ( 'octopus_slider', array (
 			'labels' => array (
 					'name' => __ ( 'Theme Sliders', 'octopus' ),
 					'singular_name' => __ ( 'Theme Slider', 'octopus' ) 
@@ -25,10 +25,10 @@ function octopus_slider_post_type() {
 }
 
 add_action ( 'after_setup_theme', array (
-		'Octopus_Slide_Meta_Box',
+		'Octopus_Slides_Meta_Box',
 		'init' 
 ) );
-class Octopus_Slide_Meta_Box {
+class Octopus_Slides_Meta_Box {
 	/**
 	 * Global accessible instance (per init()).
 	 * A singleton is not enforced tough.
@@ -65,7 +65,7 @@ class Octopus_Slide_Meta_Box {
 	 * @type array
 	 */
 	protected $post_types = array (
-			'octopus_slide' 
+			'octopus_slider' 
 	);
 	/**
 	 * nonce = number used once, unique identifier for request validation.

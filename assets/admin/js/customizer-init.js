@@ -46,6 +46,19 @@ jQuery(document).ready(function ( $ ) {
 		    }
 		});
 	    }
+	    
+	    /**
+	     * Add a listener to the octopus_header_banner_layout control to activate or deactivate header_banner_height.
+	     */
+	    if ('octopus_header_banner_layout' === this.id) {
+		this.setting.bind('change', function ( value ) {
+		    if (value === 'octopus-fullscreen-banner') {
+			api.control('octopus_header_banner_height').deactivate();
+		    } else {
+			api.control('octopus_header_banner_height').activate();
+		    }
+		});
+	    }
 	}
 
     });

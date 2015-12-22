@@ -54,7 +54,12 @@ function octopus_get_option_defaults() {
 			'header_layout' => 'octopus-logo-center',
 			'header_bg_color' => '#ffffff',
 			'header_bg_color_opacity' => '1',
-			'header_bg_color_opacity_onscroll' => '1'
+			'header_bg_color_opacity_onscroll' => '1',
+			
+			'header_banner' => '',
+			'header_banner_layout' => '',
+			'header_banner_height' => '400',
+			
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }
@@ -96,6 +101,27 @@ function octopus_get_aside_sidebar($sidebar) {
 			return octopus_get_option ( 'gridsystem_class' ) . octopus_get_option ( 'right_sidebar_grid_size' );
 		}
 	}
+}
+
+/**
+ * Return header css class from options.
+ * 
+ * @param bool $echo
+ *        	Optional. Whether to print directly to the page (default: TRUE).
+ * @return string
+ */
+function octopus_get_header_css_class($echo = true) {
+	$result = array( octopus_get_option('header_layout') );
+	
+	if (octopus_get_option('header_banner')) {
+		$result[] = octopus_get_option('header_banner_layout');
+	}
+	
+	if ($echo ) {
+		echo implode ( ' ', $result);
+	}
+	
+	return implode ( ' ', $result);
 }
 
 /**
@@ -148,12 +174,12 @@ function octopus_generate_css($selector, $style, $mod_name, $prefix = '', $postf
 
 /**
  * This will output the logo url.
- * 
- *  @return string Returns logo url.
+ *
+ * @return string Returns logo url.
  */
 function octopus_get_logo() {
 	$logo = octopus_get_option ( 'logo' );
-
+	
 	if (isset ( $logo ) && $logo != "") {
 		return $logo;
 	} else {
@@ -167,46 +193,50 @@ function octopus_get_logo() {
 
 // FontAwesome List
 if (! function_exists ( 'get_octopus_fontawesome_list' )) :
-function get_octopus_fontawesome_list() {
-	// check for file in active theme
-	$fa = locate_template ( array (
-			'/inc/fontawesome-icons.php',
-			'/fontawesome-icons.php'
-	) );
-
-	// if none found use the default file
-	if ($fa == '')
-		$fa = '/inc/fontawesome-icons.php';
-
+	function get_octopus_fontawesome_list() {
+		// check for file in active theme
+		$fa = locate_template ( array (
+				'/inc/fontawesome-icons.php',
+				'/fontawesome-icons.php' 
+		) );
+		
+		// if none found use the default file
+		if ($fa == '')
+			$fa = '/inc/fontawesome-icons.php';
+		
 		include ($fa);
-
+		
 		return $fa_icon;
-}
-endif;
+	}
 
+endif;
 function octopus_hex2rgba($mod_name_hex, $mod_name_opacity) {
-	
-	$rgba = array();
+	$rgba = array ();
 	$mod_hex = octopus_get_option ( $mod_name_hex );
 	$mod_hex_default = octopus_get_option_defaults () [$mod_name_hex];
 	$mod_opacity = octopus_get_option ( $mod_name_opacity );
 	$mod_opacity_default = octopus_get_option_defaults () [$mod_name_opacity];
 	
-	if ( ($mod_hex != '' && $mod_hex !== $mod_hex_default) || ($mod_opacity != '' && $mod_opacity !== $mod_opacity_default) ) {
-		$mod_hex = str_replace("#", "", $mod_hex);
+	if (($mod_hex != '' && $mod_hex !== $mod_hex_default) || ($mod_opacity != '' && $mod_opacity !== $mod_opacity_default)) {
+		$mod_hex = str_replace ( "#", "", $mod_hex );
 		
-		if(strlen($mod_hex) == 3) {
-			$r = hexdec(substr($mod_hex,0,1).substr($mod_hex,0,1));
-			$g = hexdec(substr($mod_hex,1,1).substr($mod_hex,1,1));
-			$b = hexdec(substr($mod_hex,2,1).substr($mod_hex,2,1));
+		if (strlen ( $mod_hex ) == 3) {
+			$r = hexdec ( substr ( $mod_hex, 0, 1 ) . substr ( $mod_hex, 0, 1 ) );
+			$g = hexdec ( substr ( $mod_hex, 1, 1 ) . substr ( $mod_hex, 1, 1 ) );
+			$b = hexdec ( substr ( $mod_hex, 2, 1 ) . substr ( $mod_hex, 2, 1 ) );
 		} else {
-			$r = hexdec(substr($mod_hex,0,2));
-			$g = hexdec(substr($mod_hex,2,2));
-			$b = hexdec(substr($mod_hex,4,2));
+			$r = hexdec ( substr ( $mod_hex, 0, 2 ) );
+			$g = hexdec ( substr ( $mod_hex, 2, 2 ) );
+			$b = hexdec ( substr ( $mod_hex, 4, 2 ) );
 		}
 		
-		$rgba = array($r, $g, $b, $mod_opacity);
+		$rgba = array (
+				$r,
+				$g,
+				$b,
+				$mod_opacity 
+		);
 	}
 	return $rgba;
-	//return implode(",", $rgb); // returns the rgb values separated by commas
+	// return implode(",", $rgb); // returns the rgb values separated by commas
 }

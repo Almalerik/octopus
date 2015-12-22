@@ -1,6 +1,6 @@
 .site-header {
 	margin: 0 -15px;
-	border-bottom: 1px solid $color_nav-border;
+	/* border-bottom: 1px solid $color_nav-border; */
 }
 
 .octopus-logo-center .navbar-header,
@@ -15,6 +15,13 @@
 		display: inline-block;
 		vertical-align: middle;
 	}
+}
+
+.octopus-header-inside-banner .navbar,
+.octopus-fullscreen-banner .navbar {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -36,6 +43,27 @@
 			}
 		}
 	}
+	
+	.octopus-logo-left.octopus-fix-long-menu {
+		#site-navigation {
+			display: block;
+			
+			.navbar-header {
+				display: block;
+				float: none;
+			}
+			
+			.site-branding {
+				text-align: center;
+			}
+			
+			.navbar-collapse {
+				text-align: center;
+				display: block !important;
+				float: none;
+			}
+		}
+	}
 }
 
 @media (max-width: 767px) {
@@ -47,6 +75,11 @@
 	}
 	
 }
+
+/*--------------------------------------------------------------
+### Banner
+--------------------------------------------------------------*/
+@import "banner/banner";
 
 /*
 .site-header {

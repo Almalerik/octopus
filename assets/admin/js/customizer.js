@@ -163,6 +163,28 @@
 			$('.navbar-default').css('background-color', hexToRgba(bgColor, to, true));
 		});
 	});
+	
+	// Header banner layout
+	wp.customize('header_banner_layout', function(value) {
+		value.bind(function(to) {
+		    $('.site-header').removeClass('octopus-fullscreen-banner octopus-header-inside-banner').addClass(to);
+		    if ( to === 'octopus-fullscreen-banner') {
+			$('.octopus-fullscreen-banner').octopus_fullscreen_banner();
+		    } else {
+			$('.octopus-header-banner').css('height', wp.customize('header_banner_height').get() + 'px');
+		    }
+		});
+	});
+	
+	// Header banner height
+	wp.customize('header_banner_height', function(value) {
+		value.bind(function(to) {
+		    if (isNaN (parseInt (to)) ) {
+			to = 400;
+		    }
+		    $('.octopus-header-banner').css('height', to + 'px');
+		});
+	});
 
 	/*
 	 * // Hide title only in homepage

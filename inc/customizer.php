@@ -5,6 +5,7 @@
  * @package Octopus
  */
 require_once 'wordpress-theme-customizer-custom-controls/text/fixed-text-custom-control.php';
+require_once 'wordpress-theme-customizer-custom-controls/select/post-dropdown-custom-control.php';
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
@@ -234,35 +235,36 @@ function octopus_customize_register($wp_customize) {
 				'section' => 'octopus_header_layout',
 				'settings' => 'header_layout',
 				'type' => 'select',
-				'choices' =>  array (
+				'choices' => array (
 						'octopus-logo-center' => esc_html__ ( 'Centered logo', 'octopus' ),
 						'octopus-logo-left' => esc_html__ ( 'Left logo', 'octopus' ),
-						'octopus-logo-right' => esc_html__ ( 'Right logo', 'octopus' ),
+						'octopus-logo-right' => esc_html__ ( 'Right logo', 'octopus' ) 
 				),
-				'priority' => 10
+				'priority' => 10 
 		) );
+		// Header colors
 		$wp_customize->add_section ( 'octopus_header_colors', array (
 				'title' => esc_html__ ( 'Colors', 'octopus' ),
 				'panel' => 'octopus_header',
-				'priority' => 20
+				'priority' => 20 
 		) );
 		// Header background color
 		$wp_customize->add_setting ( 'header_bg_color', array (
 				'default' => octopus_get_option ( 'header_bg_color' ),
 				'sanitize_callback' => 'sanitize_hex_color',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage' 
 		) );
 		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_header_bg_color', array (
 				'label' => esc_html__ ( 'Background color', 'octopus' ),
 				'section' => 'octopus_header_colors',
 				'settings' => 'header_bg_color',
-				'priority' => 10
+				'priority' => 10 
 		) ) );
 		// Header background color opacity
 		$wp_customize->add_setting ( 'header_bg_color_opacity', array (
 				'default' => octopus_get_option ( 'header_bg_color_opacity' ),
 				'sanitize_callback' => 'octopus_sanitize_opacity',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage' 
 		) );
 		$wp_customize->add_control ( 'octopus_header_bg_color_opacity', array (
 				'label' => esc_html__ ( 'Background opacity', 'octopus' ),
@@ -274,8 +276,67 @@ function octopus_customize_register($wp_customize) {
 				'input_attrs' => array (
 						'min' => 0,
 						'max' => 1,
-						'step' => 0.1
-				)
+						'step' => 0.1 
+				) 
+		) );
+		// Slider
+		$wp_customize->add_section ( 'octopus_header_banner', array (
+				'title' => esc_html__ ( 'Slider', 'octopus' ),
+				'panel' => 'octopus_header',
+				'priority' => 30 
+		) );
+		// Helper
+		$wp_customize->add_control ( new Fixed_Text_Custom_Control ( $wp_customize, 'octopus_header_banner_helper', array (
+				'description' => sprintf ( 'To create or edit a slider, save and click <a href="%s" class="button">%s</a>', admin_url ( 'edit.php?post_type=octopus_slide' ), esc_html__ ( 'Here', 'octopus' ) ),
+				'section' => 'octopus_header_banner',
+				'priority' => 10 
+		) ) );
+		// select slider
+		$wp_customize->add_setting ( 'header_banner', array (
+				'default' => octopus_get_option ( 'header_banner' ) 
+		) );
+		$wp_customize->add_control ( new Post_Dropdown_Custom_Control ( $wp_customize, 'octopus_header_banner', array (
+				'label' => esc_html__ ( 'Slider', 'octopus' ),
+				'section' => 'octopus_header_banner',
+				'settings' => 'header_banner',
+				'priority' => 20,
+				'active_callback' => 'octopus_slider_exist_callback' 
+		), array (
+				'post_type' => 'octopus_slider' 
+		) ) );
+		// slide layout
+		$wp_customize->add_setting ( 'header_banner_layout', array (
+				'default' => octopus_get_option ( 'header_banner_layout' ),
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( 'octopus_header_banner_layout', array (
+				'label' => esc_html__ ( 'Slider layout', 'octopus' ),
+				'section' => 'octopus_header_banner',
+				'settings' => 'header_banner_layout',
+				'type' => 'select',
+				'choices' => array (
+						'' => esc_html__ ( 'Normal', 'octopus' ),
+						'octopus-fullscreen-banner' => esc_html__ ( 'FullScreen', 'octopus' ),
+						'octopus-header-inside-banner' => esc_html__ ( 'Header inside', 'octopus' )
+				),
+				'priority' => 30,
+				'active_callback' => 'octopus_slider_selected'
+		) );
+		// slider height
+		$wp_customize->add_setting ( 'header_banner_height', array (
+				'default' => octopus_get_option ( 'header_banner_height' ),
+				'sanitize_callback' => 'octopus_sanitize_int',
+				'sanitize_js_callback' => 'octopus_sanitize_int',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( 'octopus_header_banner_height', array (
+				'label' => esc_html__ ( 'Slider height (px)', 'octopus' ),
+				'description' => esc_html__ ( 'Only integer value are accepted', 'octopus' ),
+				'section' => 'octopus_header_banner',
+				'settings' => 'header_banner_height',
+				'type' => 'text',
+				'priority' => 40,
+				'active_callback' => 'is_header_banner_not_fullscreen_callback' 
 		) );
 	}
 }
@@ -429,9 +490,55 @@ function octopus_right_sidebar_grid_size_active_callback($control) {
 /**
  * Sanitize callback for css opacity value
  *
- * @param string $value
+ * @param string $value        	
  * @return string
  */
 function octopus_sanitize_opacity($value) {
 	return floatval ( $value );
+}
+
+/**
+ * A function that check if a slider exist
+ *
+ * @return boolean
+ */
+function octopus_slider_exist_callback($control) {
+	$posts_array = get_posts ( array (
+			'post_type' => 'octopus_slider' 
+	) );
+	if (count ( $posts_array ) > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * A function that check if a slider is selected
+ *
+ * @return boolean
+ */
+function octopus_slider_selected($control) {
+	if ($control->manager->get_setting ( 'header_banner' )->value () != '') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * A function that check if a slider is selected and if is not fullscreen
+ *
+ * @return boolean
+ */
+function is_header_banner_not_fullscreen_callback($control) {
+	if (octopus_slider_selected ( $control )) {
+		if ($control->manager->get_setting ( 'header_banner_layout' )->value () == 'octopus-fullscreen-banner') {
+			return false;
+		} else {
+			return true;
+		}
+	} else {
+		return false;
+	}
 }

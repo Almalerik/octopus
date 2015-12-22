@@ -74,6 +74,13 @@ if ( ! function_exists( 'octopus_header_style' ) ) :
 		<?php 	endif; ?>
 		<?php endif; ?>
 			#page.container {max-width: <?php echo octopus_get_option ('container_max_width'); ?>px;}
+			
+			
+			<?php 	
+			//Header banner
+			octopus_generate_css( '.octopus-header-banner', 'height', 'header_banner_height', '', 'px', true);
+			?>
+			
 		</style>
 		<?php
 	}
@@ -92,14 +99,18 @@ function octopus_colors_schema_css() {
 	$css .= octopus_generate_css( 'a', 'color', 'color_link', '', '', false);
 	$css .= octopus_generate_css( 'a:visited', 'color', 'color_link_visited', '', '', false);
 	$css .= octopus_generate_css( 'a:hover, a:focus, a:active', 'color', 'color_link_hover', '', '', false);
+	
 	if ( count (octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ) > 0 ) {
 		$css .= ".navbar-default { background-color: rgba(" . implode (',', octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ). ")}\n";
 	}
+	
 	if ($css) {
 		echo '<style type="text/css" id="octopus-color-schema-css" />' . "\n";
 		echo $css;
 		echo '</style>' . "\n";
 	}
 }
+
+
 
 add_action('wp_head', 'octopus_colors_schema_css', 100);
