@@ -56,6 +56,10 @@ function octopus_get_option_defaults() {
 			'header_bg_color_opacity' => '1',
 			'header_bg_color_opacity_onscroll' => '1',
 			
+			'header_title_color' => '#ffffff',
+			'header_desription_color' => '#ffffff',
+			'header_nav_color' => '#777777',
+			
 			'header_banner' => '',
 			'header_banner_layout' => '',
 			'header_banner_height' => '400',
@@ -80,7 +84,7 @@ function octopus_get_options() {
  * @return string
  */
 function octopus_get_option($key) {
-	return get_theme_mod ( $key ) ? get_theme_mod ( $key ) : octopus_get_option_defaults () [$key];
+	return get_theme_mod ( $key ,  octopus_get_option_defaults () [$key]);
 }
 
 /**

@@ -4,6 +4,12 @@
 	border-radius: 0;
 	border: 0;
 	margin-bottom: 0;
+	
+	.navbar-nav > li > a,
+	.navbar-toggle .icon-bar {
+		color: $color_nav;
+	}
+
 }
 
 #site-navigation {

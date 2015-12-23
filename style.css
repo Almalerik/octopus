@@ -444,6 +444,9 @@ a {
   border-radius: 0;
   border: 0;
   margin-bottom: 0; }
+  .navbar-default .navbar-nav > li > a,
+  .navbar-default .navbar-toggle .icon-bar {
+    color: #777777; }
 
 #site-navigation .navbar-nav {
   float: none;
@@ -719,8 +722,16 @@ a {
 --------------------------------------------------------------*/
 .site-header {
   margin: 0 -15px;
-  position: relative;
-  /* border-bottom: 1px solid $color_nav-border; */ }
+  position: relative; }
+
+.site-title a {
+  color: #404040; }
+  .site-title a:hover, .site-title a:active, .site-title a:visited, .site-title a:focus {
+    color: #404040;
+    text-decoration: none; }
+
+.site-description {
+  color: #404040; }
 
 .octopus-logo-center .navbar-header,
 .octopus-logo-center .navbar-collapse {
@@ -757,6 +768,8 @@ a {
       float: none; }
     .octopus-logo-left.octopus-fix-long-menu #site-navigation .site-branding {
       text-align: center; }
+      .octopus-logo-left.octopus-fix-long-menu #site-navigation .site-branding .site-title-wrapper {
+        text-align: left; }
     .octopus-logo-left.octopus-fix-long-menu #site-navigation .navbar-collapse {
       text-align: center;
       display: block !important;

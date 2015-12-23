@@ -104,6 +104,10 @@ function octopus_colors_schema_css() {
 		$css .= ".navbar-default { background-color: rgba(" . implode (',', octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ). ")}\n";
 	}
 	
+	$css .= octopus_generate_css( '.site-title a, .site-title a:hover, .site-title a:focus, .site-title a:active, .site-title a:visited', 'color', 'header_title_color', '', '', false);
+	$css .= octopus_generate_css( '.site-description', 'color', 'header_desription_color', '', '', false);
+	$css .= octopus_generate_css( '.navbar-default .navbar-nav > li > a, .navbar-default .navbar-toggle .icon-bar', 'color', 'header_nav_color', '', '', false);
+	
 	if ($css) {
 		echo '<style type="text/css" id="octopus-color-schema-css" />' . "\n";
 		echo $css;

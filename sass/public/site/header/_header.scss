@@ -1,9 +1,24 @@
 .site-header {
 	margin: 0 -15px;
 	position: relative;
-	/* border-bottom: 1px solid $color_nav-border; */
 }
 
+.site-title a {
+	color: $color__header-title;
+	
+	&:hover,
+	&:active,
+	&:visited,
+	&:focus {
+		color: $color__header-title; 
+		text-decoration: none;
+	}
+}
+
+.site-description {
+	color: $color__header-blogdescription;
+}
+	
 .octopus-logo-center .navbar-header,
 .octopus-logo-center .navbar-collapse {
 	float: none;
@@ -56,6 +71,9 @@
 			
 			.site-branding {
 				text-align: center;
+				.site-title-wrapper {
+					text-align: left;
+				}
 			}
 			
 			.navbar-collapse {
