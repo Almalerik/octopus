@@ -73,11 +73,11 @@ if ( ! function_exists( 'octopus_header_style' ) ) :
 			}
 		<?php 	endif; ?>
 		<?php endif; ?>
-			#page.container {max-width: <?php echo octopus_get_option ('container_max_width'); ?>px;}
-			
-			
-			<?php 	
-			//Header banner
+			<?php
+			octopus_generate_css( '#page.container', 'max-width', 'container_max_width', '', '', true);
+			//Header
+			octopus_generate_css( '.octopus-navbar-default', 'max-width', 'header_max_width', '', 'px', true);
+			//	Header banner
 			octopus_generate_css( '.octopus-header-banner', 'height', 'header_banner_height', '', 'px', true);
 			?>
 			
@@ -101,7 +101,11 @@ function octopus_colors_schema_css() {
 	$css .= octopus_generate_css( 'a:hover, a:focus, a:active', 'color', 'color_link_hover', '', '', false);
 	
 	if ( count (octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ) > 0 ) {
-		$css .= ".navbar-default { background-color: rgba(" . implode (',', octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ). ")}\n";
+		$css .= ".octopus-navbar-wrapper { background-color: rgba(" . implode (',', octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ). ")}\n";
+	}
+	
+	if ( count (octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity_onscroll') ) > 0 ) {
+		$css .= ".octopus-scrolling .octopus-navbar-wrapper { background-color: rgba(" . implode (',', octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity_onscroll') ). ")}\n";
 	}
 	
 	$css .= octopus_generate_css( '.site-title a, .site-title a:hover, .site-title a:focus, .site-title a:active, .site-title a:visited', 'color', 'header_title_color', '', '', false);

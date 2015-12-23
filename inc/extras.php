@@ -51,13 +51,15 @@ function octopus_get_option_defaults() {
 			'color_link_visited' => '#800080',
 			'color_link_hover' => '#191970',
 			
-			'header_layout' => 'octopus-logo-center',
+			'header_layout' => 'octopus-logo-left',
+			'header_max_width' => '1170',
+			'header_position' => '',
 			'header_bg_color' => '#ffffff',
 			'header_bg_color_opacity' => '1',
 			'header_bg_color_opacity_onscroll' => '1',
 			
-			'header_title_color' => '#ffffff',
-			'header_desription_color' => '#ffffff',
+			'header_title_color' => '#404040',
+			'header_desription_color' => '#606060',
 			'header_nav_color' => '#777777',
 			
 			'header_banner' => '',
@@ -120,6 +122,8 @@ function octopus_get_header_css_class($echo = true) {
 	if (octopus_get_option('header_banner')) {
 		$result[] = octopus_get_option('header_banner_layout');
 	}
+	
+	$result[] = octopus_get_option('header_position');
 	
 	if ($echo ) {
 		echo implode ( ' ', $result);
