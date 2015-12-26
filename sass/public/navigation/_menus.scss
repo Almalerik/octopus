@@ -13,7 +13,8 @@
 	.navbar-nav {
 	    > li > a:hover,
 	    > li > a:focus {
-	    	background-color: $color_nav-background-hover;
+	    	background-color: transparent;
+	    	box-shadow: 0 0 0 1px $color_nav;
 	    }
 	
 	    .dropdown-menu {

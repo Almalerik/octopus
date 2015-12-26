@@ -227,18 +227,18 @@ function octopus_customize_register($wp_customize) {
 				'priority' => 10 
 		) );
 		// Header layout
-		$wp_customize->add_setting ( 'header_layout', array (
-				'default' => octopus_get_option ( 'header_layout' ) 
+		$wp_customize->add_setting ( 'header_template', array (
+				'default' => octopus_get_option ( 'header_template' ) 
 		) );
-		$wp_customize->add_control ( 'octopus_header_layout', array (
-				'label' => esc_html__ ( 'Layout', 'octopus' ),
+		$wp_customize->add_control ( 'octopus_header_template', array (
+				'label' => esc_html__ ( 'Template', 'octopus' ),
 				'section' => 'octopus_header_layout',
-				'settings' => 'header_layout',
+				'settings' => 'header_template',
 				'type' => 'select',
 				'choices' => array (
-						'octopus-logo-center' => esc_html__ ( 'Centered logo', 'octopus' ),
-						'octopus-logo-left' => esc_html__ ( 'Left logo', 'octopus' ),
-						'octopus-logo-right' => esc_html__ ( 'Right logo', 'octopus' ) 
+						'octopus-logo-center.php' => esc_html__ ( 'Centered logo', 'octopus' ),
+						'octopus-logo-left.php' => esc_html__ ( 'Left logo', 'octopus' ),
+						'octopus-logo-right.php' => esc_html__ ( 'Right logo', 'octopus' ) 
 				),
 				'priority' => 10 
 		) );

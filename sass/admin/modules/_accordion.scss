@@ -29,8 +29,18 @@
 		    }
 		}
 		
+		.octopus-accordion-thumb {
+		
+			img {
+				max-height: 45px;
+				width: auto;
+				position: absolute;
+				top: 0;
+			}
+		}
+		
 		.octopus-accordion-title {
-			margin-left: 1em;
+			margin-left: 60px;
 		}
 	}
 	

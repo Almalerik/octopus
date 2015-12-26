@@ -121,14 +121,14 @@ function octopus_widgets_init() {
 	register_sidebar ( array (
 			'name' => esc_html__ ( 'Homepage features', 'octopus' ),
 			'id' => 'homepage-features',
-			'description' => esc_html__ ( 'From the widgets list, select "Loungeact Feature".', 'octopus' ),
+			'description' => esc_html__ ( 'From the widgets list, select "Octopus Feature".', 'octopus' ),
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>'
 	) );
 	register_sidebar ( array (
 			'name' => esc_html__ ( 'Homepage highlights', 'octopus' ),
 			'id' => 'homepage-highlights',
-			'description' => esc_html__ ( 'From the widgets list, select "Loungeact Highlights".', 'octopus' ),
+			'description' => esc_html__ ( 'From the widgets list, select "Octopus Highlights".', 'octopus' ),
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget' => '</div>',
 			'before_title' => '<h3 class="widget-title">',
@@ -253,3 +253,8 @@ require get_template_directory () . '/inc/nav/nav.php';
  * Load Slider
  */
 require get_template_directory () . '/inc/post/slider.php';
+
+/**
+ * Load Feature Widget
+ */
+require get_template_directory () . '/inc/widget/feature-widget.php';

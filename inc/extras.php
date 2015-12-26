@@ -51,7 +51,7 @@ function octopus_get_option_defaults() {
 			'color_link_visited' => '#800080',
 			'color_link_hover' => '#191970',
 			
-			'header_layout' => 'octopus-logo-left',
+			'header_template' => 'octopus-logo-left',
 			'header_max_width' => '1170',
 			'header_position' => '',
 			'header_bg_color' => '#ffffff',
@@ -64,8 +64,7 @@ function octopus_get_option_defaults() {
 			
 			'header_banner' => '',
 			'header_banner_layout' => '',
-			'header_banner_height' => '400',
-			
+			'header_banner_height' => '400' 
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }
@@ -86,7 +85,7 @@ function octopus_get_options() {
  * @return string
  */
 function octopus_get_option($key) {
-	return get_theme_mod ( $key ,  octopus_get_option_defaults () [$key]);
+	return get_theme_mod ( $key, octopus_get_option_defaults () [$key] );
 }
 
 /**
@@ -111,25 +110,25 @@ function octopus_get_aside_sidebar($sidebar) {
 
 /**
  * Return header css class from options.
- * 
+ *
  * @param bool $echo
  *        	Optional. Whether to print directly to the page (default: TRUE).
  * @return string
  */
 function octopus_get_header_css_class($echo = true) {
-	$result = array( octopus_get_option('header_layout') );
+	$result = '';
 	
-	if (octopus_get_option('header_banner')) {
-		$result[] = octopus_get_option('header_banner_layout');
+	if (octopus_get_option ( 'header_banner' )) {
+		$result [] = octopus_get_option ( 'header_banner_layout' );
 	}
 	
-	$result[] = octopus_get_option('header_position');
+	$result [] = octopus_get_option ( 'header_position' );
 	
-	if ($echo ) {
-		echo implode ( ' ', $result);
+	if ($echo) {
+		echo implode ( ' ', $result );
 	}
 	
-	return implode ( ' ', $result);
+	return implode ( ' ', $result );
 }
 
 /**
@@ -217,7 +216,40 @@ if (! function_exists ( 'get_octopus_fontawesome_list' )) :
 		return $fa_icon;
 	}
 
+
 endif;
+
+if (is_admin ()) {
+	add_action ( 'wp_ajax_octopus_get_fontawesome', 'octopus_get_fontawesome_callback' );
+	function octopus_get_fontawesome_callback() {
+		// Init font awesome class
+		$fa = new Smk_FontAwesome ();
+		
+		// Get array
+		$icons = $fa->getArray ( '../assets/font-awesome/4.4.0/css/font-awesome.css' );
+		
+		$response = array (
+				"results" => array (),
+				"more" => true
+		);
+		
+		$fa = $fa->readableName($icons);
+		
+		foreach ($fa->readableName($icons) as $key => $value) {
+			$response ["results"] [] = array (
+					"id" => $key,
+					"text" => $value
+			);
+		}
+		wp_send_json ( $response );
+	}
+}
+
+/**
+ *
+ * @param unknown $mod_name_hex        	
+ * @param unknown $mod_name_opacity        	
+ */
 function octopus_hex2rgba($mod_name_hex, $mod_name_opacity) {
 	$rgba = array ();
 	$mod_hex = octopus_get_option ( $mod_name_hex );
@@ -225,7 +257,8 @@ function octopus_hex2rgba($mod_name_hex, $mod_name_opacity) {
 	$mod_opacity = octopus_get_option ( $mod_name_opacity );
 	$mod_opacity_default = octopus_get_option_defaults () [$mod_name_opacity];
 	
-	if (($mod_hex != '' && $mod_hex !== $mod_hex_default) || ($mod_opacity != '' && $mod_opacity !== $mod_opacity_default)) {
+	if (($mod_hex !== '' && $mod_hex !== $mod_hex_default) || ($mod_opacity !== '' && $mod_opacity !== $mod_opacity_default)) {
+		
 		$mod_hex = str_replace ( "#", "", $mod_hex );
 		
 		if (strlen ( $mod_hex ) == 3) {
@@ -248,3 +281,8 @@ function octopus_hex2rgba($mod_name_hex, $mod_name_opacity) {
 	return $rgba;
 	// return implode(",", $rgb); // returns the rgb values separated by commas
 }
+
+/**
+ * Implement the FontAwesome class.
+ */
+require get_template_directory () . '/inc/font-awesome.class.php';

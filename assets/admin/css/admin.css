@@ -7,7 +7,8 @@
   -webkit-box-shadow: inset 0 1px 0 #dd3d36, 0 1px 0 rgba(0, 0, 0, 0.08);
   box-shadow: inset 0 1px 0 #dd3d36, 0 1px 0 rgba(0, 0, 0, 0.08); }
   .button.octopus-btn-danger:hover {
-    background-color: #ac2126; }
+    background-color: #ac2126;
+    color: #ffffff; }
 
 .octopus-cf-image-preview img {
   max-width: 150px;
@@ -46,8 +47,13 @@ p label.octopus-title {
       font-size: 1em; }
       .octopus-accordion > h4 .octopus-action-move:hover {
         cursor: move; }
+    .octopus-accordion > h4 .octopus-accordion-thumb img {
+      max-height: 45px;
+      width: auto;
+      position: absolute;
+      top: 0; }
     .octopus-accordion > h4 .octopus-accordion-title {
-      margin-left: 1em; }
+      margin-left: 60px; }
   .octopus-accordion .octopus-accordion-close,
   .octopus-accordion .octopus-accordion-open {
     position: absolute;
@@ -103,6 +109,31 @@ p label.octopus-title {
 .octopus-action-delete:hover {
   cursor: pointer; }
 
+.octopus-cf-container {
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+.octopus-cf-field-custom .octopus-cf-option-button a {
+  width: 32%;
+  margin-right: 2%;
+  float: left;
+  text-align: center; }
+  .octopus-cf-field-custom .octopus-cf-option-button a:last-child {
+    margin-right: 0; }
+.octopus-cf-field-custom input.octopus-cf-options-val,
+.octopus-cf-field-custom select.octopus-cf-options-val,
+.octopus-cf-field-custom textarea.octopus-cf-options-val {
+  width: 75%; }
+.octopus-cf-field-custom textarea.octopus-cf-options-val {
+  vertical-align: middle; }
+.octopus-cf-field-custom .octopus-cf-add-font-icon-container .select2-container {
+  vertical-align: top; }
+.octopus-cf-field-custom .octopus-cf-icon-select2 {
+  width: 200px !important; }
+
+@media screen and (max-width: 782px) {
+  .octopus-cf-field-custom .octopus-cf-option-button a {
+    white-space: normal; } }
 /*--------------------------------------------------------------
 # Nav
 @import "nav/_nav.scss";

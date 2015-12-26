@@ -13,6 +13,7 @@
 					<span class="octopus-action-move">
 						<i class="fa fa-arrows-v"></i>
 					</span>
+					<span class="octopus-accordion-thumb" id="octopus-accordion-thumb-<?php echo $i;?>"><?php echo wp_get_attachment_image( $slide['image_id'], 'thumbnail' ); ?></span>
 					<span class="octopus-accordion-title"><?php echo esc_attr( $slide['title'] );?></span>
 				</h4>
 				<div class="octopus-accordion-content" id="#octopus-accordion-content-<?php echo $i;?>">
@@ -22,7 +23,7 @@
 								<td>
 									<div class="octopus-slide-thumbnail">
 										<input type="hidden" name="_octopus_slide[<?php echo $i;?>][image_id]" id="octopus_slide-<?php echo $i;?>-image_id" value="<?php echo $slide['image_id'];?>" />
-										<a title="<?php esc_html_e('Select image', 'octopus')?>" href="javascript:void(0);" class="octopus-slide-thumbnail-add button" onclick="octopus_cf_media_button_click('<?php _e('Choose an image', 'octopus');?>','<?php _e('Select', 'octopus');?>','image','octopus_slide-<?php echo $i;?>-preview','octopus_slide-<?php echo $i;?>-image_id');">
+										<a title="<?php esc_html_e('Select image', 'octopus')?>" href="javascript:void(0);" class="octopus-slide-thumbnail-add button" onclick="octopus_cf_media_button_click('<?php _e('Choose an image', 'octopus');?>','<?php _e('Select', 'octopus');?>','image',new Array('octopus_slide-<?php echo $i;?>-preview','octopus-accordion-thumb-<?php echo $i;?>'),'octopus_slide-<?php echo $i;?>-image_id');">
 											<i class="fa fa-image"></i> <?php _e('Select image', 'octopus')?>
 										</a>
 										<div class="octopus-cf-image-preview" id="octopus_slide-<?php echo $i;?>-preview">
