@@ -76,7 +76,7 @@ if ( ! function_exists( 'octopus_header_style' ) ) :
 			<?php
 			octopus_generate_css( '#page.container', 'max-width', 'container_max_width', '', '', true);
 			//Header
-			octopus_generate_css( '.octopus-navbar-wrapper', 'max-width', 'header_max_width', '', 'px', true);
+			octopus_generate_css( '.container-fluid .octopus-wrapper', 'max-width', 'wrapped_element_max_width', '', 'px', true);
 			//	Header banner
 			octopus_generate_css( '.octopus-header-banner', 'height', 'header_banner_height', '', 'px', true);
 			?>
@@ -112,13 +112,13 @@ function octopus_colors_schema_css() {
 	$css .= octopus_generate_css( '.site-description', 'color', 'header_desription_color', '', '', false);
 	$css .= octopus_generate_css( '.navbar-default .navbar-nav > li > a, .navbar-default .navbar-toggle .icon-bar', 'color', 'header_nav_color', '', '', false);
 	
+	$css .= octopus_generate_css( '.octopus-features-sidebar', 'background-color', 'homepage_features_bg_color', '', '', false);
+	$css .= octopus_generate_css( '.octopus-features-sidebar', 'color', 'homepage_features_text_color', '', '', false);
+	
 	if ($css) {
 		echo '<style type="text/css" id="octopus-color-schema-css" />' . "\n";
 		echo $css;
 		echo '</style>' . "\n";
 	}
 }
-
-
-
 add_action('wp_head', 'octopus_colors_schema_css', 100);

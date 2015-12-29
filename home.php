@@ -18,6 +18,49 @@ get_header(); ?>
 
 	<div id="primary" class="content-area <?php echo octopus_get_primary_column_class();?>">
 		<main id="main" class="site-main" role="main">
+		
+		<?php if ( octopus_get_option( 'homepage_features_show' ) ):?>
+			<!-- octopus-features-sidebar -->
+			<div class="row octopus-features-sidebar">
+				<div class="col-md-12">
+					<?php if ( octopus_get_option( 'homepage_features_title' ) ):?>
+					<h2 class="octopus-features-title">
+						<?php echo octopus_get_option( 'homepage_features_title' );?>
+						<span class="octopus-decoration-line">
+							<span>
+								<?php echo octopus_get_option( 'homepage_features_description' );?>
+							</span>
+						</span>
+					</h2>
+					<?php endif;?>
+					<ul class="list-inline text-center">
+						<?php dynamic_sidebar('homepage-features'); ?>
+					</ul>
+				</div>
+			</div>
+			<!-- #octopus-features-sidebar -->
+		<?php endif;?>
+		
+
+		<!-- octopus-highlights-sidebar -->
+		<div class="row octopus-highlights-sidebar">
+			<div class="col-md-12">
+				<?php if ( octopus_get_option( 'homepage_highlights_title' ) ):?>
+				<h2 class="octopus-highlights-title">
+					<?php echo octopus_get_option( 'homepage_highlights_title' );?>
+					<span class="octopus-decoration-line">
+						<span>
+							<?php echo octopus_get_option( 'homepage_highlights_description' );?>
+						</span>
+					</span>
+				</h2>
+				<?php endif;?>
+				<ul class="list-inline text-center">
+					<?php dynamic_sidebar('homepage-highlights'); ?>
+				</ul>
+			</div>
+		</div>
+		<!-- #octopus-hightlights-sidebar -->
 
 		<?php
 		if ( have_posts() ) :

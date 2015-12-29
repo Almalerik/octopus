@@ -38,7 +38,8 @@ function octopus_get_option_defaults() {
 	$defaults = array (
 			'logo' => '',
 			'container_class' => 'container-fluid',
-			'container_max_width' => '1000',
+			'container_max_width' => '1170',
+			'wrapped_element_max_width' => '1170',
 			'page_layout' => 'no-sidebar',
 			'gridsystem_class' => 'col-md-',
 			'left_sidebar_grid_size' => '3',
@@ -51,8 +52,8 @@ function octopus_get_option_defaults() {
 			'color_link_visited' => '#800080',
 			'color_link_hover' => '#191970',
 			
-			'header_template' => 'octopus-logo-left',
-			'header_max_width' => '1170',
+			'header_template' => 'octopus-logo-left.php',
+			'header_wrapped' => true,
 			'header_position' => '',
 			'header_bg_color' => '#ffffff',
 			'header_bg_color_opacity' => '1',
@@ -64,7 +65,18 @@ function octopus_get_option_defaults() {
 			
 			'header_banner' => '',
 			'header_banner_layout' => '',
-			'header_banner_height' => '400' 
+			'header_banner_height' => '400',
+			
+			'homepage_features_show' => true,
+			'homepage_features_title' => 'FEATURES',
+			'homepage_features_description' => 'Features description',
+			'homepage_features_bg_color' => '#999999',
+			'homepage_features_text_color' => '#ffffff',
+			'homepage_features_icon_color' => '#ffffff',
+			
+			'homepage_highlights_show' => true,
+			'homepage_highlights_title' => 'HIGHLIGHTS',
+			'homepage_highlights_description' => 'Highlights description',
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }
@@ -216,7 +228,6 @@ if (! function_exists ( 'get_octopus_fontawesome_list' )) :
 		return $fa_icon;
 	}
 
-
 endif;
 
 if (is_admin ()) {
@@ -226,20 +237,23 @@ if (is_admin ()) {
 		$fa = new Smk_FontAwesome ();
 		
 		// Get array
-		$icons = $fa->getArray ( '../assets/font-awesome/4.4.0/css/font-awesome.css' );
+		$fontawesome_css = get_template_directory () . "/assets/font-awesome/css/font-awesome.css";
+		if (file_exists ( get_stylesheet_directory () . "/assets/font-awesome/css/font-awesome.css" ))
+			$fontawesome_css = get_stylesheet_directory () . "/assets/font-awesome/css/font-awesome.css";
+		$icons = $fa->getArray ( $fontawesome_css );
 		
 		$response = array (
 				"results" => array (),
-				"more" => true
+				"more" => true 
 		);
+		$search = isset ( $_GET ['search'] ) ? $_GET ['search'] : '';
 		
-		$fa = $fa->readableName($icons);
-		
-		foreach ($fa->readableName($icons) as $key => $value) {
-			$response ["results"] [] = array (
-					"id" => $key,
-					"text" => $value
-			);
+		foreach ( $fa->readableName ( $icons ) as $key => $value ) {
+			if (empty ( $search ) || stripos ( $value, $search ) !== false)
+				$response ["results"] [] = array (
+						"id" => $key,
+						"text" => $value 
+				);
 		}
 		wp_send_json ( $response );
 	}
@@ -281,6 +295,97 @@ function octopus_hex2rgba($mod_name_hex, $mod_name_opacity) {
 	return $rgba;
 	// return implode(",", $rgb); // returns the rgb values separated by commas
 }
+
+// Colors schema
+if (! function_exists ( 'get_octopus_colors_schema' )) :
+	function get_octopus_colors_schema() {
+		$colors_schema = array (
+				'white' => 'White',
+				'aqua' => 'Aqua',
+				'blue' => 'Blue',
+				'teal' => 'Teal',
+				'green' => 'Green',
+				'olive' => 'Olive',
+				'lime' => 'Lime',
+				'navy' => 'Navy',
+				'yellow' => 'Yellow',
+				'orange' => 'Orange',
+				'red' => 'Red',
+				'fuchsia' => 'Fuchsia' 
+		);
+		return $colors_schema;
+	}
+endif;
+
+/**
+ * Filter added to WP_Query to filter by title with like
+ */
+add_filter( 'posts_where', 'octopus_title_like_posts_where', 10, 2 );
+function octopus_title_like_posts_where( $where, &$wp_query ) {
+	global $wpdb;
+	if ( $post_title_like = $wp_query->get( 'post_title_like' ) ) {
+		$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql( $wpdb->esc_like( $post_title_like ) ) . '%\'';
+	}
+	return $where;
+}
+
+// Post list from ajax request only for admin
+if (is_admin ()) {
+	add_action ( 'wp_ajax_octopus_get_post_json', 'octopus_get_post_json' );
+	function octopus_get_post_json() {
+		$response = array (
+				"results" => array (),
+				"more" => true
+		);
+		
+		$posts_per_page = -1;
+		if ( ! isset (  $_GET ['title'] ) ||  $_GET ['title'] == "") {
+			$posts_per_page = 100;
+		}
+
+		$title = $_GET ['title'];
+
+		$args = array (
+				'post_title_like' => $title,
+				'orderby' => 'title',
+				'order' => 'ASC',
+				'post_status' => 'publish',
+				'post_type' => 'any',
+				'suppress_filters' => false,
+				'posts_per_page'=> $posts_per_page,
+				'nopaging' => true
+		);
+		if ( isset (  $_GET ['type'] ) &&  $_GET ['type'] != "") {
+			$args["post_type"] = explode ( ",", $_GET ['type']);
+		}
+
+		$query = new WP_Query ( $args );
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				$response ["results"] [] = array (
+						"id" => get_the_ID(),
+						"text" => "[". get_post_type() . "] " . get_the_title()
+				);
+			}
+		}
+		wp_reset_postdata();
+		wp_send_json ( $response );
+	}
+}
+
+// HighLight templates
+if (! function_exists ( 'get_octopus_highlight_templates' )) :
+function get_octopus_highlight_templates() {
+	$result = array (
+			'octopus-highlight-default.php' => 'Full page',
+			'octopus-highlight-half-left-image.php' => 'Left image 50%',
+			'octopus-highlight-half-right-image.php' => 'Right image 50%',
+	);
+	return $result;
+}
+endif;
 
 /**
  * Implement the FontAwesome class.

@@ -17,14 +17,6 @@ jQuery.fn.octopus_accordion = function() {
 /*******************************************************************************
  * Select2 FontAwesome init
  ******************************************************************************/
-jQuery.fn.octopus_select2_fa = function() {
-	jQuery(this).select2({
-		'templateResult' : formatMenuIcon,
-		'templateSelection' : formatMenuIcon,
-		'width' : 'resolve',
-		'closeOnSelect' : true
-	});
-};
 /*
  * Select2 theme menu template to show icons
  */
@@ -32,25 +24,52 @@ function formatMenuIcon(icon) {
 	if (!icon.id) {
 		return icon.text;
 	}
-	var $icon = jQuery('<span><i class="' + icon.element.value.toLowerCase() + '"></i> ' + icon.text + '</span>');
+	var $icon = jQuery('<span><i class="fa ' + icon.id + '"></i> ' + icon.text + '</span>');
 	return $icon;
 };
 /*
  * Select2 PostList init
  */
-jQuery.fn.octopus_select2_fa2 = function() {
+jQuery.fn.octopus_select2_fa = function() {
 	jQuery(this).select2({
 		'width' : 'resolve',
 		'closeOnSelect' : true,
 		'ajax' : {
-			url : ajax_object.ajax_url,
+			url : ajaxurl,
 			dataType : 'json',
 			delay : 250,
 			data : function(params) {
 				return {
 					action : "octopus_get_fontawesome",
 					// search term
-					title : params.term
+					search: params.term // search term
+				};
+			},
+			cache : true
+		},
+		'templateResult' : formatMenuIcon,
+		'templateSelection' : formatMenuIcon
+	});
+	jQuery(this).trigger("change");
+}
+
+/*******************************************************************************
+ * Select2 Post list init
+ ******************************************************************************/
+jQuery.fn.octopus_select2_posts= function() {
+	jQuery(this).select2({
+		'width' : 'resolve',
+		'closeOnSelect' : true,
+		'ajax' : {
+			url : ajaxurl,
+			dataType : 'json',
+			delay : 250,
+			data : function(params) {
+				return {
+					action : "octopus_get_post_json",
+					// search term
+					title : params.term,
+					type : "post, page"
 				};
 			},
 			cache : true
@@ -63,7 +82,7 @@ jQuery.fn.octopus_select2_fa2 = function() {
 		}
 	});
 	jQuery(this).trigger("change");
-};
+}
 
 jQuery.noConflict()(function($) {
 	"use strict";
@@ -72,7 +91,11 @@ jQuery.noConflict()(function($) {
 		// Init accordion
 		$(".octopus-accordion").octopus_accordion();
 		// Init Select2 FontAwesome
-		$(".octopus-cf-icon-select2").octopus_select2_fa2();
+		$(".octopus-cf-icon-select2").octopus_select2_fa();
+		// Init Color Piker
+		$('.octopus-colorpicker').wpColorPicker();
+		// Init Select2 Posts list
+		$(".octopus-cf-post-select2").octopus_select2_posts();
 
 		/***********************************************************************
 		 * SLIDER
@@ -159,7 +182,7 @@ jQuery.noConflict()(function($) {
 		});
 		
 		/***********************************************************************
-		 * Font / Image / Custom html
+		 * Font / Image / Custom html / Post
 		 **********************************************************************/
 		// Event click on "Add icon" button
 		$("body").on('click', '.octopus-cf-add-font-icon', function(e) {
@@ -169,7 +192,7 @@ jQuery.noConflict()(function($) {
 			// I need to remove select2-container because if this is a new
 			// widget wp clone an exist widget without attach event
 			$('.select2-container', $container).remove()
-			$(".octopus-cf-icon-select2", $container).octopus_select2_fa2();
+			$(".octopus-cf-icon-select2", $container).octopus_select2_fa();
 		});
 		// Event click on "Add media" button
 		$("body").on('click', '.octopus-cf-add-image', function(e) {
@@ -179,6 +202,16 @@ jQuery.noConflict()(function($) {
 			$('.octopus-cf-options-val', $container).val('');
 			$('.octopus-cf-image-preview', $container).html("");
 
+		});
+		// Event click on "Use post or page" button
+		$("body").on('click', '.octopus-cf-select-post', function(e) {
+			e.preventDefault();
+			var $container = $(this).closest(".octopus-cf-container");
+			$('.octopus-cf-select-post-container, .octopus-cf-option-button', $container).toggle();
+			// I need to remove select2-container because if this is a new
+			// widget wp clone an exist widget without attach event
+			$('.select2-container', $container).remove()
+			$(".octopus-cf-post-select2", $container).octopus_select2_posts();
 		});
 		
 		// Event click on trash menu button
@@ -195,8 +228,10 @@ jQuery.noConflict()(function($) {
 		 **********************************************************************/
 		jQuery(document).on('widget-added widget-updated', function(e, widget) {
 			// After updtae have to reinit Select2
-			$(".octopus-cf-icon-select2", widget).octopus_select2_fa2();
+			$(".octopus-cf-icon-select2", widget).octopus_select2_fa();
 			$(".octopus-accordion").octopus_accordion();
+			$('.octopus-colorpicker').wpColorPicker();
+			$(".octopus-cf-post-select2").octopus_select2_posts();
 		});
 		
 		

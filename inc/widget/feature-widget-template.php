@@ -6,12 +6,12 @@
 ?>
 
 <!-- Feature image -->
-<div class="loungeact-feature-image-wrapper">
+<div class="octopus-feature-image-wrapper <?php echo $instance ['color']; ?>">
 <?php if (isset ( $instance ['image'] ) && $instance ['image'] != ''):?>
 	<img class="widget-image" src="<?php echo $instance ['image']; ?>" title="<?php echo $instance ['title_text']; ?>" alt="<?php echo $instance ['title_text']; ?>" class="img-responsive img-circle" />
 <?php endif;?>
 <?php if (isset ( $instance ['font_icon'] ) && $instance ['font_icon'] != ''):?>
-	<i class="<?php echo $instance ['font_icon']; ?> widget-icon"></i>
+	<i class="fa <?php echo $instance ['font_icon']; ?> widget-icon"></i>
 <?php endif;?>
 </div>
 <?php if (isset ( $instance ['title'] )):?>

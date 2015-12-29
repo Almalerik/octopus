@@ -119,6 +119,7 @@ if( ! class_exists('Smk_FontAwesome') ){
 			foreach ($array as $class => $unicode) {
 				$temp[$class] = ucfirst( str_ireplace(array($class_prefix, '-'), array('', ' '), $class) );
 			}
+			asort ($temp);
 			return $temp;
 
 		}

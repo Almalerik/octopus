@@ -145,7 +145,7 @@ if (! function_exists ( 'octopus_public_scripts' )) {
 	function octopus_public_scripts() {
 		
 		// FontAwesome
-		wp_enqueue_style ( 'octopus-fontawesome', get_template_directory_uri () . '/assets/font-awesome/4.4.0/css/font-awesome.min.css' );
+		wp_enqueue_style ( 'octopus-fontawesome', get_template_directory_uri () . '/assets/font-awesome/css/font-awesome.min.css' );
 		
 		// Bootstrap
 		wp_enqueue_style ( 'octopus-bootstrap-style', get_template_directory_uri () . '/assets/bootstrap/3.3.6/css/bootstrap.css' );
@@ -188,7 +188,7 @@ if (! function_exists ( 'octopus_admin_scripts' )) {
 	function octopus_admin_scripts($hook) {
 		
 		// FontAwesome
-		wp_enqueue_style ( 'octopus-admin-fontawesome', get_template_directory_uri () . '/assets/font-awesome/4.4.0/css/font-awesome.min.css', array (
+		wp_enqueue_style ( 'octopus-admin-fontawesome', get_template_directory_uri () . '/assets/font-awesome/css/font-awesome.min.css', array (
 				'octopus-admin-style'
 		) );
 		
@@ -255,6 +255,34 @@ require get_template_directory () . '/inc/nav/nav.php';
 require get_template_directory () . '/inc/post/slider.php';
 
 /**
+ * Load Feature
+ */
+require get_template_directory () . '/inc/post/feature.php';
+
+/**
  * Load Feature Widget
  */
 require get_template_directory () . '/inc/widget/feature-widget.php';
+
+/**
+ * Load HighLight Widget
+ */
+require get_template_directory () . '/inc/widget/highlight-widget.php';
+
+// Change what's hidden by default for custom post
+add_filter ( 'default_hidden_meta_boxes', 'octopus_hide_meta_lock', 10, 2 );
+function octopus_hide_meta_lock($hidden, $screen) {
+	if ('octopus_feature' == $screen->post_type)
+		$hidden = array (
+				'slugdiv',
+				'postcustom',
+				'trackbacksdiv',
+				'commentstatusdiv',
+				'commentsdiv',
+				'authordiv',
+				'revisionsdiv'
+		);
+		// removed 'postexcerpt',
+		return $hidden;
+}
+

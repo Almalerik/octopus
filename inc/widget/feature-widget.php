@@ -44,7 +44,9 @@ class Octopus_Feature_Widget extends WP_Widget {
 		
 		$instance["title_text"] = $instance['title'];
 		if ( ! empty( $instance['title'] ) ) {
-			$instance['title'] = $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
+			$instance['title'] = $args['before_title'] . 
+				apply_filters( 'widget_title', $instance['title'] ) .
+				'<span class="octopus-decoration ' . $instance['color'] . '"></span>'. $args['after_title'];
 		}
 		
 		$args ['before_widget'] = str_replace('class="', 'class="placeholder ', $args ['before_widget']);
@@ -79,6 +81,8 @@ class Octopus_Feature_Widget extends WP_Widget {
 		$font_icon = (isset ( $instance ['font_icon'] )) ? $instance ['font_icon'] : '';
 		$title = (isset ( $instance ['title'] )) ? $instance ['title'] : '';
 		$description = (isset ( $instance ['description'] )) ? $instance ['description'] : '';
+		$link = (isset ( $instance ['link'] )) ? $instance ['link'] : '';
+		$color = (isset ( $instance ['color'] )) ? $instance ['color'] : '#ffffff';
 		
 		?>
 		<div class="octopus-feature-widget octopus-cf-container">
@@ -90,10 +94,7 @@ class Octopus_Feature_Widget extends WP_Widget {
 				<div class="octopus-cf-add-font-icon-container octopus-cf-field-custom" style="display: <?php echo ( empty($font_icon) ) ? 'none' : 'block'?>;">
 					<label for="<?php echo $this->get_field_id( 'font_icon' ); ?>"><?php esc_html_e( 'Icon: ', 'octopus' ); ?></label>
 					<select class="octopus-cf-icon-select2 octopus-cf-options-val regular-text" id="<?php echo $this->get_field_id( 'font_icon' ); ?>" name="<?php echo $this->get_field_name( 'font_icon' ); ?>" style="width: 70%;">
-						<option value=""><?php _e( 'None' ); ?></option>
-						<?php foreach (get_octopus_fontawesome_list() as $label => $css_class): ?>
-						<option value="<?php echo $css_class;?>" <?php echo $css_class == $font_icon ? 'selected' : ''; ?>><?php echo $label;?></option>
-						<?php endforeach;?>
+						<option value="<?php echo $font_icon; ?>" selected="selected"><?php echo $font_icon != '' ? $font_icon : ''; ?></option>
 					</select>
 					<a class="button octopus-cf-option-reset octopus-btn-danger" href="#">
 						<i class="fa fa-trash"></i>
@@ -128,8 +129,20 @@ class Octopus_Feature_Widget extends WP_Widget {
 				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php esc_html_e( 'Description:' ); ?></label>
+				<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php esc_html_e( 'Description:', 'octopus' ); ?></label>
 				<textarea class="widefat" id="<?php echo $this->get_field_id( 'description' ); ?>" name="<?php echo $this->get_field_name( 'description' ); ?>"><?php echo $description; ?></textarea>
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php esc_html_e( 'Link:', 'octopus' ); ?></label>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo $link; ?>" />
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'color' ); ?>"><?php esc_html_e( 'Color:', 'octopus' ); ?></label>
+				<select id="<?php echo $this->get_field_id( 'color' ); ?>" name="<?php echo $this->get_field_name( 'color' ); ?>">
+					<?php foreach (get_octopus_colors_schema() as $key => $value):?>
+						<option value="<?php echo $key;?>"><?php echo $value;?></option>
+					<?php endforeach;?>
+				</select>
 			</p>
 		</div>
 		<?php
@@ -153,6 +166,8 @@ class Octopus_Feature_Widget extends WP_Widget {
 		$instance ['image'] = (! empty ( $new_instance ['image'] )) ? strip_tags ( $new_instance ['image'] ) : '';
 		$instance ['description'] = (! empty ( $new_instance ['title'] )) ? strip_tags ( $new_instance ['description'] ) : '';
 		$instance ['title'] = (! empty ( $new_instance ['title'] )) ? strip_tags ( $new_instance ['title'] ) : '';
+		$instance ['link'] = (! empty ( $new_instance ['link'] )) ? strip_tags ( $new_instance ['link'] ) : '';
+		$instance ['color'] = (! empty ( $new_instance ['color'] )) ? strip_tags ( $new_instance ['color'] ) : 'navy';
 		return $instance;
 	}
 } // class Octopus_Feature_Widget end
