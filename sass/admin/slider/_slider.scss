@@ -1,0 +1,29 @@
+#octopus-edit-slides-wrapper {
+	li {
+		background-color: #ffffff;
+		
+		&.octopus-slide-sortable-placeholder {
+			background-color: #ffcc00;
+			border: 2px dashed #999999;
+			height: 38px;
+		}
+		
+		&  > .octopus-accordion {
+			margin-bottom: 0;
+			
+			&  > h4 {
+				margin: 0;
+			}
+			
+			.octopus-slide-thumbnail {
+				text-align: center;
+				
+				a {
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+}
+
+
