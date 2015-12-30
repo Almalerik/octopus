@@ -1,11 +1,11 @@
 .octopus-features-sidebar {
 	background-color:$color__background-homepage-features;
-	color: $color__text-homepage-features;
 
 	.octopus-features-title {
 		position: relative;
   		text-align: center;
   		font-weight: bold;
+  		color: $color__text-homepage-features;
 	}
 	
 	.widget_octopus_feature_widget {
@@ -15,18 +15,23 @@
 		margin-right: 10px;
 		vertical-align: top;
 		width: 200px;
-		
-		.widget-title {
-			margin-top: 10px;
-			  		
-	  		span {
-	  		 	width: 30%;
-			    display: block;
-			    text-align: center;
-			    border-bottom: 3px solid;
-			    margin: 3px auto 0 auto;
-	  		}
-		}
+	}
+	
+	.widget-title {
+		margin-top: 10px;
+		  		
+  		span {
+  		 	width: 30%;
+		    display: block;
+		    text-align: center;
+		    border-bottom: 3px solid;
+		    margin: 3px auto 0 auto;
+		    color: 	$color__icon-features;
+  		}
+	}
+	
+	.widget-description {
+		color: $color__description-homepage-features;
 	}
 	
 	.octopus-feature-image-wrapper {
@@ -41,6 +46,7 @@
 	    -webkit-transition: background 0.2s, color 0.2s;
     	-moz-transition: background 0.2s, color 0.2s;
     	transition: background 0.2s, color 0.2s;
+    	color: $color__icon-features;
 	    
 	    img {
 			position: absolute;

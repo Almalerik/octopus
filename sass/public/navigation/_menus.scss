@@ -1,20 +1,22 @@
 /* Bootstrap overrides */
 .octopus-navbar-default {
-	background-color: inherit;
+	background-color: $color__header-background;
 	border-radius: 0;
 	border: 0;
 	margin-bottom: 0;
 	
-	.navbar-nav > li > a,
-	.navbar-toggle .icon-bar {
+	.navbar-nav > li > a {
 		color: $color_nav;
+	}
+	
+	.navbar-toggle .icon-bar {
+		background-color: $color_nav;
 	}
 	
 	.navbar-nav {
 	    > li > a:hover,
 	    > li > a:focus {
 	    	background-color: transparent;
-	    	box-shadow: 0 0 0 1px $color_nav;
 	    }
 	
 	    .dropdown-menu {
@@ -77,6 +79,10 @@
 }
 /*  End Bootstrap overrides */
 
+.octopus-scrolling .octopus-navbar-default {
+	background-color: $color__header-background-onscroll;
+} 
+
 .octopus-navbar-default {
 	z-index: 9999;
 
@@ -95,9 +101,21 @@
 		}
 	}
 	
-	.octopus-navbar-nav > li > .sub-menu.open-left {
-		right: 0px;
-		left: inherit;
+	.navbar-nav { 
+	
+		> li > a,
+		> li > a:hover,
+		> li > a:focus,
+		.active > a,
+		.active > a:hover,
+		.active > a:focus {
+			color: $color_nav;
+		}
+		
+		> li > .sub-menu.open-left {
+			right: 0px;
+			left: inherit;
+		}
 	}
 }
 
@@ -120,6 +138,23 @@
 			.octopus-toggle-icon {
 				display: none;
 			}
+			
+			> li > a {
+				border-bottom: 3px solid transparent;
+				
+				&:hover,
+				&:focus {
+			    	background-color: inherit;
+			    	border-bottom: 3px solid $color_nav-hover-border;
+				}
+			}
+			
+			> .active > a,
+		    > .active > a:hover,
+		    > .active > a:focus {
+				background-color: inherit;
+				border-bottom: 3px solid $color_nav-active-border;
+		    }
 		}
 	}
 }
@@ -129,6 +164,26 @@
 		background-color: $color_nav-responsive-background;
 		display: block;
 		margin: 0px -15px;
+		
+		&.octopus-navbar-nav {
+			> li > a,
+		    > .active > a {
+		    	color: #777;
+		    	border-bottom: 0;
+			}
+		}
+		
+		> li > a,
+	    > .active > a {
+	    	
+	    	
+	    	border-left: 5px solid transparent;
+	    	&:hover,
+	    	&:focus {
+	    		color: #777;
+	    		border-left: 5px solid;
+	    	}
+	    }
 		
 		.open .dropdown-menu {
 		    padding-left: 15px;
@@ -149,119 +204,3 @@
 		}
 	}
 }
-
-/*
-.main-navigation {
-	/*
-	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
-	*/
-/*
-	ul {
-		/*
-		display: none;
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
-		*/
-/*
-		ul {
-			/*box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);*/
-/*
-			border: 1px solid $color_nav-sub-border;
-			border-top: 0;
-			float: left;
-			position: absolute;
-			left: -999em;
-			z-index: 99999;
-
-			ul {
-				left: -999em;
-				top: 0;
-			}
-
-			li {
-				&:hover > ul,
-				&.focus > ul {
-					left: 100%;
-				}
-			}
-
-			a {
-				width: 200px;
-			}
-
-			:hover > a,
-			.focus > a {
-			}
-
-			a:hover,
-			a.focus {
-			}
-		}
-
-		li:hover > ul,
-		li.focus > ul {
-			left: auto;
-		}
-	}
-	li {
-		float: left;
-		position: relative;
-
-		&:hover > a,
-		&.focus > a {
-		}
-	}
-	a {
-		display: block;
-		text-decoration: none;
-	}
-
-	.current_page_item > a,
-	.current-menu-item > a,
-	.current_page_ancestor > a,
-	.current-menu-ancestor > a {
-	}
-}
-
-/* Small menu. */
-
-/*
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
-
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
-	.main-navigation ul {
-		display: block;
-	}
-}
-
-.comment-navigation,
-.posts-navigation,
-.post-navigation {
-
-	.site-main & {
-		margin: 0 0 1.5em;
-		overflow: hidden;
-	}
-
-	.nav-previous {
-		float: left;
-		width: 50%;
-	}
-
-	.nav-next {
-		float: right;
-		text-align: right;
-		width: 50%;
-	}
-}
-*/

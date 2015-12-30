@@ -54,25 +54,30 @@ function octopus_get_option_defaults() {
 			
 			'header_template' => 'octopus-logo-left.php',
 			'header_wrapped' => true,
-			'header_position' => '',
-			'header_bg_color' => '#ffffff',
-			'header_bg_color_opacity' => '1',
-			'header_bg_color_opacity_onscroll' => '1',
+			'header_position' => 'octopus-header-sticky-top',
+			'header_bg_color' => '#000000',
+			'header_bg_color_opacity' => '0.3',
+			'header_bg_color_opacity_onscroll' => '0.8',
 			
-			'header_title_color' => '#404040',
-			'header_desription_color' => '#606060',
-			'header_nav_color' => '#777777',
+			'header_title_color' => '#ffffff',
+			'header_desription_color' => '#efefef',
+			'header_nav_color' => '#ffffff',
+			'header_nav_decoration_hover' => '#ff851b',
+			'header_nav_decoration_active' => '#ff4136',
 			
 			'header_banner' => '',
-			'header_banner_layout' => '',
+			'header_banner_show' => true,
+			'header_banner_layout' => 'octopus-fullscreen-banner',
 			'header_banner_height' => '400',
 			
 			'homepage_features_show' => true,
+			'homepage_features_wrapped' => true,
 			'homepage_features_title' => 'FEATURES',
 			'homepage_features_description' => 'Features description',
-			'homepage_features_bg_color' => '#999999',
-			'homepage_features_text_color' => '#ffffff',
-			'homepage_features_icon_color' => '#ffffff',
+			'homepage_features_bg_color' => '#ffffff',
+			'homepage_features_text_color' => '#404040',
+			'homepage_features_description_color' => '#777777',
+			'homepage_features_icon_color' => '#404040',
 			
 			'homepage_highlights_show' => true,
 			'homepage_highlights_title' => 'HIGHLIGHTS',
@@ -130,9 +135,9 @@ function octopus_get_aside_sidebar($sidebar) {
 function octopus_get_header_css_class($echo = true) {
 	$result = '';
 	
-	if (octopus_get_option ( 'header_banner' )) {
+	//if (octopus_get_option ( 'header_banner' )) {
 		$result [] = octopus_get_option ( 'header_banner_layout' );
-	}
+	//}
 	
 	$result [] = octopus_get_option ( 'header_position' );
 	
@@ -386,6 +391,22 @@ function get_octopus_highlight_templates() {
 	return $result;
 }
 endif;
+
+/**
+ * This function is needed because in customize if a sidebar is not present will be removed from view.
+ * @param unknown $setting
+ */
+function octopus_customize_show_sidebar( $setting ){
+	if ( octopus_get_option( $setting ) ) {
+		return 'octopus-display-block';
+	} else {
+		if ( is_customize_preview() ) {
+			return 'hidden';
+		} else {
+			return false;
+		}
+	}
+}
 
 /**
  * Implement the FontAwesome class.

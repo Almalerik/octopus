@@ -54,6 +54,6 @@
 
 		<div class="clearfix"></div>
 		
-		<?php locate_template( 'banner/octopus-header-banner.php' );?>
+		<?php locate_template( 'template-parts/header/banner/octopus-header-banner.php', true );?>
 		
 	</header><!-- #masthead -->

@@ -1,21 +1,25 @@
 $color__text-main: #404040;
 
-$color__header-background: #ffffff;
-$color__header-title: #404040;
-$color__header-blogdescription: #606060;
+$color__header-background: rgba( 0, 0, 0, 0.3 );
+$color__header-background-onscroll: rgba( 0, 0, 0, 0.8);
+$color__header-shadow-bottom: #d0d0d0;
+$color__header-title: #ffffff;
+$color__header-blogdescription: #efefef;
 
 $color__link: #4169e1;
 $color__link-visited: #800080;
 $color__link-hover: #191970;
 
-$color_nav: #777777;
-$color_nav-border: #e7e7e7;
+$color_nav: #ffffff;
+$color_nav-hover-border: orange;
+$color_nav-active-border: red;
 $color_nav-sub-border: #dddddd;
 $color_nav-responsive-background: #ffffff;
 
-$color__background-homepage-features: #999999;
-$color__text-homepage-features: #ffffff;
-$color__icon-features: #ffffff;
+$color__background-homepage-features: #ffffff;
+$color__text-homepage-features: #404040;
+$color__description-homepage-features: #777777;
+$color__icon-features: #404040;
 
 
 $color__background-body: #fff;

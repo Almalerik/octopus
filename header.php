@@ -24,7 +24,7 @@
 <div id="page" class="site <?php echo octopus_get_option('container_class');?>">
 
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'octopus' ); ?></a>
-	<?php include( locate_template( 'template-parts/header/' . octopus_get_option( 'header_template' ) ) );?>
+	<?php locate_template( 'template-parts/header/' . octopus_get_option( 'header_template' ), true, true );?>
 
 	<div id="content" class="site-content row">
 		

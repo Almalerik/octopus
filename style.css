@@ -109,55 +109,55 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 
 /* Colors */
 .navy {
-  color: #001F3F; }
+  color: #001F3F !important; }
 
 .blue {
-  color: #0074D9; }
+  color: #0074D9 !important; }
 
 .aqua {
-  color: #7FDBFF; }
+  color: #7FDBFF !important; }
 
 .teal {
-  color: #39CCCC; }
+  color: #39CCCC !important; }
 
 .olive {
-  color: #3D9970; }
+  color: #3D9970 !important; }
 
 .green {
-  color: #2ECC40; }
+  color: #2ECC40 !important; }
 
 .lime {
-  color: #01FF70; }
+  color: #01FF70 !important; }
 
 .yellow {
-  color: #FFDC00; }
+  color: #FFDC00 !important; }
 
 .orange {
-  color: #FF851B; }
+  color: #FF851B !important; }
 
 .red {
-  color: #FF4136; }
+  color: #FF4136 !important; }
 
 .fuchsia {
-  color: #F012BE; }
+  color: #F012BE !important; }
 
 .purple {
-  color: #B10DC9; }
+  color: #B10DC9 !important; }
 
 .maroon {
-  color: #85144B; }
+  color: #85144B !important; }
 
 .white {
-  color: #FFFFFF; }
+  color: #FFFFFF !important; }
 
 .silver {
-  color: #DDDDDD; }
+  color: #DDDDDD !important; }
 
 .gray {
-  color: #AAAAAA; }
+  color: #AAAAAA !important; }
 
 .black {
-  color: #111111; }
+  color: #111111 !important; }
 
 /* Border colors 
 
@@ -758,17 +758,17 @@ a {
 --------------------------------------------------------------*/
 /* Bootstrap overrides */
 .octopus-navbar-default {
-  background-color: inherit;
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 0;
   border: 0;
   margin-bottom: 0; }
-  .octopus-navbar-default .navbar-nav > li > a,
+  .octopus-navbar-default .navbar-nav > li > a {
+    color: #ffffff; }
   .octopus-navbar-default .navbar-toggle .icon-bar {
-    color: #777777; }
+    background-color: #ffffff; }
   .octopus-navbar-default .navbar-nav > li > a:hover,
   .octopus-navbar-default .navbar-nav > li > a:focus {
-    background-color: transparent;
-    box-shadow: 0 0 0 1px #777777; }
+    background-color: transparent; }
   .octopus-navbar-default .navbar-nav .dropdown-menu {
     padding: 0;
     border-radius: 0; }
@@ -801,6 +801,9 @@ a {
       transform: rotate(0); }
 
 /*  End Bootstrap overrides */
+.octopus-scrolling .octopus-navbar-default {
+  background-color: rgba(0, 0, 0, 0.8); }
+
 .octopus-navbar-default {
   z-index: 9999; }
   .octopus-navbar-default .sub-menu .sub-menu {
@@ -812,7 +815,14 @@ a {
     .octopus-navbar-default .sub-menu.open-left .sub-menu {
       right: 50%;
       left: inherit; }
-  .octopus-navbar-default .octopus-navbar-nav > li > .sub-menu.open-left {
+  .octopus-navbar-default .navbar-nav > li > a,
+  .octopus-navbar-default .navbar-nav > li > a:hover,
+  .octopus-navbar-default .navbar-nav > li > a:focus,
+  .octopus-navbar-default .navbar-nav .active > a,
+  .octopus-navbar-default .navbar-nav .active > a:hover,
+  .octopus-navbar-default .navbar-nav .active > a:focus {
+    color: #ffffff; }
+  .octopus-navbar-default .navbar-nav > li > .sub-menu.open-left {
     right: 0px;
     left: inherit; }
 
@@ -826,12 +836,34 @@ a {
       display: block;
       margin-top: -6px; }
     .octopus-navbar-default .navbar-nav .octopus-toggle-icon {
-      display: none; } }
+      display: none; }
+    .octopus-navbar-default .navbar-nav > li > a {
+      border-bottom: 3px solid transparent; }
+      .octopus-navbar-default .navbar-nav > li > a:hover, .octopus-navbar-default .navbar-nav > li > a:focus {
+        background-color: inherit;
+        border-bottom: 3px solid orange; }
+    .octopus-navbar-default .navbar-nav > .active > a,
+    .octopus-navbar-default .navbar-nav > .active > a:hover,
+    .octopus-navbar-default .navbar-nav > .active > a:focus {
+      background-color: inherit;
+      border-bottom: 3px solid red; } }
 @media (max-width: 767px) {
   .octopus-navbar-default .navbar-nav {
     background-color: #ffffff;
     display: block;
     margin: 0px -15px; }
+    .octopus-navbar-default .navbar-nav.octopus-navbar-nav > li > a,
+    .octopus-navbar-default .navbar-nav.octopus-navbar-nav > .active > a {
+      color: #777;
+      border-bottom: 0; }
+    .octopus-navbar-default .navbar-nav > li > a,
+    .octopus-navbar-default .navbar-nav > .active > a {
+      border-left: 5px solid transparent; }
+      .octopus-navbar-default .navbar-nav > li > a:hover, .octopus-navbar-default .navbar-nav > li > a:focus,
+      .octopus-navbar-default .navbar-nav > .active > a:hover,
+      .octopus-navbar-default .navbar-nav > .active > a:focus {
+        color: #777;
+        border-left: 5px solid; }
     .octopus-navbar-default .navbar-nav .open .dropdown-menu {
       padding-left: 15px;
       display: none; }
@@ -844,120 +876,6 @@ a {
       margin-left: 5px;
       line-height: 20px;
       font-size: 24px; } }
-/*
-.main-navigation {
-	/*
-	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
-	*/
-/*
-	ul {
-		/*
-		display: none;
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
-		*/
-/*
-		ul {
-			/*box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);*/
-/*
-			border: 1px solid $color_nav-sub-border;
-			border-top: 0;
-			float: left;
-			position: absolute;
-			left: -999em;
-			z-index: 99999;
-
-			ul {
-				left: -999em;
-				top: 0;
-			}
-
-			li {
-				&:hover > ul,
-				&.focus > ul {
-					left: 100%;
-				}
-			}
-
-			a {
-				width: 200px;
-			}
-
-			:hover > a,
-			.focus > a {
-			}
-
-			a:hover,
-			a.focus {
-			}
-		}
-
-		li:hover > ul,
-		li.focus > ul {
-			left: auto;
-		}
-	}
-	li {
-		float: left;
-		position: relative;
-
-		&:hover > a,
-		&.focus > a {
-		}
-	}
-	a {
-		display: block;
-		text-decoration: none;
-	}
-
-	.current_page_item > a,
-	.current-menu-item > a,
-	.current_page_ancestor > a,
-	.current-menu-ancestor > a {
-	}
-}
-
-/* Small menu. */
-/*
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
-
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
-	.main-navigation ul {
-		display: block;
-	}
-}
-
-.comment-navigation,
-.posts-navigation,
-.post-navigation {
-
-	.site-main & {
-		margin: 0 0 1.5em;
-		overflow: hidden;
-	}
-
-	.nav-previous {
-		float: left;
-		width: 50%;
-	}
-
-	.nav-next {
-		float: right;
-		text-align: right;
-		width: 50%;
-	}
-}
-*/
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
@@ -1051,14 +969,14 @@ a {
 # Content
 --------------------------------------------------------------*/
 .container-fluid .octopus-wrapper {
-  max-width: 1170px; }
+  max-width: 1170px;
+  margin: 0 auto; }
 
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
 .site-header {
-  position: relative;
-  background-color: #ffffff; }
+  position: relative; }
 
 .octopus-navbar-wrapper {
   max-width: 1170px;
@@ -1070,13 +988,13 @@ a {
 .site-title {
   margin: 0.2em 0; }
   .site-title a {
-    color: #404040; }
+    color: #ffffff; }
     .site-title a:hover, .site-title a:active, .site-title a:visited, .site-title a:focus {
-      color: #404040;
+      color: #ffffff;
       text-decoration: none; }
 
 .site-description {
-  color: #606060;
+  color: #efefef;
   margin-bottom: 0; }
 
 .octopus-logo-center .navbar-header,
@@ -1104,22 +1022,22 @@ a {
   z-index: 10;
   width: 100%; }
 
-@media (min-width: 768px) {
-  .octopus-logo-left .octopus-navbar-default {
-    width: 100%; }
-    .octopus-logo-left .octopus-navbar-default .navbar-collapse {
-      position: absolute;
-      bottom: 0;
-      right: 0; }
+.octopus-navbar-default {
+  box-shadow: 0 4px 2px -2px #999;
+  width: 100%; }
 
-  .octopus-logo-right .octopus-navbar-default {
-    width: 100%; }
-    .octopus-logo-right .octopus-navbar-default .navbar-header {
-      float: right; }
-    .octopus-logo-right .octopus-navbar-default .navbar-collapse {
-      position: absolute;
-      bottom: 0;
-      left: 0; }
+@media (min-width: 768px) {
+  .octopus-logo-left .octopus-navbar-default .navbar-collapse {
+    position: absolute;
+    bottom: 0;
+    right: 0; }
+
+  .octopus-logo-right .octopus-navbar-default .navbar-header {
+    float: right; }
+  .octopus-logo-right .octopus-navbar-default .navbar-collapse {
+    position: absolute;
+    bottom: 0;
+    left: 0; }
 
   .octopus-logo-left .octopus-fix-long-menu,
   .octopus-logo-right .octopus-fix-long-menu {
@@ -1148,8 +1066,7 @@ a {
   -moz-transition: background-color 500ms linear;
   -o-transition: background-color 500ms linear;
   -ms-transition: background-color 500ms linear;
-  transition: background-color 500ms linear;
-  box-shadow: 0 4px 2px -2px #d0d0d0; }
+  transition: background-color 500ms linear; }
 
 @media (max-width: 767px) {
   .octopus-logo-left .site-branding {
@@ -1416,12 +1333,12 @@ a {
 ## Features
 --------------------------------------------------------------*/
 .octopus-features-sidebar {
-  background-color: #999999;
-  color: #ffffff; }
+  background-color: #ffffff; }
   .octopus-features-sidebar .octopus-features-title {
     position: relative;
     text-align: center;
-    font-weight: bold; }
+    font-weight: bold;
+    color: #404040; }
   .octopus-features-sidebar .widget_octopus_feature_widget {
     margin-top: 20px;
     text-align: center;
@@ -1429,14 +1346,17 @@ a {
     margin-right: 10px;
     vertical-align: top;
     width: 200px; }
-    .octopus-features-sidebar .widget_octopus_feature_widget .widget-title {
-      margin-top: 10px; }
-      .octopus-features-sidebar .widget_octopus_feature_widget .widget-title span {
-        width: 30%;
-        display: block;
-        text-align: center;
-        border-bottom: 3px solid;
-        margin: 3px auto 0 auto; }
+  .octopus-features-sidebar .widget-title {
+    margin-top: 10px; }
+    .octopus-features-sidebar .widget-title span {
+      width: 30%;
+      display: block;
+      text-align: center;
+      border-bottom: 3px solid;
+      margin: 3px auto 0 auto;
+      color: #404040; }
+  .octopus-features-sidebar .widget-description {
+    color: #777777; }
   .octopus-features-sidebar .octopus-feature-image-wrapper {
     height: 100px;
     width: 100px;
@@ -1448,7 +1368,8 @@ a {
     margin: 0 auto;
     -webkit-transition: background 0.2s, color 0.2s;
     -moz-transition: background 0.2s, color 0.2s;
-    transition: background 0.2s, color 0.2s; }
+    transition: background 0.2s, color 0.2s;
+    color: #404040; }
     .octopus-features-sidebar .octopus-feature-image-wrapper img {
       position: absolute;
       top: 50%;

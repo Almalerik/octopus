@@ -110,10 +110,23 @@ function octopus_colors_schema_css() {
 	
 	$css .= octopus_generate_css( '.site-title a, .site-title a:hover, .site-title a:focus, .site-title a:active, .site-title a:visited', 'color', 'header_title_color', '', '', false);
 	$css .= octopus_generate_css( '.site-description', 'color', 'header_desription_color', '', '', false);
-	$css .= octopus_generate_css( '.navbar-default .navbar-nav > li > a, .navbar-default .navbar-toggle .icon-bar', 'color', 'header_nav_color', '', '', false);
+	$css .= octopus_generate_css( '.octopus-navbar-default .navbar-nav > li > a,
+								   .octopus-navbar-default .navbar-nav > li > a:hover,
+								   .octopus-navbar-default .navbar-nav > li > a:focus,
+								   .octopus-navbar-default .navbar-nav > .active > a,
+								   .octopus-navbar-default .navbar-nav > .active > a:hover,
+								   .octopus-navbar-default .navbar-nav > .active > a:focus', 'color', 'header_nav_color', '', '', false);
+	$css .= octopus_generate_css( '.octopus-navbar-default .navbar-toggle .icon-bar', 'background-color', 'header_nav_color', '', '', false);
 	
+	$css .= octopus_generate_css( '.octopus-navbar-default .navbar-nav > li > a:hover, .octopus-navbar-default .navbar-nav > li > a:focus', 'border-color', 'header_nav_decoration_hover', '', '', false);
+	$css .= octopus_generate_css( '.octopus-navbar-default .navbar-nav > .active > a, .octopus-navbar-default .navbar-nav > .active > a:hover, .octopus-navbar-default .navbar-nav > .active > a:focus', 'border-color', 'header_nav_decoration_active', '', '', false);
+	
+	//Homepage Features
 	$css .= octopus_generate_css( '.octopus-features-sidebar', 'background-color', 'homepage_features_bg_color', '', '', false);
-	$css .= octopus_generate_css( '.octopus-features-sidebar', 'color', 'homepage_features_text_color', '', '', false);
+	$css .= octopus_generate_css( '.octopus-features-sidebar .widget-title', 'color', 'homepage_features_text_color', '', '', false);
+	$css .= octopus_generate_css( '.octopus-features-sidebar .widget-description', 'color', 'homepage_features_description_color', '', '', false);
+	
+	
 	
 	if ($css) {
 		echo '<style type="text/css" id="octopus-color-schema-css" />' . "\n";

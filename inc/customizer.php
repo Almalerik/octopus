@@ -376,19 +376,53 @@ function octopus_customize_register($wp_customize) {
 				'settings' => 'header_nav_color',
 				'priority' => 50
 		) ) );
+		$wp_customize->add_setting ( 'header_nav_decoration_hover', array (
+				'default' => octopus_get_option ( 'header_nav_decoration_hover' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_header_nav_decoration_hover', array (
+				'label' => esc_html__ ( 'Navigation menu hover', 'octopus' ),
+				'section' => 'octopus_header_colors',
+				'settings' => 'header_nav_decoration_hover',
+				'priority' => 60
+		) ) );
+		$wp_customize->add_setting ( 'header_nav_decoration_active', array (
+				'default' => octopus_get_option ( 'header_nav_decoration_active' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_header_nav_decoration_active', array (
+				'label' => esc_html__ ( 'Navigation menu active', 'octopus' ),
+				'section' => 'octopus_header_colors',
+				'settings' => 'header_nav_decoration_active',
+				'priority' => 70
+		) ) );
 		
-		// Slider
+		// Header banner
 		$wp_customize->add_section ( 'octopus_header_banner', array (
-				'title' => esc_html__ ( 'Slider', 'octopus' ),
+				'title' => esc_html__ ( 'Banner', 'octopus' ),
 				'panel' => 'octopus_header',
 				'priority' => 30 
 		) );
 		// Helper
 		$wp_customize->add_control ( new Fixed_Text_Custom_Control ( $wp_customize, 'octopus_header_banner_helper', array (
-				'description' => sprintf ( 'To create or edit a slider, save and click <a href="%s" class="button">%s</a>', admin_url ( 'edit.php?post_type=octopus_slide' ), esc_html__ ( 'Here', 'octopus' ) ),
+				'description' => sprintf ( 'To create or edit a slider, save and click <a href="%s" class="button">%s</a>', admin_url ( 'edit.php?post_type=octopus_slider' ), esc_html__ ( 'Here', 'octopus' ) ),
 				'section' => 'octopus_header_banner',
 				'priority' => 10 
 		) ) );
+		// Show
+		$wp_customize->add_setting ( 'header_banner_show', array (
+				'default' => octopus_get_option ( 'header_banner_show' ),
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( 'octopus_header_banner_show', array (
+				'label' => esc_html__ ( 'Show', 'octopus' ),
+				'section' => 'octopus_header_banner',
+				'settings' => 'header_banner_show',
+				'type' => 'checkbox',
+				'priority' => 20
+		) );
 		// select slider
 		$wp_customize->add_setting ( 'header_banner', array (
 				'default' => octopus_get_option ( 'header_banner' ) 
@@ -457,7 +491,8 @@ function octopus_customize_register($wp_customize) {
 		) ) );
 		// Show
 		$wp_customize->add_setting ( 'homepage_features_show', array (
-				'default' => octopus_get_option ( 'homepage_features_show' )
+				'default' => octopus_get_option ( 'homepage_features_show' ),
+				'transport' => 'postMessage'
 		) );
 		$wp_customize->add_control ( 'octopus_homepage_features_show', array (
 				'label' => esc_html__ ( 'Show' ),
@@ -466,9 +501,23 @@ function octopus_customize_register($wp_customize) {
 				'type' => 'checkbox',
 				'priority' => 20
 		) );
+		// Fixed max width
+		$wp_customize->add_setting ( 'homepage_features_wrapped', array (
+				'default' => octopus_get_option ( 'homepage_features_wrapped' ),
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( 'octopus_homepage_features_wrapped', array (
+				'label' => esc_html__ ( 'Wrapped', 'octopus' ),
+				'description' => esc_html__ ( 'Set max-width element (value is set in "Layout" main section)', 'octopus' ),
+				'section' => 'octopus_homepage_features_settings',
+				'settings' => 'homepage_features_wrapped',
+				'type' => 'checkbox',
+				'priority' => 20
+		) );
 		// Title
 		$wp_customize->add_setting ( 'homepage_features_title', array (
-				'default' => octopus_get_option ( 'homepage_features_title' )
+				'default' => octopus_get_option ( 'homepage_features_title' ),
+				'transport' => 'postMessage'
 		) );
 		$wp_customize->add_control ( 'octopus_homepage_features_title', array (
 				'label' => esc_html__ ( 'Title' ),
@@ -478,7 +527,8 @@ function octopus_customize_register($wp_customize) {
 		) );
 		// Subtitle
 		$wp_customize->add_setting ( 'homepage_features_description', array (
-				'default' => octopus_get_option ( 'homepage_features_description' )
+				'default' => octopus_get_option ( 'homepage_features_description' ),
+				'transport' => 'postMessage'
 		) );
 		$wp_customize->add_control ( 'octopus_homepage_features_description', array (
 				'label' => esc_html__ ( 'Description' ),
@@ -506,7 +556,18 @@ function octopus_customize_register($wp_customize) {
 				'label' => esc_html__ ( 'Text color', 'octopus' ),
 				'section' => 'octopus_homepage_features_settings',
 				'settings' => 'homepage_features_text_color',
-				'priority' => 50
+				'priority' => 60
+		) ) );
+		$wp_customize->add_setting ( 'homepage_features_description_color', array (
+				'default' => octopus_get_option ( 'homepage_features_description_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_homepage_features_description_color', array (
+				'label' => esc_html__ ( 'Description color', 'octopus' ),
+				'section' => 'octopus_homepage_features_settings',
+				'settings' => 'homepage_features_description_color',
+				'priority' => 70
 		) ) );
 		
 		/*

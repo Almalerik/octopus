@@ -1,6 +1,5 @@
 .site-header {
 	position: relative;
-	background-color: $color__header-background;
 }
 
 .octopus-navbar-wrapper {
@@ -68,12 +67,16 @@
     width: 100%;
 }
 
+.octopus-navbar-default {
+	box-shadow: 0 4px 2px -2px #999;
+	width: 100%;
+}
+
 @media (min-width: 768px) {
 
 	.octopus-logo-left {
 		.octopus-navbar-default {
-			width: 100%;
-			
+
 			.navbar-collapse {
 				position: absolute;
     			bottom: 0;
@@ -84,7 +87,6 @@
 	
 	.octopus-logo-right {
 		.octopus-navbar-default {
-			width: 100%;
 			
 			.navbar-header {
 				float: right;
@@ -141,7 +143,6 @@
     -o-transition: background-color 500ms linear;
     -ms-transition: background-color 500ms linear;
     transition: background-color 500ms linear;
-    box-shadow: 0 4px 2px -2px #d0d0d0;
 }
 
 @media (max-width: 767px) {
