@@ -47,7 +47,95 @@ jQuery.noConflict()(function($) {
 		}
 	});
 
+	/***************************************************************************
+	 * PortFolio
+	 **************************************************************************/
+	var octopusPortfolio = (function($) {
+		'use strict';
+
+		var $grid = $('.octopus-portfolio-items'), $filterOptions = $('.octopus-portfolio-filters'), $sizer = $grid.find('.shuffle__sizer'),
+
+		init = function() {
+
+			// None of these need to be executed synchronously
+			setTimeout(function() {
+				listen();
+				setupFilters();
+			}, 100);
+
+			// instantiate the plugin
+			$grid.shuffle({
+				itemSelector : '.octopus-portfolio-item'
+			});
+
+			// Destroy it! o_O
+			// $grid.shuffle('destroy');
+		},
+
+		// Set up button clicks
+		setupFilters = function() {
+			var $btns = $filterOptions.find('.btn');
+			$btns.on('click', function() {
+				var $this = $(this), isActive = $this.hasClass('active'), group = isActive ? 'all' : $this.data('group');
+
+				// Hide current label, show current label in title
+				if (!isActive) {
+					$('.octopus-portfolio-filters .active').removeClass('active');
+				}
+
+				$this.toggleClass('active');
+
+				// Filter elements
+				$grid.shuffle('shuffle', group);
+			});
+
+			$btns = null;
+		},
+
+		// Re layout shuffle when images load. This is only needed
+		// below 768 pixels because the .picture-item height is auto and
+		// therefore
+		// the height of the picture-item is dependent on the image
+		// I recommend using imagesloaded to determine when an image is loaded
+		// but that doesn't support IE7
+		listen = function() {
+
+			// Get all images inside shuffle
+			$grid.find('img').each(function() {
+				var proxyImage;
+
+				// Image already loaded
+				if (this.complete && this.naturalWidth !== undefined) {
+					return;
+				}
+
+				// If none of the checks above matched, simulate loading on
+				// detached element.
+				proxyImage = new Image();
+				$(proxyImage).on('load', function() {
+					$(this).off('load');
+					$grid.shuffle('update');
+					;
+				});
+
+				proxyImage.src = this.src;
+			});
+
+			// Because this method doesn't seem to be perfect.
+			setTimeout(function() {
+				$grid.shuffle('update');
+				;
+			}, 500);
+		};
+
+		return {
+			init : init
+		};
+	}(jQuery));
+
 	$(document).ready(function() {
+
+		octopusPortfolio.init();
 
 		// Fix primary long menu
 		$('.octopus-navbar-wrapper').octopus_fix_long_menu();
@@ -124,6 +212,76 @@ jQuery.noConflict()(function($) {
 				$(this).children('a').find('.octopus-toggle-icon').click();
 				$(this).children('.sub-menu').attr('style', '');
 			});
+		});
+
+		// Smooth scroll
+		/*
+		 * $('a[href^="#"]').on('click',function (e) { e.preventDefault();
+		 * 
+		 * var target = this.hash; var $target = $(target);
+		 * 
+		 * //Fixed Menu and wp menu offset var offset = $target.offset().top; if (
+		 * $('#masthead').hasClass('octopus-header-sticky-top') ) { offset -=
+		 * $('#site-navigation').height() } if ($('#wpadminbar').length > 0 &&
+		 * $('#wpadminbar').css('position') == 'fixed') { offset -=
+		 * $('#wpadminbar').height(); }
+		 * 
+		 * $('html, body').stop().animate({ 'scrollTop': offset }, 900, 'swing',
+		 * function () { window.location.hash = target; }); });
+		 */
+
+		// Cache selectors
+		var lastId;
+		var topMenu = jQuery("#site-navigation");
+		var topMenuHeight = topMenu.outerHeight() + 15;
+		// All list items
+		var menuItems = topMenu.find('a[href*="#"]');
+		
+		// Anchors corresponding to menu items
+		var scrollItems = menuItems.map(function() {
+			var href = $(this).attr("href");
+			var anchor = $("<a />").attr("href", href)[0].hash.replace(/^#/, "");
+			var item = $("#" + anchor);
+			if (item.length) {
+				return item;
+			}
+		});
+
+		// Bind click handler to menu items
+		// so we can get a fancy scroll animation
+		menuItems.click(function(e) {
+			var href = $(this).attr("href");
+			// Get the anchor
+			href = $("<a />").attr("href", href)[0].hash.replace(/^#/, "");
+			if ($("#" + href).length) {
+				var offsetTop = href === "#" ? 0 : $("#" +href).offset().top - topMenuHeight + 1;
+				$('html, body').stop().animate({
+					scrollTop : offsetTop
+				}, 600);
+				e.preventDefault();
+			}
+		});
+
+		// Bind to scroll
+		$(window).scroll(function() {
+			// Get container scroll position
+			var fromTop = $(this).scrollTop() + topMenuHeight;
+
+			// Get id of current scroll item
+			var cur = scrollItems.map(function() {
+				if ($(this).offset().top < fromTop && ($(this).offset().top + $(this).outerHeight()) > fromTop)
+					return this;
+			});
+			console.log(cur);
+			// Get the id of the current element
+			cur = cur[cur.length - 1];
+			var id = cur && cur.length ? cur[0].id : "";
+			console.log(id);
+			if (lastId !== id) {
+				lastId = id;
+				// Set/remove active class
+				menuItems.parent().removeClass("active").end().filter("[href*=#" + id + "]").parent().addClass("active");
+			}
 		});
 
 	});

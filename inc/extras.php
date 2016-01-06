@@ -77,11 +77,22 @@ function octopus_get_option_defaults() {
 			'homepage_features_bg_color' => '#ffffff',
 			'homepage_features_text_color' => '#404040',
 			'homepage_features_description_color' => '#777777',
-			'homepage_features_icon_color' => '#404040',
 			
 			'homepage_highlights_show' => true,
+			'homepage_highlights_wrapped' => true,
 			'homepage_highlights_title' => 'HIGHLIGHTS',
 			'homepage_highlights_description' => 'Highlights description',
+			'homepage_highlights_bg_color' => '#ffffff',
+			'homepage_highlights_text_color' => '#404040',
+			'homepage_highlights_description_color' => '#777777',
+			
+			'homepage_portfolio_show' => true,
+			'homepage_portfolio_wrapped' => true,
+			'homepage_portfolio_title' => 'PORTFOLIOS',
+			'homepage_portfolio_description' => 'Portfolios description',
+			'homepage_portfolio_bg_color' => '#ffffff',
+			'homepage_portfolio_text_color' => '#404040',
+			'homepage_portfolio_description_color' => '#777777',
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }

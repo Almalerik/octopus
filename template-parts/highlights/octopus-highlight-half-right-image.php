@@ -7,6 +7,7 @@
 <!-- Highlight post -->
 	<div class="row octopus-highlight octopus-row-eq-height-sm">
 		<div class="col-sm-6 octopus-background-fullpage" style="background-image: url('<?php echo $instance ["image"];?>');">
+			<img src="<?php echo $instance ["image"];?>" alt="<?php echo $instance ["image_alt"];?>" title="<?php echo $instance ["image_alt"];?>" class="attachment-full wp-post-image invisible" />
 		</div>
 		<div class="col-sm-6">
 			<div class="octopus-highlight-text">

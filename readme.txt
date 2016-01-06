@@ -41,4 +41,7 @@ Octopus includes support for Infinite Scroll in Jetpack.
 * Sticky-Kit http://leafo.net/sticky-kit/, (C) 2015 Leaf Corcoran, [WTFPL] (http://www.wtfpl.net/)
 * Select2 https://select2.github.io/, (C) Kevin Brown and Igor Vaynberg, [MIT](https://github.com/select2/select2/blob/master/LICENSE.md)
 * Swiper http://www.idangero.us/swiper/, (C) 2015 Vladimir Kharlampidi, [MIT](http://opensource.org/licenses/MIT)
+* Shuffle http://vestride.github.io/Shuffle/, (C) @Vestride, [MIT](https://github.com/select2/select2/blob/master/LICENSE.md)
+* Respond.js https://github.com/scottjehl/Respond, (C) 2014 Scott Jehl, [MIT](https://github.com/select2/select2/blob/master/LICENSE.md)
+* HTML5 Shiv https://github.com/afarkas/html5shiv, @afarkas @jdalton @jon_neal @rem, MIT/GPL2 Licensed
 * Images from http://unsplash.com, [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/)

@@ -21,54 +21,82 @@ get_header(); ?>
 		
 		<?php if ( octopus_customize_show_sidebar( 'homepage_features_show' ) ):?>
 			<!-- octopus-features-sidebar -->
-			<div class="row octopus-features-sidebar <?php echo octopus_customize_show_sidebar( 'homepage_features_show' );?>">
-				<div class="col-md-12">
-					<div class="octopus-features-wrapper <?php echo octopus_get_option('homepage_features_wrapped') ? 'octopus-wrapper' : ''?>">
-						<?php if ( octopus_get_option( 'homepage_features_title' ) ):?>
-						<h2 class="octopus-features-title">
-							<?php echo octopus_get_option( 'homepage_features_title' );?>
-							<span class="octopus-decoration-line">
-								<span>
-									<?php echo octopus_get_option( 'homepage_features_description' );?>
+			<section id="features">
+				<div class="row octopus-features-sidebar <?php echo octopus_customize_show_sidebar( 'homepage_features_show' );?>">
+					<div class="col-md-12">
+						<div class="octopus-features-wrapper <?php echo octopus_get_option('homepage_features_wrapped') ? 'octopus-wrapper' : ''?>">
+							<?php if ( octopus_get_option( 'homepage_features_title' ) ):?>
+							<h2 class="octopus-features-title">
+								<?php echo octopus_get_option( 'homepage_features_title' );?>
+								<span class="octopus-decoration-line">
+									<span>
+										<?php echo octopus_get_option( 'homepage_features_description' );?>
+									</span>
 								</span>
-							</span>
-						</h2>
-						<?php endif;?>
-						
-						<ul class="list-inline text-center">
-							<?php 
-								if ( is_active_sidebar ( 'homepage-features' ) ):
-								  	dynamic_sidebar( 'homepage-features' );
-								else:
-									locate_template( 'template-parts/features/octopus-features-example.php', true, true );
-								endif;
-							?>
-						</ul>
+							</h2>
+							<?php endif;?>
+							
+							<ul class="list-inline text-center">
+								<?php 
+									if ( is_active_sidebar ( 'homepage-features' ) ):
+									  	dynamic_sidebar( 'homepage-features' );
+									else:
+										locate_template( 'template-parts/features/octopus-features-example.php', true, true );
+									endif;
+								?>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 			<!-- #octopus-features-sidebar -->
 		<?php endif;?>
 		
 		<?php if ( octopus_customize_show_sidebar( 'homepage_highlights_show' ) ):?>
 		<!-- octopus-highlights-sidebar -->
-		<div class="row octopus-highlights-sidebar <?php echo octopus_customize_show_sidebar( 'homepage_highlights_show' );?>">
-			<div class="col-md-12">
-				<?php if ( octopus_get_option( 'homepage_highlights_title' ) ):?>
-				<h2 class="octopus-highlights-title">
-					<?php echo octopus_get_option( 'homepage_highlights_title' );?>
-					<span class="octopus-decoration-line">
-						<span>
-							<?php echo octopus_get_option( 'homepage_highlights_description' );?>
-						</span>
-					</span>
-				</h2>
-				<?php endif;?>
-				<ul class="list-inline text-center">
-					<?php dynamic_sidebar('homepage-highlights'); ?>
-				</ul>
+		<section id="highlights">
+			<div class="row octopus-highlights-sidebar <?php echo octopus_customize_show_sidebar( 'homepage_highlights_show' );?>">
+				<div class="col-md-12">
+					<div class="octopus-highlights-wrapper <?php echo octopus_get_option('homepage_highlights_wrapped') ? 'octopus-wrapper' : ''?>">
+						<?php if ( octopus_get_option( 'homepage_highlights_title' ) ):?>
+						<h2 class="octopus-highlights-title">
+							<?php echo octopus_get_option( 'homepage_highlights_title' );?>
+							<span class="octopus-decoration-line">
+								<span>
+									<?php echo octopus_get_option( 'homepage_highlights_description' );?>
+								</span>
+							</span>
+						</h2>
+						<?php endif;?>
+						<?php dynamic_sidebar('homepage-highlights'); ?>
+					</div>
+				</div>
 			</div>
-		</div>
+		</section>
+		<!-- #octopus-hightlights-sidebar -->
+		<?php endif;?>
+		
+		<?php if ( octopus_get_option( 'homepage_portfolio_show' ) ):?>
+		<!-- octopus-portfolio-sidebar -->
+		<section id="portfolio">
+			<div class="row octopus-portfolio-sidebar">
+				<div class="col-md-12">
+					<div class="octopus-portfolio-wrapper <?php echo octopus_get_option('homepage_portfolio_wrapped') ? 'octopus-wrapper' : ''?>">
+						<?php if ( octopus_get_option( 'homepage_portfolio_title' ) ):?>
+						<h2 class="octopus-portfolio-title">
+							<?php echo octopus_get_option( 'homepage_portfolio_title' );?>
+							<span class="octopus-decoration-line">
+								<span>
+									<?php echo octopus_get_option( 'homepage_portfolio_description' );?>
+								</span>
+							</span>
+						</h2>
+						<?php endif;?>
+						<?php locate_template( 'template-parts/portfolio/octopus-portfolio-default.php', true, true );?>
+					</div>
+				</div>
+			</div>
+		</section>
 		<!-- #octopus-hightlights-sidebar -->
 		<?php endif;?>
 

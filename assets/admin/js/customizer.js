@@ -12,9 +12,9 @@
 	if (!$colorStyle.length) {
 		$colorStyle = $('head').append('<style type="text/css" id="octopus-color-schema-css" />').find('#octopus-color-schema-css');
 	}
-	
-	// Head style with custom css 
-	var $octopusCustomStyle = $('#octopus-custom-style');	
+
+	// Head style with custom css
+	var $octopusCustomStyle = $('#octopus-custom-style');
 	if (!$octopusCustomStyle.length) {
 		$octopusCustomStyle = $('head').append('<style type="text/css" id="octopus-custom-style" />').find('#octopus-custom-style');
 	}
@@ -62,7 +62,7 @@
 				maxWidth = (isNaN(maxWidth)) ? 1170 : maxWidth;
 				$('#page').css('max-width', maxWidth + "px");
 			}
-			//Fix primary long menu
+			// Fix primary long menu
 			$('.octopus-navbar-wrapper').octopus_fix_long_menu();
 		});
 	});
@@ -74,7 +74,7 @@
 			$('#page').css('max-width', to + "px");
 		});
 	});
-	
+
 	// Element wrapper max width
 	wp.customize('wrapped_element_max_width', function(value) {
 		value.bind(function(to) {
@@ -135,12 +135,9 @@
 	});
 
 	// Colors
-	var colorSettings = [ 'color_text', 'color_link', 'color_link_visited', 
-	                      'color_link_hover', 'header_bg_color', 'header_bg_color_opacity', 
-	                      'header_bg_color_opacity_onscroll', 'header_title_color', 'header_desription_color', 
-	                      'header_nav_color', 'homepage_features_bg_color', 'homepage_features_text_color',
-	                      'homepage_features_description_color',
-	                      'header_nav_decoration_hover','header_nav_decoration_active'];
+	var colorSettings = [ 'color_text', 'color_link', 'color_link_visited', 'color_link_hover', 'header_bg_color', 'header_bg_color_opacity', 'header_bg_color_opacity_onscroll', 'header_title_color', 'header_desription_color', 'header_nav_color', 'homepage_features_bg_color',
+			'homepage_features_text_color', 'homepage_features_description_color', 'homepage_highlights_bg_color', 'homepage_highlights_text_color', 'homepage_highlights_description_color', 'homepage_portfolio_bg_color', 'homepage_portfolio_text_color',
+			'homepage_portfolio_description_color', 'header_nav_decoration_hover', 'header_nav_decoration_active' ];
 	var i;
 	for (i = 0; i < colorSettings.length; ++i) {
 		wp.customize(colorSettings[i], function(value) {
@@ -151,18 +148,22 @@
 	}
 
 	// Wrapped element
-	var wrappedElement = { 	'header_wrapped': '.octopus-navbar-wrapper', 
-							'homepage_features_wrapped': '.octopus-features-wrapper' };
-	$.each(wrappedElement, function (key, selector) {
+	var wrappedElement = {
+		'header_wrapped' : '.octopus-navbar-wrapper',
+		'homepage_features_wrapped' : '.octopus-features-wrapper',
+		'homepage_highlights_wrapped' : '.octopus-highlights-wrapper',
+		'homepage_portfolio_wrapped' : '.octopus-portfolio-wrapper',
+	};
+	$.each(wrappedElement, function(key, selector) {
 		wp.customize(key, function(value) {
 			value.bind(function(to) {
-				if ( to ) {
+				if (to) {
 					$(selector).addClass("octopus-wrapper");
 				} else {
 					$(selector).removeClass("octopus-wrapper");
 				}
 				if (selector === '.octopus-navbar-wrapper') {
-					$( selector ).octopus_fix_long_menu();
+					$(selector).octopus_fix_long_menu();
 				}
 			});
 		});
@@ -202,7 +203,7 @@
 			$('.octopus-header-banner').css('height', to + 'px');
 		});
 	});
-	
+
 	// Homepage Features Show
 	wp.customize('homepage_features_show', function(value) {
 		value.bind(function(to) {
@@ -218,7 +219,7 @@
 				$elem = $('.octopus-features-wrapper').prepend('<h2 class="octopus-features-title"></h2>').find('.octopus-features-wrapper');
 			}
 			$('.octopus-features-title').text(to).append(descr);
-			if ( '' === to ) {
+			if ('' === to) {
 				$('.octopus-features-title').addClass("hidden");
 			} else {
 				$('.octopus-features-title').removeClass("hidden");
@@ -228,6 +229,13 @@
 	wp.customize('homepage_features_description', function(value) {
 		value.bind(function(to) {
 			$('.octopus-decoration-line span').text(to);
+		});
+	});
+
+	// Homepage Highlights Show
+	wp.customize('octopus_homepage_highlights_show', function(value) {
+		value.bind(function(to) {
+			$('.octopus-highlights-sidebar').toggleClass('hidden');
 		});
 	});
 
@@ -328,12 +336,12 @@ function updateColorCss(wp, $colorStyle) {
 		   .octopus-navbar-default .navbar-nav > li > a:focus, \
 		   .octopus-navbar-default .navbar-nav > .active > a, \
 		   .octopus-navbar-default .navbar-nav > .active > a:hover, \
-		   .octopus-navbar-default .navbar-nav > .active > a:focus {color: ' + wp.customize('header_nav_color').get() + ';}';
-	css += '.octopus-navbar-default .navbar-toggle .icon-bar {background-color: ' + wp.customize('header_nav_color').get() + ';}';	
+		   .octopus-navbar-default .navbar-nav > .active > a:focus {color: '
+			+ wp.customize('header_nav_color').get() + ';}';
+	css += '.octopus-navbar-default .navbar-toggle .icon-bar {background-color: ' + wp.customize('header_nav_color').get() + ';}';
 	css += '.octopus-navbar-default .navbar-nav > li > a:hover, .octopus-navbar-default .navbar-nav > li > a:focus {border-color: ' + wp.customize('header_nav_decoration_hover').get() + ';}';
 	css += '.octopus-navbar-default .navbar-nav > .active > a, .octopus-navbar-default .navbar-nav > .active > a:hover, .octopus-navbar-default .navbar-nav > .active > a:focus {border-color: ' + wp.customize('header_nav_decoration_active').get() + ';}';
 
-	
 	// Homepage features
 	css += '.octopus-features-sidebar {background-color: ' + wp.customize('homepage_features_bg_color').get() + ';}'
 	css += '.octopus-features-sidebar .widget-title {color: ' + wp.customize('homepage_features_text_color').get() + ';}'
@@ -347,7 +355,7 @@ function updateColorCss(wp, $colorStyle) {
  */
 function updateHeadCustomCss(wp, $octopusCustomStyle) {
 	var css = '';
-	var sanitazeValue = ( isNaN( wp.customize('wrapped_element_max_width').get() ) ) ? 1170 : parseInt( wp.customize('wrapped_element_max_width').get() );
+	var sanitazeValue = (isNaN(wp.customize('wrapped_element_max_width').get())) ? 1170 : parseInt(wp.customize('wrapped_element_max_width').get());
 	css += '.container-fluid .octopus-wrapper {max-width: ' + sanitazeValue + 'px;}';
 	$octopusCustomStyle.html(css);
 }

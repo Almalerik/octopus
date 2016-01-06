@@ -164,6 +164,11 @@ if (! function_exists ( 'octopus_public_scripts' )) {
 				'jquery'
 		), '3.3.5', true );
 		
+		// Shuffle
+		wp_enqueue_script ( 'octopus-shuffle-script', get_template_directory_uri () . '/assets/public/js/jquery.shuffle.modernizr.min.js', array (
+				'jquery'
+		), '3.3.5', true );
+		
 		wp_enqueue_style ( 'octopus-style', get_stylesheet_uri () );
 		wp_enqueue_script ( 'octopus-script', get_template_directory_uri () . '/assets/public/js/public.js', array (
 				'jquery'
@@ -172,6 +177,14 @@ if (! function_exists ( 'octopus_public_scripts' )) {
 		wp_enqueue_script ( 'octopus-navigation', get_template_directory_uri () . '/js/navigation.js', array (), '20120206', true );
 		
 		wp_enqueue_script ( 'octopus-skip-link-focus-fix', get_template_directory_uri () . '/js/skip-link-focus-fix.js', array (), '20130115', true );
+		
+		wp_register_script( 'ie_html5shiv', get_bloginfo('stylesheet_url') . '/assets/public/js/html5shiv.min.js', __FILE__, false, '3.7.3' );
+		wp_enqueue_script( 'ie_html5shiv');
+		wp_script_add_data( 'ie_html5shiv', 'conditional', 'lt IE 9' );
+		
+		wp_register_script( 'ie_respond', get_bloginfo('stylesheet_url') . '/assets/public/js/respond.min.js', __FILE__, false, '1.4.2' );
+		wp_enqueue_script( 'ie_respond');
+		wp_script_add_data( 'ie_respond', 'conditional', 'lt IE 9' );
 		
 		if (is_singular () && comments_open () && get_option ( 'thread_comments' )) {
 			wp_enqueue_script ( 'comment-reply' );
@@ -244,6 +257,19 @@ require get_template_directory () . '/inc/customizer.php';
 require get_template_directory () . '/inc/jetpack.php';
 
 /**
+ * Custom-Metaboxes-and-Fields-for-WordPress
+ * @link     https://github.com/webdevstudios/Custom-Metaboxes-and-Fields-for-WordPress
+ */
+add_action( 'init', 'octopus_initialize_cmb_meta_boxes', 9999 );
+/**
+ * Initialize the metabox class.
+ */
+function octopus_initialize_cmb_meta_boxes() {
+	if ( ! class_exists( 'cmb_Meta_Box' ) )
+		require get_template_directory () . '/inc/Custom-Metaboxes-and-Fields-for-WordPress/init.php';
+}
+
+/**
  * Load Custom Nav
  */
 // TODO: MEGAMENU and submenu
@@ -269,10 +295,16 @@ require get_template_directory () . '/inc/widget/feature-widget.php';
  */
 require get_template_directory () . '/inc/widget/highlight-widget.php';
 
+/**
+ * Load Portfolio
+ */
+require get_template_directory () . '/inc/post/portfolio.php';
+
 // Change what's hidden by default for custom post
 add_filter ( 'default_hidden_meta_boxes', 'octopus_hide_meta_lock', 10, 2 );
 function octopus_hide_meta_lock($hidden, $screen) {
-	if ('octopus_feature' == $screen->post_type)
+	if ( ('octopus_feature' == $screen->post_type) ||
+	   	 ('octopus_portfolio' == $screen->post_type) )
 		$hidden = array (
 				'slugdiv',
 				'postcustom',

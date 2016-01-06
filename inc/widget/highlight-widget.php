@@ -49,6 +49,7 @@ class Octopus_Highlight_Widget extends WP_Widget {
 			$instance ["description"] = $p->post_content;
 			$post_thumbnail_id = get_post_thumbnail_id ( $instance ['post_id'] );
 			$instance ["image"] = wp_get_attachment_image_src ( $post_thumbnail_id, 'full' ) [0];
+			$instance ["image_alt"] = trim(strip_tags( get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true) ));
 		}
 		
 		if ( ! empty( $instance['title'] ) ) {

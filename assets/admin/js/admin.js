@@ -42,7 +42,8 @@ jQuery.fn.octopus_select2_fa = function() {
 				return {
 					action : "octopus_get_fontawesome",
 					// search term
-					search: params.term // search term
+					search : params.term
+				// search term
 				};
 			},
 			cache : true
@@ -56,7 +57,7 @@ jQuery.fn.octopus_select2_fa = function() {
 /*******************************************************************************
  * Select2 Post list init
  ******************************************************************************/
-jQuery.fn.octopus_select2_posts= function() {
+jQuery.fn.octopus_select2_posts = function() {
 	jQuery(this).select2({
 		'width' : 'resolve',
 		'closeOnSelect' : true,
@@ -93,7 +94,9 @@ jQuery.noConflict()(function($) {
 		// Init Select2 FontAwesome
 		$(".octopus-cf-icon-select2").octopus_select2_fa();
 		// Init Color Piker
-		$('.octopus-colorpicker').wpColorPicker();
+		if ($('.octopus-colorpicker').length) {
+			$('.octopus-colorpicker').wpColorPicker();
+		}
 		// Init Select2 Posts list
 		$(".octopus-cf-post-select2").octopus_select2_posts();
 
@@ -180,7 +183,7 @@ jQuery.noConflict()(function($) {
 				var $wrapper = $(this).closest("li").remove();
 			}
 		});
-		
+
 		/***********************************************************************
 		 * Font / Image / Custom html / Post
 		 **********************************************************************/
@@ -213,7 +216,7 @@ jQuery.noConflict()(function($) {
 			$('.select2-container', $container).remove()
 			$(".octopus-cf-post-select2", $container).octopus_select2_posts();
 		});
-		
+
 		// Event click on trash menu button
 		$("body").on('click', '.octopus-cf-option-reset', function(e) {
 			e.preventDefault();
@@ -222,7 +225,7 @@ jQuery.noConflict()(function($) {
 			$(this).closest('.octopus-cf-field-custom').toggle();
 			$(".octopus-cf-option-button", $container).toggle();
 		});
-		
+
 		/***********************************************************************
 		 * Widget added or updated event
 		 **********************************************************************/
@@ -233,8 +236,7 @@ jQuery.noConflict()(function($) {
 			$('.octopus-colorpicker').wpColorPicker();
 			$(".octopus-cf-post-select2").octopus_select2_posts();
 		});
-		
-		
+
 	});
 });
 

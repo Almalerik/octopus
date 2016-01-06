@@ -374,7 +374,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
     .octopus-row-eq-height-sm [class*="col-sm"] {
       float: none;
       display: table-cell;
-      vertical-align: top; } }
+      vertical-align: middle; } }
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
