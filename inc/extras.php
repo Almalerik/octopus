@@ -88,8 +88,8 @@ function octopus_get_option_defaults() {
 			
 			'homepage_portfolio_show' => true,
 			'homepage_portfolio_wrapped' => true,
-			'homepage_portfolio_title' => 'PORTFOLIOS',
-			'homepage_portfolio_description' => 'Portfolios description',
+			'homepage_portfolio_title' => 'PORTFOLIO',
+			'homepage_portfolio_description' => 'Portfolio description',
 			'homepage_portfolio_bg_color' => '#ffffff',
 			'homepage_portfolio_text_color' => '#404040',
 			'homepage_portfolio_description_color' => '#777777',

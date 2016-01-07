@@ -141,11 +141,13 @@
 			
 			> li > a {
 				border-bottom: 3px solid transparent;
+				font-weight: bold;
 				
 				&:hover,
 				&:focus {
 			    	background-color: inherit;
-			    	border-bottom: 3px solid $color_nav-hover-border;
+			    	color: $color_nav-active-border;
+			    	outline: none;
 				}
 			}
 			

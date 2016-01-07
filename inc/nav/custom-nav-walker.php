@@ -78,7 +78,11 @@ class Octopus_Walker extends Walker_Nav_Menu {
 				$class_names .= ' dropdown';
 			
 			if (in_array ( 'current-menu-item', $classes ))
-				$class_names .= ' active';
+				// Add active class only if in the url not contain anchor
+				if (strpos($item->url,'#') === false) {
+					$class_names .= ' active';
+				}
+				
 			
 			$class_names = $class_names ? ' class="' . esc_attr ( $class_names ) . '"' : '';
 			

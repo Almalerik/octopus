@@ -838,10 +838,12 @@ a {
     .octopus-navbar-default .navbar-nav .octopus-toggle-icon {
       display: none; }
     .octopus-navbar-default .navbar-nav > li > a {
-      border-bottom: 3px solid transparent; }
+      border-bottom: 3px solid transparent;
+      font-weight: bold; }
       .octopus-navbar-default .navbar-nav > li > a:hover, .octopus-navbar-default .navbar-nav > li > a:focus {
         background-color: inherit;
-        border-bottom: 3px solid orange; }
+        color: red;
+        outline: none; }
     .octopus-navbar-default .navbar-nav > .active > a,
     .octopus-navbar-default .navbar-nav > .active > a:hover,
     .octopus-navbar-default .navbar-nav > .active > a:focus {

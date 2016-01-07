@@ -65,7 +65,8 @@ jQuery.noConflict()(function($) {
 
 			// instantiate the plugin
 			$grid.shuffle({
-				itemSelector : '.octopus-portfolio-item'
+				itemSelector : '.octopus-portfolio-item',
+				delimeter: ','
 			});
 
 			// Destroy it! o_O
@@ -232,8 +233,19 @@ jQuery.noConflict()(function($) {
 
 		// Cache selectors
 		var lastId;
-		var topMenu = jQuery("#site-navigation");
-		var topMenuHeight = topMenu.outerHeight() + 15;
+		var topMenu = $("#site-navigation");
+		var defaultActive = topMenu.find('li.active');
+		// Calculate header height and wp menu if exist and fixed
+		var topMenuHeight = topMenu.outerHeight();
+		if ( $('#wpadminbar').length ) {
+			if ( $('#wpadminbar').css('position') === 'fixed' ) {
+				topMenuHeight += $('#wpadminbar').outerHeight();
+			} else {
+				if ( $('body').scrollTop() < $('#wpadminbar').outerHeight() ) {
+					topMenuHeight += $('#wpadminbar').outerHeight() - $('body').scrollTop();
+				}
+			}
+		}
 		// All list items
 		var menuItems = topMenu.find('a[href*="#"]');
 		
@@ -272,15 +284,20 @@ jQuery.noConflict()(function($) {
 				if ($(this).offset().top < fromTop && ($(this).offset().top + $(this).outerHeight()) > fromTop)
 					return this;
 			});
-			console.log(cur);
 			// Get the id of the current element
 			cur = cur[cur.length - 1];
 			var id = cur && cur.length ? cur[0].id : "";
-			console.log(id);
 			if (lastId !== id) {
 				lastId = id;
 				// Set/remove active class
-				menuItems.parent().removeClass("active").end().filter("[href*=#" + id + "]").parent().addClass("active");
+				menuItems.parent().removeClass("active");
+				if (id !== '' && menuItems.filter("[href*=#" + id + "]").length) {
+					// Set/remove active class
+					menuItems.filter("[href*=#" + id + "]").parent().addClass("active");
+					defaultActive.removeClass('active');
+				} else {
+					defaultActive.addClass('active');
+				}
 			}
 		});
 
