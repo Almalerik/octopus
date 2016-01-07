@@ -12,6 +12,12 @@ jQuery(document).ready(function($) {
 		wp.customize.section('sidebar-widgets-homepage-highlights').focus();
 	});
 
+	wp.customize.section('sidebar-widgets-homepage-staff').panel('octopus_homepage_staff');
+	wp.customize.section('sidebar-widgets-homepage-staff').priority('20');
+	jQuery('body').on('click', '.octopus-goto-swh-staff', function() {
+		wp.customize.section('sidebar-widgets-homepage-staff').focus();
+	});
+	
 	// Show or hide container max width
 	/*
 	 * $('#customize-control-octopus_container_class select').on('change',

@@ -93,6 +93,14 @@ function octopus_get_option_defaults() {
 			'homepage_portfolio_bg_color' => '#ffffff',
 			'homepage_portfolio_text_color' => '#404040',
 			'homepage_portfolio_description_color' => '#777777',
+			
+			'homepage_staff_show' => true,
+			'homepage_staff_wrapped' => true,
+			'homepage_staff_title' => 'STAFF',
+			'homepage_staff_description' => 'Who made this possible!',
+			'homepage_staff_bg_color' => '#ffffff',
+			'homepage_staff_text_color' => '#404040',
+			'homepage_staff_description_color' => '#777777',
 	);
 	return apply_filters ( 'octopus_option_defaults', $defaults );
 }
@@ -146,9 +154,9 @@ function octopus_get_aside_sidebar($sidebar) {
 function octopus_get_header_css_class($echo = true) {
 	$result = '';
 	
-	//if (octopus_get_option ( 'header_banner' )) {
-		$result [] = octopus_get_option ( 'header_banner_layout' );
-	//}
+	// if (octopus_get_option ( 'header_banner' )) {
+	$result [] = octopus_get_option ( 'header_banner_layout' );
+	// }
 	
 	$result [] = octopus_get_option ( 'header_position' );
 	
@@ -244,6 +252,7 @@ if (! function_exists ( 'get_octopus_fontawesome_list' )) :
 		return $fa_icon;
 	}
 
+
 endif;
 
 if (is_admin ()) {
@@ -331,16 +340,17 @@ if (! function_exists ( 'get_octopus_colors_schema' )) :
 		);
 		return $colors_schema;
 	}
+
 endif;
 
 /**
  * Filter added to WP_Query to filter by title with like
  */
-add_filter( 'posts_where', 'octopus_title_like_posts_where', 10, 2 );
-function octopus_title_like_posts_where( $where, &$wp_query ) {
+add_filter ( 'posts_where', 'octopus_title_like_posts_where', 10, 2 );
+function octopus_title_like_posts_where($where, &$wp_query) {
 	global $wpdb;
-	if ( $post_title_like = $wp_query->get( 'post_title_like' ) ) {
-		$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql( $wpdb->esc_like( $post_title_like ) ) . '%\'';
+	if ($post_title_like = $wp_query->get ( 'post_title_like' )) {
+		$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql ( $wpdb->esc_like ( $post_title_like ) ) . '%\'';
 	}
 	return $where;
 }
@@ -351,16 +361,16 @@ if (is_admin ()) {
 	function octopus_get_post_json() {
 		$response = array (
 				"results" => array (),
-				"more" => true
+				"more" => true 
 		);
 		
-		$posts_per_page = -1;
-		if ( ! isset (  $_GET ['title'] ) ||  $_GET ['title'] == "") {
+		$posts_per_page = - 1;
+		if (! isset ( $_GET ['title'] ) || $_GET ['title'] == "") {
 			$posts_per_page = 100;
 		}
-
+		
 		$title = $_GET ['title'];
-
+		
 		$args = array (
 				'post_title_like' => $title,
 				'orderby' => 'title',
@@ -368,56 +378,79 @@ if (is_admin ()) {
 				'post_status' => 'publish',
 				'post_type' => 'any',
 				'suppress_filters' => false,
-				'posts_per_page'=> $posts_per_page,
-				'nopaging' => true
+				'posts_per_page' => $posts_per_page,
+				'nopaging' => true 
 		);
-		if ( isset (  $_GET ['type'] ) &&  $_GET ['type'] != "") {
-			$args["post_type"] = explode ( ",", $_GET ['type']);
+		if (isset ( $_GET ['type'] ) && $_GET ['type'] != "") {
+			$args ["post_type"] = explode ( ",", $_GET ['type'] );
 		}
-
+		
 		$query = new WP_Query ( $args );
-
-		if ( $query->have_posts() ) {
-			while ( $query->have_posts() ) {
-				$query->the_post();
+		
+		if ($query->have_posts ()) {
+			while ( $query->have_posts () ) {
+				$query->the_post ();
 				$response ["results"] [] = array (
-						"id" => get_the_ID(),
-						"text" => "[". get_post_type() . "] " . get_the_title()
+						"id" => get_the_ID (),
+						"text" => "[" . get_post_type () . "] " . get_the_title () 
 				);
 			}
 		}
-		wp_reset_postdata();
+		wp_reset_postdata ();
 		wp_send_json ( $response );
 	}
 }
 
 // HighLight templates
 if (! function_exists ( 'get_octopus_highlight_templates' )) :
-function get_octopus_highlight_templates() {
-	$result = array (
-			'octopus-highlight-default.php' => 'Full page',
-			'octopus-highlight-half-left-image.php' => 'Left image 50%',
-			'octopus-highlight-half-right-image.php' => 'Right image 50%',
-	);
-	return $result;
-}
+	function get_octopus_highlight_templates() {
+		$result = array (
+				'octopus-highlight-default.php' => 'Full page',
+				'octopus-highlight-half-left-image.php' => 'Left image 50%',
+				'octopus-highlight-half-right-image.php' => 'Right image 50%' 
+		);
+		return $result;
+	}
+
 endif;
 
 /**
  * This function is needed because in customize if a sidebar is not present will be removed from view.
- * @param unknown $setting
+ * 
+ * @param unknown $setting        	
  */
-function octopus_customize_show_sidebar( $setting ){
-	if ( octopus_get_option( $setting ) ) {
+function octopus_customize_show_sidebar($setting) {
+	if (octopus_get_option ( $setting )) {
 		return 'octopus-display-block';
 	} else {
-		if ( is_customize_preview() ) {
+		if (is_customize_preview ()) {
 			return 'hidden';
 		} else {
 			return false;
 		}
 	}
 }
+
+if (! function_exists ( 'octopus_get_staff_contacts' )) :
+	function octopus_get_staff_contacts() {
+		$result = array (
+				'facebook' => array (
+						'label' => 'Facebook',
+						'icon' => 'fa fa-facebook-square'
+				),
+				'twitter' => array (
+						'label' => 'Twitter',
+						'icon' => 'fa fa-twitter-square'
+				),
+				'email' => array (
+						'label' => 'Email',
+						'icon' => 'fa fa-paper-plane'
+				),
+		);
+		return $result;
+	}
+
+endif;
 
 /**
  * Implement the FontAwesome class.

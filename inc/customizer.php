@@ -757,6 +757,103 @@ function octopus_customize_register($wp_customize) {
 				'settings' => 'homepage_portfolio_description_color',
 				'priority' => 70
 		) ) );
+		
+		/*
+		 * ============== HOMEPAGE STAFF ==============
+		 */
+		$wp_customize->add_panel ( 'octopus_homepage_staff', array (
+				'title' => esc_html__ ( 'Homepage Staff Members', 'octopus' )
+		) );
+		$wp_customize->add_section ( 'octopus_homepage_staff_settings', array (
+				'title' => esc_html__ ( 'Settings' ),
+				'panel' => 'octopus_homepage_staff',
+				'active_callback' => 'is_front_page',
+				'priority' => 10
+		) );
+		// Helper
+		$wp_customize->add_control ( new Fixed_Text_Custom_Control ( $wp_customize, 'octopus_homepage_staff_helper', array (
+				'description' => sprintf ( '%s <a href="#" class="button octopus-goto-swh-staff">%s</a>', esc_html__ ( 'To add a Staff Member, save and click', 'octopus' ), esc_html__ ( 'Here', 'octopus' ) ),
+				'section' => 'octopus_homepage_staff_settings',
+				'priority' => 10
+		) ) );
+		// Show
+		$wp_customize->add_setting ( 'homepage_staff_show', array (
+				'default' => octopus_get_option ( 'homepage_staff_show' ),
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( 'octopus_homepage_staff_show', array (
+				'label' => esc_html__ ( 'Show' ),
+				'section' => 'octopus_homepage_staff_settings',
+				'settings' => 'homepage_staff_show',
+				'type' => 'checkbox',
+				'priority' => 20
+		) );
+		// Fixed max width
+		$wp_customize->add_setting ( 'homepage_staff_wrapped', array (
+				'default' => octopus_get_option ( 'homepage_staff_wrapped' ),
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( 'octopus_homepage_staff_wrapped', array (
+				'label' => esc_html__ ( 'Wrapped', 'octopus' ),
+				'description' => esc_html__ ( 'Set max-width element (value is set in "Layout" main section)', 'octopus' ),
+				'section' => 'octopus_homepage_staff_settings',
+				'settings' => 'homepage_staff_wrapped',
+				'type' => 'checkbox',
+				'priority' => 20
+		) );
+		// Title
+		$wp_customize->add_setting ( 'homepage_staff_title', array (
+				'default' => octopus_get_option ( 'homepage_staff_title' )
+		) );
+		$wp_customize->add_control ( 'octopus_homepage_staff_title', array (
+				'label' => esc_html__ ( 'Title' ),
+				'section' => 'octopus_homepage_staff_settings',
+				'settings' => 'homepage_staff_title',
+				'priority' => 30
+		) );
+		// Subtitle
+		$wp_customize->add_setting ( 'homepage_staff_description', array (
+				'default' => octopus_get_option ( 'homepage_staff_description' )
+		) );
+		$wp_customize->add_control ( 'octopus_homepage_staff_description', array (
+				'label' => esc_html__ ( 'Description' ),
+				'section' => 'octopus_homepage_staff_settings',
+				'settings' => 'homepage_staff_description',
+				'priority' => 40
+		) );
+		$wp_customize->add_setting ( 'homepage_staff_bg_color', array (
+				'default' => octopus_get_option ( 'homepage_staff_bg_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_homepage_staff_bg_color', array (
+				'label' => esc_html__ ( 'Background color', 'octopus' ),
+				'section' => 'octopus_homepage_staff_settings',
+				'settings' => 'homepage_staff_bg_color',
+				'priority' => 50
+		) ) );
+		$wp_customize->add_setting ( 'homepage_staff_text_color', array (
+				'default' => octopus_get_option ( 'homepage_staff_text_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_homepage_staff_text_color', array (
+				'label' => esc_html__ ( 'Text color', 'octopus' ),
+				'section' => 'octopus_homepage_staff_settings',
+				'settings' => 'homepage_staff_text_color',
+				'priority' => 60
+		) ) );
+		$wp_customize->add_setting ( 'homepage_staff_description_color', array (
+				'default' => octopus_get_option ( 'homepage_staff_description_color' ),
+				'sanitize_callback' => 'sanitize_hex_color',
+				'transport' => 'postMessage'
+		) );
+		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_homepage_staff_description_color', array (
+				'label' => esc_html__ ( 'Description color', 'octopus' ),
+				'section' => 'octopus_homepage_staff_settings',
+				'settings' => 'homepage_staff_description_color',
+				'priority' => 70
+		) ) );
 	}
 }
 add_action ( 'customize_register', 'octopus_customize_register' );

@@ -1281,6 +1281,13 @@ a {
 }
 */
 /*--------------------------------------------------------------
+## Homepage
+--------------------------------------------------------------*/
+.octopus-homepage-section h2 {
+  font-weight: bold;
+  text-align: center; }
+
+/*--------------------------------------------------------------
 ## Posts and pages
 --------------------------------------------------------------*/
 .sticky {
@@ -1338,8 +1345,6 @@ a {
   background-color: #ffffff; }
   .octopus-features-sidebar .octopus-features-title {
     position: relative;
-    text-align: center;
-    font-weight: bold;
     color: #404040; }
   .octopus-features-sidebar .widget_octopus_feature_widget {
     margin-top: 20px;
@@ -1416,12 +1421,17 @@ a {
 /*--------------------------------------------------------------
 ## Highlight
 --------------------------------------------------------------*/
-.octopus-highlights-sidebar .octopus-highlights-title {
-  text-align: center; }
 .octopus-highlights-sidebar .octopus-highlight-text {
   padding: 50px 0; }
-.octopus-highlights-sidebar h2 {
-  font-weight: bold; }
+
+/*--------------------------------------------------------------
+## Staff
+--------------------------------------------------------------*/
+.octopus-staff-sidebar .octopus-staff-items {
+  text-align: center; }
+.octopus-staff-sidebar .list-inline > li {
+  padding-right: 25px;
+  padding-left: 25px; }
 
 /*--------------------------------------------------------------
 # Infinite scroll

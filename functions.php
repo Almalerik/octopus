@@ -134,6 +134,15 @@ function octopus_widgets_init() {
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>'
 	) );
+	register_sidebar ( array (
+			'name' => esc_html__ ( 'Homepage highlights', 'octopus' ),
+			'id' => 'homepage-staff',
+			'description' => esc_html__ ( 'From the widgets list, select "Octopus Highlights".', 'octopus' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget' => '</div>',
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>'
+	) );
 }
 add_action ( 'widgets_init', 'octopus_widgets_init' );
 
@@ -293,11 +302,17 @@ require get_template_directory () . '/inc/widget/highlight-widget.php';
  */
 require get_template_directory () . '/inc/post/portfolio.php';
 
+/**
+ * Load Staff
+ */
+require get_template_directory () . '/inc/post/staff.php';
+
 // Change what's hidden by default for custom post
 add_filter ( 'default_hidden_meta_boxes', 'octopus_hide_meta_lock', 10, 2 );
 function octopus_hide_meta_lock($hidden, $screen) {
 	if ( ('octopus_feature' == $screen->post_type) ||
-	   	 ('octopus_portfolio' == $screen->post_type) )
+	   	 ('octopus_portfolio' == $screen->post_type) ||
+		('octopus_staff' == $screen->post_type) )
 		$hidden = array (
 				'slugdiv',
 				'postcustom',

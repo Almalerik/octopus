@@ -1,3 +1,4 @@
+	
 	<header id="masthead" class="site-header row octopus-logo-center <?php octopus_get_header_css_class();?>" role="banner">
 		
 		<nav id="site-navigation" class="navbar navbar-default octopus-navbar-default" role="navigation">
@@ -39,14 +40,20 @@
 				</div><!-- .navbar-header -->
 				
 				<div id="navbar" class="navbar-collapse collapse" role="navigation" aria-label="<?php esc_html_e( 'Primary Menu', 'octopus' );?>" aria-expanded="false">
-					<?php wp_nav_menu( array( 
-							'theme_location' 	=> 'primary', 
-							'menu_id' 			=> 'primary-menu',
-							'container' 		=> false,
-							'items_wrap' 		=> '<ul id="%1$s" class="nav navbar-nav octopus-navbar-nav" role="menubar">%3$s</ul>',
-							'fallback_cb'		=> 'wp_bootstrap_navwalker::fallback',
-							'walker' 			=> new Octopus_Walker()
-					) );?>
+					<?php 
+						if ( has_nav_menu( 'primary' ) ) :
+							wp_nav_menu( array( 
+								'theme_location' 	=> 'primary', 
+								'menu_id' 			=> 'primary-menu',
+								'container' 		=> false,
+								'items_wrap' 		=> '<ul id="%1$s" class="nav navbar-nav octopus-navbar-nav" role="menubar">%3$s</ul>',
+								'fallback_cb'		=> 'wp_bootstrap_navwalker::fallback',
+								'walker' 			=> new Octopus_Walker()
+							) );
+						else:
+							locate_template( 'template-parts/examples/nav-primary.php', true );
+						endif;
+					?>
 				</div>
 				<div class="clearfix"></div>
 			</div>

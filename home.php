@@ -21,7 +21,7 @@ get_header(); ?>
 		
 		<?php if ( octopus_customize_show_sidebar( 'homepage_features_show' ) ):?>
 			<!-- octopus-features-sidebar -->
-			<section id="features">
+			<section id="features" class="octopus-homepage-section">
 				<div class="row octopus-features-sidebar <?php echo octopus_customize_show_sidebar( 'homepage_features_show' );?>">
 					<div class="col-md-12">
 						<div class="octopus-features-wrapper <?php echo octopus_get_option('homepage_features_wrapped') ? 'octopus-wrapper' : ''?>">
@@ -41,7 +41,7 @@ get_header(); ?>
 									if ( is_active_sidebar ( 'homepage-features' ) ):
 									  	dynamic_sidebar( 'homepage-features' );
 									else:
-										locate_template( 'template-parts/features/octopus-features-example.php', true, true );
+										locate_template( 'template-parts/examples/homepage-features.php', true, true );
 									endif;
 								?>
 							</ul>
@@ -54,7 +54,7 @@ get_header(); ?>
 		
 		<?php if ( octopus_customize_show_sidebar( 'homepage_highlights_show' ) ):?>
 		<!-- octopus-highlights-sidebar -->
-		<section id="highlights">
+		<section id="highlights" class="octopus-homepage-section">
 			<div class="row octopus-highlights-sidebar <?php echo octopus_customize_show_sidebar( 'homepage_highlights_show' );?>">
 				<div class="col-md-12">
 					<div class="octopus-highlights-wrapper <?php echo octopus_get_option('homepage_highlights_wrapped') ? 'octopus-wrapper' : ''?>">
@@ -78,7 +78,7 @@ get_header(); ?>
 		
 		<?php if ( octopus_get_option( 'homepage_portfolio_show' ) ):?>
 		<!-- octopus-portfolio-sidebar -->
-		<section id="portfolio">
+		<section id="portfolio" class="octopus-homepage-section">
 			<div class="row octopus-portfolio-sidebar">
 				<div class="col-md-12">
 					<div class="octopus-portfolio-wrapper <?php echo octopus_get_option('homepage_portfolio_wrapped') ? 'octopus-wrapper' : ''?>">
@@ -97,7 +97,31 @@ get_header(); ?>
 				</div>
 			</div>
 		</section>
-		<!-- #octopus-hightlights-sidebar -->
+		<!-- #octopus-portfolio-sidebar -->
+		<?php endif;?>
+		
+		<?php if ( octopus_get_option( 'homepage_staff_show' ) ):?>
+		<!-- octopus-staff-sidebar -->
+		<section id="staff" class="octopus-homepage-section">
+			<div class="row octopus-staff-sidebar">
+				<div class="col-md-12">
+					<div class="octopus-staff-wrapper <?php echo octopus_get_option('homepage_staff_wrapped') ? 'octopus-wrapper' : ''?>">
+						<?php if ( octopus_get_option( 'homepage_staff_title' ) ):?>
+						<h2 class="octopus-staff-title">
+							<?php echo octopus_get_option( 'homepage_staff_title' );?>
+							<span class="octopus-decoration-line">
+								<span>
+									<?php echo octopus_get_option( 'homepage_staff_description' );?>
+								</span>
+							</span>
+						</h2>
+						<?php endif;?>
+						<?php locate_template( 'template-parts/staff/default.php', true, true );?>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- #octopus-staff-sidebar -->
 		<?php endif;?>
 
 		<?php

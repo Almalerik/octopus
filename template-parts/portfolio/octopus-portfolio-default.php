@@ -23,7 +23,6 @@ $args = array (
 		'orderby' => 'title',
 		'order' => 'ASC',
 		'post_status' => 'publish',
-		'post_type' => 'any',
 		'suppress_filters' => false,
 		'nopaging' => true,
 		'post_type' => 'octopus_portfolio'
