@@ -257,17 +257,10 @@ require get_template_directory () . '/inc/customizer.php';
 require get_template_directory () . '/inc/jetpack.php';
 
 /**
- * Custom-Metaboxes-and-Fields-for-WordPress
- * @link     https://github.com/webdevstudios/Custom-Metaboxes-and-Fields-for-WordPress
+ * Custom-Metaboxes-and-Fields-for-WordPress2
+ * @link     https://github.com/WebDevStudios/CMB2
  */
-add_action( 'init', 'octopus_initialize_cmb_meta_boxes', 9999 );
-/**
- * Initialize the metabox class.
- */
-function octopus_initialize_cmb_meta_boxes() {
-	if ( ! class_exists( 'cmb_Meta_Box' ) )
-		require get_template_directory () . '/inc/Custom-Metaboxes-and-Fields-for-WordPress/init.php';
-}
+require get_template_directory () . '/inc/CMB2/init.php';
 
 /**
  * Load Custom Nav
