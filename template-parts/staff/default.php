@@ -18,15 +18,13 @@ $the_query = new WP_Query( $args );
 		<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 			<?php $meta = get_post_meta( get_the_ID() );?>
 			<?php if ( has_post_thumbnail() ): ?>
-				<li class="octopus-portfolio-item">
-				<?php the_post_thumbnail('thumbnail', array('class'	=> "attachment-thumbnail img-circle img-responsive",));?>
+				<li class="octopus-staff-item">
+				<?php the_post_thumbnail('thumbnail', array('class'	=> "attachment-thumbnail img-circle img-responsive center-block"));?>
 				<h3 class="widget-title">
 					<?php echo get_the_title();?>
 					<span class="octopus-decoration"></span>
 				</h3>
-				<?php if ( array_key_exists ('_octopus_staff_info_occupation', $meta ) ): ?>
-				<p><?php echo $meta['_octopus_staff_info_occupation'][0];?></p>
-				<?php endif;?>
+				<p class="octopus-staff-position"><?php echo array_key_exists ('_octopus_staff_info_occupation', $meta ) ? $meta['_octopus_staff_info_occupation'][0] : '' ;?></p>
 				<ul class="list-inline octopus-staff-contacts">
 					<?php foreach ( octopus_get_staff_contacts() as $key => $value ): ?>
 						<?php if ( array_key_exists ('_octopus_staff_contacts_' . $key, $meta ) ): ?>

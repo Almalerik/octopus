@@ -56,6 +56,13 @@
 	background-attachment: fixed;
 }
 
+.btn {
+	border-radius: 0;
+}
+a.btn:visited {
+	color: #ffffff;
+}
+
 @media (min-width:768px) {
     .octopus-row-eq-height-sm {
         display: table;

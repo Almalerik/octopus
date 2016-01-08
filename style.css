@@ -368,6 +368,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 .octopus-background-fixed {
   background-attachment: fixed; }
 
+.btn {
+  border-radius: 0; }
+
+a.btn:visited {
+  color: #ffffff; }
+
 @media (min-width: 768px) {
   .octopus-row-eq-height-sm {
     display: table; }
@@ -763,7 +769,12 @@ a {
   border: 0;
   margin-bottom: 0; }
   .octopus-navbar-default .navbar-nav > li > a {
-    color: #ffffff; }
+    color: #ffffff;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s; }
   .octopus-navbar-default .navbar-toggle .icon-bar {
     background-color: #ffffff; }
   .octopus-navbar-default .navbar-nav > li > a:hover,
@@ -1025,7 +1036,6 @@ a {
   width: 100%; }
 
 .octopus-navbar-default {
-  box-shadow: 0 4px 2px -2px #999;
   width: 100%; }
 
 @media (min-width: 768px) {
@@ -1422,16 +1432,22 @@ a {
 ## Highlight
 --------------------------------------------------------------*/
 .octopus-highlights-sidebar .octopus-highlight-text {
-  padding: 50px 0; }
+  padding: 50px 20px; }
+  .octopus-highlights-sidebar .octopus-highlight-text h3 {
+    font-size: 1.8em;
+    font-size: 1.8rem;
+    font-weight: bold; }
 
 /*--------------------------------------------------------------
 ## Staff
 --------------------------------------------------------------*/
 .octopus-staff-sidebar .octopus-staff-items {
   text-align: center; }
-.octopus-staff-sidebar .list-inline > li {
+.octopus-staff-sidebar .octopus-staff-item {
   padding-right: 25px;
   padding-left: 25px; }
+.octopus-staff-sidebar .octopus-staff-position {
+  min-height: 22px; }
 
 /*--------------------------------------------------------------
 # Infinite scroll

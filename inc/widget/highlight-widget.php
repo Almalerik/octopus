@@ -90,6 +90,7 @@ class Octopus_Highlight_Widget extends WP_Widget {
 		$title = (isset ( $instance ['title'] )) ? $instance ['title'] : '';
 		$description = (isset ( $instance ['description'] )) ? $instance ['description'] : '';
 		$image = (isset ( $instance ['image'] )) ? $instance ['image'] : '';
+		$text_align = (isset ( $instance ['text_align'] )) ? $instance ['text_align'] : '';
 		$bg_color = (isset ( $instance ['bg_color'] )) ? $instance ['bg_color'] : '';
 		$title_color = (isset ( $instance ['title_color'] )) ? $instance ['title_color'] : '';
 		$description_color = (isset ( $instance ['description_color'] )) ? $instance ['description_color'] : '';
@@ -151,6 +152,16 @@ class Octopus_Highlight_Widget extends WP_Widget {
 			</h4>
 			<div class="octopus-accordion-content" id="#octopus-accordion-content-<?php echo $this->id;?>">
 				<p>
+					<label for="<?php echo $this->get_field_id( 'text_align' ); ?>"><?php esc_html_e( 'Text align:', 'octopus' ); ?></label><br />
+					<select
+						value="<?php echo esc_attr( $text_align ); ?>" id="<?php echo $this->get_field_id( 'text_align' );?>"
+						name="<?php echo $this->get_field_name( 'text_align' );?>" >
+						<option value="text-left" <?php ($text_align == 'text-left') ? 'selected' : '';?>><?php esc_html_e( 'Left', 'octopus' )?></option>
+						<option value="text-center" <?php ($text_align == 'text-center') ? 'selected' : '';?>><?php esc_html_e( 'Center', 'octopus' )?></option>
+						<option value="text-right" <?php ($text_align == 'text-right') ? 'selected' : '';?>><?php esc_html_e( 'Right', 'octopus' )?></option>
+					</select>
+				</p>
+				<p>
 					<label for="<?php echo $this->get_field_id( 'bg_color' ); ?>"><?php esc_html_e( 'Background color:', 'octopus' ); ?></label><br /> <input type="text"
 						value="<?php echo esc_attr( $bg_color ); ?>" class="octopus-colorpicker" data-default-color="#ffffff" id="<?php echo $this->get_field_id( 'bg_color' );?>"
 						name="<?php echo $this->get_field_name( 'bg_color' );?>" />
@@ -197,6 +208,7 @@ class Octopus_Highlight_Widget extends WP_Widget {
 		$instance ['title'] = (! empty ( $new_instance ['title'] )) ? strip_tags ( $new_instance ['title'] ) : '';
 		$instance ['description'] = (! empty ( $new_instance ['description'] )) ? strip_tags ( $new_instance ['description'] ) : '';
 		$instance ['image'] = (! empty ( $new_instance ['image'] )) ? strip_tags ( $new_instance ['image'] ) : '';
+		$instance ['text_align'] = (! empty ( $new_instance ['text_align'] )) ? strip_tags ( $new_instance ['text_align'] ) : '';
 		
 		$instance ['bg_color'] = (! empty ( $new_instance ['bg_color'] )) ? strip_tags ( $new_instance ['bg_color'] ) : '#ffffff';
 		$instance ['title_color'] = (! empty ( $new_instance ['title_color'] )) ? strip_tags ( $new_instance ['title_color'] ) : '#000000';

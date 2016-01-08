@@ -3,8 +3,12 @@
 		text-align: center;
 	}
 	
-	.list-inline > li {
+	.octopus-staff-item {
 	    padding-right: 25px;
     	padding-left: 25px;
+	}
+	
+	.octopus-staff-position {
+		min-height: 22px;
 	}
 }
