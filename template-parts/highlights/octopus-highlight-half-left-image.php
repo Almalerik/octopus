@@ -7,7 +7,7 @@
 <!-- Highlight post -->
 	<div class="row octopus-highlight octopus-row-eq-height-sm">
 		<div class="col-sm-6">
-			<div class="octopus-highlight-text <?php echo $instance ["text_align"];?>">
+			<div class="octopus-highlight-text <?php echo array_key_exists( 'text_align', $instance) ? $instance["text_align"] : '';?>">
 				<?php echo $instance ["title"];?>
 				<p><?php echo wp_trim_words( $instance ["description"], $num_words = 45, $more='&nbsp;&hellip;');?></p>
 				<?php if ( $instance ["link_text"] ):?>

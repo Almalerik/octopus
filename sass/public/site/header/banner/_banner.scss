@@ -5,3 +5,24 @@
 .octopus-fullscreen-banner .octopus-header-banner {
 	height: 100%;
 }
+
+.octopus-slide-caption {
+	padding-left: 25px;
+	padding-right: 25px;
+	
+	h2{
+		color: #ffffff;
+		font-size: 4em;
+	    font-weight: bold;
+	}
+	
+	.octopus-banner-subtitle {
+		color: #efefef;
+		font-size: 2em;
+	}
+	
+	.btn {
+		font-size: 1.3em;
+		font-size: 1.3rem;
+	}
+}

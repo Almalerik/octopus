@@ -299,3 +299,46 @@ class Octopus_Slides_Meta_Box {
 		return wp_verify_nonce ( $_POST [$this->nonce_name], __FILE__ );
 	}
 }
+
+add_action ( 'cmb2_admin_init', 'octopus_slider_settings_metabox' );
+function octopus_slider_settings_metabox() {
+	
+	// Start with an underscore to hide fields from custom fields list
+	$prefix = '_octopus_slider_settings_';
+	
+	$cmb = new_cmb2_box ( array (
+			'id' => $prefix . 'metabox',
+			'title' => __ ( 'Settings', 'octopus' ),
+			'object_types' => array (
+					'octopus_slider' 
+			) 
+	) );
+	
+	$cmb->add_field ( array (
+			'name' => __ ( 'Direction', 'octopus' ),
+			'id' => $prefix . 'direction',
+			'type' => 'select',
+			'options'          => array(
+					'horizontal' => __( 'Horizontal', 'octopus' ),
+					'vertical'   => __( 'Vertical', 'octopus' )
+			),
+	) );
+	
+	$cmb->add_field ( array (
+			'name' => __ ( 'Loop', 'octopus' ),
+			'default' => true,
+			'id' => $prefix . 'loop',
+			'type' => 'checkbox' 
+	) );
+	
+	$cmb->add_field ( array (
+			'name' => __ ( 'Dot pagination', 'octopus' ),
+			'default' => true,
+			'id' => $prefix . 'pagination',
+			'type' => 'checkbox'
+	) );
+	
+	function get_slider_data(){
+		
+	}
+}

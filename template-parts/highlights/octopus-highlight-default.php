@@ -8,7 +8,7 @@
 	<div class="row octopus-highlight">
 		<div class="col-sm-12">
 			<div style="background-image: url('<?php echo $instance ["image"];?>');" class="octopus-background-fullpage octopus-highlight-image">
-				<div class="octopus-highlight-text  <?php echo $instance ["text_align"];?>">
+				<div class="octopus-highlight-text <?php echo array_key_exists( 'text_align', $instance) ? $instance["text_align"] : '';?>">
 					<?php echo $instance ["title"];?>
 					<p><?php echo wp_trim_words( $instance ["description"], $num_words = 45, $more='&nbsp;&hellip;');?></p>
 					<?php if ( $instance ["link_text"] ):?>

@@ -569,7 +569,7 @@ input,
 select,
 textarea {
   color: #404040;
-  font-family: sans-serif;
+  font-family: arial;
   font-size: 15px;
   font-size: 1rem;
   line-height: 1.5; }
@@ -853,13 +853,16 @@ a {
       font-weight: bold; }
       .octopus-navbar-default .navbar-nav > li > a:hover, .octopus-navbar-default .navbar-nav > li > a:focus {
         background-color: inherit;
-        color: red;
         outline: none; }
+      .octopus-navbar-default .navbar-nav > li > a:hover {
+        color: red; }
     .octopus-navbar-default .navbar-nav > .active > a,
     .octopus-navbar-default .navbar-nav > .active > a:hover,
     .octopus-navbar-default .navbar-nav > .active > a:focus {
       background-color: inherit;
-      border-bottom: 3px solid red; } }
+      border-bottom: 3px solid red; }
+    .octopus-navbar-default .navbar-nav > .active > a:hover {
+      color: red; } }
 @media (max-width: 767px) {
   .octopus-navbar-default .navbar-nav {
     background-color: #ffffff;
@@ -1096,6 +1099,20 @@ a {
 
 .octopus-fullscreen-banner .octopus-header-banner {
   height: 100%; }
+
+.octopus-slide-caption {
+  padding-left: 25px;
+  padding-right: 25px; }
+  .octopus-slide-caption h2 {
+    color: #ffffff;
+    font-size: 4em;
+    font-weight: bold; }
+  .octopus-slide-caption .octopus-banner-subtitle {
+    color: #efefef;
+    font-size: 2em; }
+  .octopus-slide-caption .btn {
+    font-size: 1.3em;
+    font-size: 1.3rem; }
 
 /*
 .site-header {
@@ -1547,5 +1564,9 @@ object {
   .swiper-container .swiper-slide-caption-table-cell {
     display: table-cell;
     vertical-align: middle; }
+  .swiper-container .swiper-pagination {
+    bottom: 0;
+    left: 0;
+    width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

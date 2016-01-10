@@ -46,11 +46,10 @@ function octopus_staff_info_metabox() {
 	) );
 
 	$cmb->add_field( array(
-			'name'       => __('Occupation', 'octopus'),
-			'id'         => $prefix . 'occupation',
+			'name'       => __('Position', 'octopus'),
+			'id'         => $prefix . 'position',
 			'type'       => 'text'
 	) );
-
 
 }
 
