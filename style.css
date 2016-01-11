@@ -1567,5 +1567,7 @@ object {
     bottom: 0;
     left: 0;
     width: 100%; }
+    .swiper-container .swiper-pagination .swiper-pagination-bullet {
+      opacity: 0.6; }
 
 /*# sourceMappingURL=style.css.map */

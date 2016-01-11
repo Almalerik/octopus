@@ -326,21 +326,18 @@ function octopus_slider_settings_metabox() {
 	
 	$cmb->add_field ( array (
 			'name' => __ ( 'Loop', 'octopus' ),
-			'default' => true,
 			'id' => $prefix . 'loop',
 			'type' => 'checkbox' 
 	) );
 	
 	$cmb->add_field ( array (
 			'name' => __ ( 'Dot pagination', 'octopus' ),
-			'default' => true,
 			'id' => $prefix . 'pagination',
 			'type' => 'checkbox'
 	) );
 	
 	$cmb->add_field ( array (
 			'name' => __ ( 'Navigation buttons', 'octopus' ),
-			'default' => true,
 			'id' => $prefix . 'nav_buttons',
 			'type' => 'checkbox'
 	) );
