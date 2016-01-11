@@ -338,6 +338,13 @@ function octopus_slider_settings_metabox() {
 			'type' => 'checkbox'
 	) );
 	
+	$cmb->add_field ( array (
+			'name' => __ ( 'Navigation buttons', 'octopus' ),
+			'default' => true,
+			'id' => $prefix . 'nav_buttons',
+			'type' => 'checkbox'
+	) );
+	
 	function get_slider_data(){
 		
 	}

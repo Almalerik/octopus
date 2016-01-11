@@ -5,7 +5,7 @@
 				$meta = get_post_meta ( octopus_get_option('header_banner') );
 			?>
 			<div class="octopus-header-banner text-center">
-				<div class="swiper-container">
+				<div class="swiper-container<?php echo count($slides) > 1 ? ' octopus-swiper' : ''; echo isset( $meta['_octopus_slider_settings_nav_buttons']) ? ' octopus-swiper-nav-buttons' : '';?>">
 					<div class="swiper-wrapper">
 						<?php foreach ( $slides as $slide ): ?>
 							<div class="swiper-slide" style="background-image: url('<?php echo wp_get_attachment_url( $slide['image_id']); ?>');">
@@ -36,10 +36,14 @@
 								</div>
 							</div>
 						<?php endforeach;?>
-						<?php if ( isset( $meta['_octopus_slider_settings_pagination'] ) ):?>
-							<div class="swiper-pagination"></div>
-						<?php endif;?>
 					</div>
+					<?php if ( isset( $meta['_octopus_slider_settings_pagination'] ) ):?>
+						<div class="swiper-pagination"></div>
+					<?php endif;?>
+					<?php if ( isset( $meta['_octopus_slider_settings_pagination'] ) ):?>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					<?php endif;?>
 				</div>
 			</div>
 			<?php else:?>
