@@ -3,7 +3,7 @@
 		
 		<nav id="site-navigation" class="navbar navbar-default octopus-navbar-default" role="navigation">
 			
-			<div class="octopus-navbar-wrapper <?php echo octopus_get_option('header_wrapped') ? 'octopus-wrapper' : ''?>">
+			<div class="octopus-navbar-wrapper ">
 			
 				<div class="navbar-header">
 					

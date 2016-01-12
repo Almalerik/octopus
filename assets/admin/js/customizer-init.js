@@ -52,21 +52,6 @@ jQuery(document).ready(function($) {
 				});
 			}
 
-			/**
-			 * Add a listener to the Container Class control to activate or
-			 * deactivate octopus_container_max_width.
-			 */
-			if ('octopus_container_class' === this.id) {
-				this.setting.bind('change', function(value) {
-					if (value === 'container-fluid') {
-						api.control('octopus_container_max_width').deactivate();
-						api.control('octopus_wrapped_element_max_width').activate();
-					} else {
-						api.control('octopus_container_max_width').activate();
-						api.control('octopus_wrapped_element_max_width').deactivate();
-					}
-				});
-			}
 
 			/**
 			 * Add a listener to the octopus_header_banner_layout control to

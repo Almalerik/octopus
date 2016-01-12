@@ -1,17 +1,7 @@
-/**
- * customizer.js
- * 
- * Theme Customizer enhancements for a better user experience. Contains handlers
- * to make Theme Customizer preview reload changes asynchronously.
- */
+
 
 (function($) {
 
-	// Head style with custom css color
-	var $colorStyle = $('#octopus-color-schema-css');
-	if (!$colorStyle.length) {
-		$colorStyle = $('head').append('<style type="text/css" id="octopus-color-schema-css" />').find('#octopus-color-schema-css');
-	}
 
 	// Head style with custom css
 	var $octopusCustomStyle = $('#octopus-custom-style');
@@ -19,17 +9,7 @@
 		$octopusCustomStyle = $('head').append('<style type="text/css" id="octopus-custom-style" />').find('#octopus-custom-style');
 	}
 
-	// Site title and description.
-	wp.customize('blogname', function(value) {
-		value.bind(function(to) {
-			$('.site-title a').text(to);
-		});
-	});
-	wp.customize('blogdescription', function(value) {
-		value.bind(function(to) {
-			$('.site-description').text(to);
-		});
-	});
+
 	// Header text color.
 	wp.customize('header_textcolor', function(value) {
 		value.bind(function(to) {
@@ -50,30 +30,7 @@
 		});
 	});
 
-	// Container wrapper
-	wp.customize('container_class', function(value) {
-		value.bind(function(to) {
-			$('#page').removeClass('container-fluid container').addClass(to).removeAttr('style');
 
-			// If is set to container, set the max-width from the
-			// container_max_width settings
-			if ('container' === to) {
-				var maxWidth = parseInt(wp.customize.value('container_max_width')());
-				maxWidth = (isNaN(maxWidth)) ? 1170 : maxWidth;
-				$('#page').css('max-width', maxWidth + "px");
-			}
-			// Fix primary long menu
-			$('.octopus-navbar-wrapper').octopus_fix_long_menu();
-		});
-	});
-
-	// Container wrapper max width
-	wp.customize('container_max_width', function(value) {
-		value.bind(function(to) {
-			to = (isNaN(to)) ? 1170 : parseInt(to);
-			$('#page').css('max-width', to + "px");
-		});
-	});
 
 	// Element wrapper max width
 	wp.customize('wrapped_element_max_width', function(value) {
@@ -135,6 +92,7 @@
 	});
 
 	// Colors
+	/*
 	var colorSettings = [ 'color_text', 'color_link', 'color_link_visited', 'color_link_hover', 'header_bg_color', 'header_bg_color_opacity', 'header_bg_color_opacity_onscroll', 'header_title_color', 'header_desription_color', 'header_nav_color', 'homepage_features_bg_color',
 			'homepage_features_text_color', 'homepage_features_description_color', 'homepage_highlights_bg_color', 'homepage_highlights_text_color', 'homepage_highlights_description_color', 'homepage_portfolio_bg_color', 'homepage_portfolio_text_color',
 			'homepage_portfolio_description_color', 'header_nav_decoration_hover', 'header_nav_decoration_active' ];
@@ -145,7 +103,7 @@
 				updateColorCss(wp, $colorStyle);
 			});
 		});
-	}
+	}*/
 
 	// Wrapped element
 	var wrappedElement = {

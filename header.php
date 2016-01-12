@@ -21,7 +21,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site <?php echo octopus_get_option('container_class');?>">
+<div id="page" class="site ">
 
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'octopus' ); ?></a>
 	<?php locate_template( 'template-parts/header/' . octopus_get_option( 'header_template' ), true, true );?>
