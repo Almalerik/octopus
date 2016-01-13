@@ -1,9 +1,7 @@
 /* Bootstrap overrides */
 .octopus-navbar-default {
-	background-color: $color__header-background;
-	border-radius: 0;
-	border: 0;
-	margin-bottom: 0;
+	
+
 	
 	.navbar-nav > li > a {
 		color: $color_nav;
@@ -34,53 +32,7 @@
 		}
 	}
 	
-	.navbar-toggle {
-		border: none;
-		background: transparent !important;
-		box-shadow: none;
-		margin-right: 0;
-		
-		&:hover,
-		&:active,
-		&:focus {
-			background: transparent	!important;
-			box-shadow: none;
-		}
-	
-		.icon-bar {
-			width: 22px;
-			transition: all 0.2s;
-		}
-	
-		.top-bar {
-			transform: rotate(45deg);
-			transform-origin: 10% 10%;
-		}
-	
-		.middle-bar {
-			opacity: 0;
-		}
-	
-		.bottom-bar {
-			transform: rotate(-45deg);
-			transform-origin: 10% 90%;
-		}
-	
-		&.collapsed { 
-			
-			.top-bar { 
-				transform:rotate(0);
-			}
-	
-			.middle-bar {
-				opacity: 1;
-			}
-	
-			.bottom-bar {
-				transform: rotate(0);
-			}
-		}
-	}
+
 }
 /*  End Bootstrap overrides */
 

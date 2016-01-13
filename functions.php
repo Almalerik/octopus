@@ -1,11 +1,6 @@
 <?php
 
 
-/**
- * Load Custom Nav
- */
-// TODO: MEGAMENU and submenu
-require get_template_directory () . '/inc/nav/nav.php';
 
 /**
  * Load Slider

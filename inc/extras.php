@@ -20,15 +20,8 @@ function octopus_get_option_defaults() {
 			'color_link' => '#4169e1',
 			'color_link_visited' => '#800080',
 			'color_link_hover' => '#191970',
-			
-			
-			
-			'header_position' => 'octopus-header-sticky-top',
 
-			'header_bg_color_opacity_onscroll' => '0.8',
 			
-			'header_title_color' => '#ffffff',
-			'header_desription_color' => '#efefef',
 			'header_nav_color' => '#ffffff',
 			'header_nav_decoration_hover' => '#ff851b',
 			'header_nav_decoration_active' => '#ff4136',
@@ -102,28 +95,7 @@ function octopus_get_aside_sidebar($sidebar) {
 	}
 }
 
-/**
- * Return header css class from options.
- *
- * @param bool $echo
- *        	Optional. Whether to print directly to the page (default: TRUE).
- * @return string
- */
-function octopus_get_header_css_class($echo = true) {
-	$result = '';
-	
-	// if (octopus_get_option ( 'header_banner' )) {
-	$result [] = octopus_get_option ( 'header_banner_layout' );
-	// }
-	
-	$result [] = octopus_get_option ( 'header_position' );
-	
-	if ($echo) {
-		echo implode ( ' ', $result );
-	}
-	
-	return implode ( ' ', $result );
-}
+
 
 /**
  * Return Bootstrap class to apply to the content column.
@@ -141,24 +113,6 @@ function octopus_get_primary_column_class() {
 
 
 
-/**
- * This will output the logo url.
- *
- * @return string Returns logo url.
- */
-function octopus_get_logo() {
-	$logo = octopus_get_option ( 'logo' );
-	
-	if (isset ( $logo ) && $logo != "") {
-		return $logo;
-	} else {
-		if (file_exists ( get_stylesheet_directory () . "/assets/images/logo.png" )) {
-			return get_stylesheet_directory_uri () . "/assets/images/logo.png";
-		} else {
-			return get_template_directory_uri () . "/assets/images/logo.png";
-		}
-	}
-}
 
 // FontAwesome List
 if (! function_exists ( 'get_octopus_fontawesome_list' )) :
@@ -210,42 +164,7 @@ if (is_admin ()) {
 	}
 }
 
-/**
- *
- * @param unknown $mod_name_hex        	
- * @param unknown $mod_name_opacity        	
- */
-function octopus_hex2rgba($mod_name_hex, $mod_name_opacity) {
-	$rgba = array ();
-	$mod_hex = octopus_get_option ( $mod_name_hex );
-	$mod_hex_default = octopus_get_option_defaults () [$mod_name_hex];
-	$mod_opacity = octopus_get_option ( $mod_name_opacity );
-	$mod_opacity_default = octopus_get_option_defaults () [$mod_name_opacity];
-	
-	if (($mod_hex !== '' && $mod_hex !== $mod_hex_default) || ($mod_opacity !== '' && $mod_opacity !== $mod_opacity_default)) {
-		
-		$mod_hex = str_replace ( "#", "", $mod_hex );
-		
-		if (strlen ( $mod_hex ) == 3) {
-			$r = hexdec ( substr ( $mod_hex, 0, 1 ) . substr ( $mod_hex, 0, 1 ) );
-			$g = hexdec ( substr ( $mod_hex, 1, 1 ) . substr ( $mod_hex, 1, 1 ) );
-			$b = hexdec ( substr ( $mod_hex, 2, 1 ) . substr ( $mod_hex, 2, 1 ) );
-		} else {
-			$r = hexdec ( substr ( $mod_hex, 0, 2 ) );
-			$g = hexdec ( substr ( $mod_hex, 2, 2 ) );
-			$b = hexdec ( substr ( $mod_hex, 4, 2 ) );
-		}
-		
-		$rgba = array (
-				$r,
-				$g,
-				$b,
-				$mod_opacity 
-		);
-	}
-	return $rgba;
-	// return implode(",", $rgb); // returns the rgb values separated by commas
-}
+
 
 // Colors schema
 if (! function_exists ( 'get_octopus_colors_schema' )) :

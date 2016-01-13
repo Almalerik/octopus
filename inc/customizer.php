@@ -178,65 +178,11 @@ function octopus_customize_register($wp_customize) {
 		
 		
 
-		// Header position
-		$wp_customize->add_setting ( 'header_position', array (
-				'default' => octopus_get_option ( 'header_position' ),
-				'transport' => 'postMessage',
-		) );
-		$wp_customize->add_control ( 'octopus_header_position', array (
-				'label' => esc_html__ ( 'Position', 'octopus' ),
-				'section' => 'octopus_header_layout',
-				'settings' => 'header_position',
-				'type' => 'select',
-				'choices' => array (
-						'' => esc_html__ ( 'Top', 'octopus' ),
-						'octopus-header-sticky-top' => esc_html__ ( 'Fixed top', 'octopus' )
-				),
-				'priority' => 30
-		) );
+
 
 		
-		// Header background color opacity on scrolling
-		$wp_customize->add_setting ( 'header_bg_color_opacity_onscroll', array (
-				'default' => octopus_get_option ( 'header_bg_color_opacity_onscroll' ),
-				'sanitize_callback' => 'octopus_sanitize_opacity',
-				'transport' => 'postMessage'
-		) );
-		$wp_customize->add_control ( 'octopus_header_bg_color_opacity_onscroll', array (
-				'label' => esc_html__ ( 'Scrolling background opacity', 'octopus' ),
-				'description' => esc_html__ ( 'Opacity on scrolling if fixed top.', 'octopus' ),
-				'section' => 'octopus_header_colors',
-				'settings' => 'header_bg_color_opacity_onscroll',
-				'type' => 'range',
-				'priority' => 20,
-				'input_attrs' => array (
-						'min' => 0,
-						'max' => 1,
-						'step' => 0.1
-				)
-		) );
-		$wp_customize->add_setting ( 'header_title_color', array (
-				'default' => octopus_get_option ( 'header_title_color' ),
-				'sanitize_callback' => 'sanitize_hex_color',
-				'transport' => 'postMessage'
-		) );
-		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_header_title_color', array (
-				'label' => esc_html__ ( 'Title', 'octopus' ),
-				'section' => 'octopus_header_colors',
-				'settings' => 'header_title_color',
-				'priority' => 30
-		) ) );
-		$wp_customize->add_setting ( 'header_desription_color', array (
-				'default' => octopus_get_option ( 'header_desription_color' ),
-				'sanitize_callback' => 'sanitize_hex_color',
-				'transport' => 'postMessage'
-		) );
-		$wp_customize->add_control ( new WP_Customize_Color_Control ( $wp_customize, 'octopus_header_desription_color', array (
-				'label' => esc_html__ ( 'Blog description', 'octopus' ),
-				'section' => 'octopus_header_colors',
-				'settings' => 'header_desription_color',
-				'priority' => 40
-		) ) );
+
+		
 		$wp_customize->add_setting ( 'header_nav_color', array (
 				'default' => octopus_get_option ( 'header_nav_color' ),
 				'sanitize_callback' => 'sanitize_hex_color',

@@ -127,19 +127,6 @@
 		});
 	});
 
-	// Header position
-	wp.customize('header_position', function(value) {
-		value.bind(function(to) {
-			if ('' === to) {
-				$('.octopus-header-sticky-top .octopus-navbar-default').octopus_sticky_header('destroy');
-				$('.site-header').removeClass('octopus-header-sticky-top');
-			} else {
-				$('.site-header').addClass(to);
-				$('.octopus-header-sticky-top .octopus-navbar-default').octopus_sticky_header();
-			}
-		});
-	});
-
 	// Header banner layout
 	wp.customize('header_banner_layout', function(value) {
 		value.bind(function(to) {
@@ -318,29 +305,4 @@ function updateHeadCustomCss(wp, $octopusCustomStyle) {
 	$octopusCustomStyle.html(css);
 }
 
-function hexToRgba(hex, opacity, returnRgba) {
 
-	opacity = !opacity ? 1 : opacity;
-	var parsing = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	var result = parsing ? {
-		r : parseInt(parsing[1], 16),
-		g : parseInt(parsing[2], 16),
-		b : parseInt(parsing[3], 16),
-		o : opacity
-	} : {
-		r : 0,
-		g : 0,
-		b : 0,
-		o : 0
-	};
-
-	if (returnRgba) {
-		var array_values = new Array();
-		for ( var key in result) {
-			array_values.push(result[key]);
-		}
-		return 'rgba(' + array_values.join(", ") + ')';
-	} else {
-		return result;
-	}
-}

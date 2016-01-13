@@ -8,11 +8,6 @@
 					
 					<div class="site-branding">
 						
-						<div class="site-logo-wrapper">
-							<a href="<?php echo esc_url( home_url( '/' ) );?>" rel="home">
-								<img src="<?php echo octopus_get_logo();?>" alt="<?php echo get_bloginfo('title');?>" class="site-logo image-responsive">
-							</a>
-						</div>
 						
 						<div class="site-title-wrapper">
 							<?php if ( is_front_page() && is_home() ) : ?>
@@ -38,22 +33,7 @@
 				
 				</div><!-- .navbar-header -->
 				
-				<div id="navbar" class="navbar-collapse collapse" role="navigation" aria-label="<?php esc_html_e( 'Primary Menu', 'octopus' );?>" aria-expanded="false">
-					<?php 
-						if ( has_nav_menu( 'primary' ) ) :
-							wp_nav_menu( array( 
-								'theme_location' 	=> 'primary', 
-								'menu_id' 			=> 'primary-menu',
-								'container' 		=> false,
-								'items_wrap' 		=> '<ul id="%1$s" class="nav navbar-nav octopus-navbar-nav" role="menubar">%3$s</ul>',
-								'fallback_cb'		=> 'wp_bootstrap_navwalker::fallback',
-								'walker' 			=> new Octopus_Walker()
-							) );
-						else:
-							locate_template( 'template-parts/examples/nav-primary.php', true );
-						endif;
-					?>
-				</div>
+
 				<div class="clearfix"></div>
 			</div>
 		</nav><!-- #site-navigation -->

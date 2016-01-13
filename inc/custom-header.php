@@ -100,9 +100,7 @@ function octopus_colors_schema_css() {
 	$css .= octopus_generate_css( 'a:visited', 'color', 'color_link_visited', '', '', false);
 	$css .= octopus_generate_css( 'a:hover, a:focus, a:active', 'color', 'color_link_hover', '', '', false);
 	
-	if ( count (octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ) > 0 ) {
-		$css .= ".octopus-navbar-default { background-color: rgba(" . implode (',', octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity') ). ")}\n";
-	}
+
 	
 	if ( count (octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity_onscroll') ) > 0 ) {
 		$css .= ".octopus-scrolling .octopus-navbar-default { background-color: rgba(" . implode (',', octopus_hex2rgba ('header_bg_color', 'header_bg_color_opacity_onscroll') ). ")}\n";

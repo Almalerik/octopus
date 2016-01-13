@@ -15,22 +15,6 @@ jQuery.noConflict()(function($) {
 			 */
 		},
 
-		octopus_sticky_header : function(action) {
-			if ('destroy' === action) {
-				$(this).trigger("sticky_kit:detach");
-			} else {
-				var wpadminbarHeight = 0;
-				if ($('#wpadminbar').length > 0 && $('#wpadminbar').css('position') == 'fixed') {
-					wpadminbarHeight = $('#wpadminbar').height();
-				}
-				$(this).stick_in_parent({
-					'sticky_class' : 'octopus-header-sticked',
-					'parent' : $('#page'),
-					'offset_top' : wpadminbarHeight
-				});
-			}
-			return this;
-		},
 
 		octopus_swiper : function() {
 			var options = {
@@ -197,22 +181,6 @@ jQuery.noConflict()(function($) {
 			}
 		});
 
-		// Scrolling class
-		$(window).scroll(function() {
-			var scroll = $(window).scrollTop();
-			if (scroll >= 50) {
-				$("#page").addClass("octopus-scrolling");
-			} else {
-				$("#page").removeClass("octopus-scrolling");
-			}
-		});
-		// This is necessary if user refresh page when not top
-		if ($(window).scrollTop() >= 50) {
-			$("#page").addClass("octopus-scrolling");
-		}
-
-		// Sticky Header
-		$('.octopus-header-sticky-top .octopus-navbar-default').octopus_sticky_header();
 
 		$(window).resize(function() {
 			// Fix primary long menu on resize
