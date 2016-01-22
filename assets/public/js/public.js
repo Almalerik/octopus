@@ -133,8 +133,7 @@ jQuery.noConflict()(function($) {
 
 		$('.octopus-swiper').octopus_swiper();
 
-		// Fix primary long menu
-		$('.octopus-navbar-wrapper').octopus_fix_long_menu();
+		
 		// FullHeight slider
 		$('.octopus-fullscreen-banner').octopus_fullscreen_banner();
 
@@ -183,8 +182,6 @@ jQuery.noConflict()(function($) {
 
 
 		$(window).resize(function() {
-			// Fix primary long menu on resize
-			$('.octopus-navbar-wrapper').octopus_fix_long_menu();
 			$('.octopus-fullscreen-banner').octopus_fullscreen_banner();
 
 			// Close all menu
